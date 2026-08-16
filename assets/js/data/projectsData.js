@@ -101,62 +101,66 @@ export const PROJECTS_DATA = [
   },
   {
     id: "dashboard-gastos",
-    title: "Dashboard Financeiro & Gestão de Despesas em Tempo Real",
+    title: "Pipeline de Dados, AppSheet & Dashboard Financeiro",
     category: "web",
     categoryLabel: "Web & Dashboards",
     status: "Concluído",
     highlight: false,
-    summary: "Painel analítico modular de baixa latência para controle financeiro, classificação preditiva de despesas, virtualização de dados e visualização gráfica responsiva sem dependências pesadas.",
-    tags: ["Vanilla ES6+", "Data Virtualization", "Chart.js / SVG", "IndexedDB", "Analytics"],
+    summary: "Arquitetura de dados em camadas (Input > ETL > Relational Core > Output): aplicativo mobile no-code via Google AppSheet, validação estrita de domínio, segurança em nível de linha (RLS) e telemetria de limites de crédito em tempo real.",
+    tags: ["Google AppSheet", "Data Pipeline (ETL)", "Row-Level Security (RLS)", "Google Sheets Relacional", "Data Validation", "Looker Studio / BI"],
     docPath: "docs/projetos/dashboard-gastos.md",
     metrics: [
-      { label: "Latência", value: "< 16ms (60 FPS)" },
-      { label: "Privacidade", value: "Client-Side Only" },
-      { label: "Armazenamento", value: "IndexedDB / Local" }
+      { label: "Arquitetura", value: "Pipeline em 4 Camadas" },
+      { label: "Segurança de Acesso", value: "Row-Level Security (RLS)" },
+      { label: "Ingestão Mobile", value: "Google AppSheet UUIDs" }
     ],
-    overview: "Plataforma para consolidação de despesas e telemetria financeira em tempo real com categorização heurística e exportação de relatórios analíticos.",
+    overview: "Sistema estruturado de gestão financeira e telemetria de gastos com cartões de crédito construído sob o paradigma desacoplado de Pipeline de Dados (Input Mobile > Banco de Dados Transacional > Camada de ETL > Painel Visual de KPIs).",
     architecture: `
       <ul>
-        <li><strong>Data Engine & IndexedDB:</strong> Armazenamento e indexação de milhares de lançamentos com busca instantânea.</li>
-        <li><strong>Visualização Dinâmica:</strong> Gráficos interativos em tempo real para análise de fluxo de caixa e projeções.</li>
-        <li><strong>Privacidade por Design:</strong> Zero tráfego de dados sensíveis para servidores externos.</li>
+        <li><strong>1. Ingestão Mobile (Google AppSheet):</strong> Coleta transacional no smartphone no momento da compra com geração de chaves primárias (<code>ID-Transacao</code>) e validação estrita de categorias.</li>
+        <li><strong>2. Camada Transacional (Raw Storage):</strong> Tabelas relacionais que armazenam os registros brutos e os parâmetros de limite de crédito por cartão.</li>
+        <li><strong>3. Camada de ETL (DADOS TRATADOS):</strong> Agregação e enriquecimento automatizado via funções relacionais (<code>QUERY</code>, <code>FILTER</code>, <code>SUMIF</code>), calculando o percentual de comprometimento de limite em tempo real sem onerar a visualização.</li>
+        <li><strong>4. Segurança em Nível de Linha (RLS):</strong> Filtragem dinâmica baseada no e-mail do usuário autenticado e parâmetros temporais selecionados.</li>
+        <li><strong>5. Painel Executivo (DASHBOARD):</strong> Visualização interativa de KPIs com evolução de gastos, distribuição por centro de custo e saúde financeira.</li>
       </ul>
     `,
     techTable: [
-      { category: "Front-End", tech: "Vanilla JS ES6+, CSS Grid, Design Tokens M3" },
-      { category: "Visualização", tech: "SVG Charts, Data Analytics Engine" },
-      { category: "Dados", tech: "IndexedDB, LocalStorage, CSV ETL Parser" },
-      { category: "Exportação", tech: "Exportação XLSX / PDF, Geração de Relatórios" }
+      { category: "Mobile & Input", tech: "Google AppSheet (No-Code Mobile App), Data Validation Dropdowns" },
+      { category: "Armazenamento & Relacional", tech: "Google Sheets Relacional, AppSheet Tables, UUID Primary Keys" },
+      { category: "ETL & Processamento", tech: "Funções Relacionais (QUERY, FILTER, ARRAYFORMULA, SUMIF)" },
+      { category: "Segurança & BI", tech: "Row-Level Security (RLS), Looker Studio / Dashboard de KPIs" }
     ]
   },
   {
     id: "contratos-assinaturas",
-    title: "Sistema de Gestão de Contratos & Assinaturas Digitais",
+    title: "Automação de Ciclo de Vida de Contratos (CLM) & Assinatura Digital",
     category: "bots",
     categoryLabel: "Bots & Automação",
     status: "Concluído",
     highlight: false,
-    summary: "Automação do ciclo de vida contratual (CLM) com renderização dinâmica de minutas em PDF, checksum criptográfico SHA-256 e integração via Webhooks com plataformas de assinatura eletrônica.",
-    tags: ["Python", "FastAPI / Node", "SHA-256", "Webhook Handlers", "Telegram Bot API"],
+    summary: "Pipeline end-to-end de onboarding de clientes, validação cadastral (BrasilAPI / OTP de 6 dígitos), aprovação com quarentena, fusão dinâmica de minutas no Google Docs e integração com a API GraphQL da Autentique.",
+    tags: ["Google Apps Script (V8)", "Autentique GraphQL API", "BrasilAPI (CNPJ)", "OTP (Two-Factor)", "Google Docs API", "Google Sheets Relacional", "Google AppSheet"],
     docPath: "docs/projetos/contratos-assinaturas.md",
     metrics: [
-      { label: "Integridade", value: "SHA-256 Hash" },
-      { label: "Tempo de Emissão", value: "< 2 minutos" },
-      { label: "Notificações", value: "Instantâneas" }
+      { label: "Ciclo de Fechamento", value: "De 3 dias para 15min" },
+      { label: "Segurança de Acesso", value: "Single-Use Tokens + OTP" },
+      { label: "Assinatura Eletrônica", value: "Autentique GraphQL API" }
     ],
-    overview: "Orquestrador de contratos e documentos jurídicos que elimina etapas manuais através de geração de templates parametrizáveis e trilha de auditoria completa.",
+    overview: "Solução completa de Contract Lifecycle Management (CLM) com Web App responsivo de onboarding, validação cadastral de CNPJ e CPF em tempo real, camada de quarentena para aprovação humana, geração dinâmica de PDFs e disparo de cópias autenticadas via Webhook.",
     architecture: `
       <ul>
-        <li><strong>Geração Dinâmica de PDF:</strong> Renderização de minutas a partir de templates com preenchimento automatizado de variáveis e cláusulas condicionais.</li>
-        <li><strong>Trilha Criptográfica de Auditoria:</strong> Criação de hashes SHA-256 para garantia de imutabilidade dos documentos assinados.</li>
-        <li><strong>Webhooks & Bots:</strong> Notificação em tempo real dos signatários via Telegram/WhatsApp ao alterar o status do documento.</li>
+        <li><strong>1. Gatekeeper & Tokens de Uso Único:</strong> Acesso restrito a links com tokens de sessão (<code>?token=XYZ</code>) invalidados atomicamente após o envio dos dados, impedindo replay attacks.</li>
+        <li><strong>2. Validação Cadastral & OTP:</strong> Autocompletar de dados da empresa via <code>BrasilAPI</code>, validação matemática de CPF (Módulo 11) e envio de código OTP de 6 dígitos via e-mail antes de liberar a submissão.</li>
+        <li><strong>3. Quarentena & Defesa em Profundidade:</strong> Sanitização contra injeção de fórmulas (CSV Injection), preservação de zeros à esquerda em CNPJs/CPFs e retenção em quarentena até aprovação no Google Sheets ou AppSheet.</li>
+        <li><strong>4. Fusão Dinâmica & Conversão em PDF:</strong> Clonagem automática de templates do Google Docs, substituição de variáveis (<code>&lt;&lt;Tag&gt;&gt;</code>) e exportação em PDF.</li>
+        <li><strong>5. Autentique GraphQL & Webhook de Retorno:</strong> Criação de documentos na Autentique com posicionamento visual de rubricas/assinaturas ($X, Y, Z$) e webhook (<code>doPost</code>) que arquiva o PDF assinado no Drive e notifica os signatários.</li>
       </ul>
     `,
     techTable: [
-      { category: "Back-End", tech: "Python, FastAPI, Node.js, Jinja2 / Puppeteer" },
-      { category: "Criptografia", tech: "SHA-256 Checksum, Validação ICP-Brasil, X.509" },
-      { category: "Integrações", tech: "Webhooks REST, Telegram Bot API, WhatsApp API" },
-      { category: "Banco de Dados", tech: "SQLite / PostgreSQL, S3 Encrypted Storage" }
+      { category: "Frontend & Validação", tech: "HTML5, Bootstrap 5, JavaScript Vanilla, BrasilAPI REST, Validação Módulo 11 (CPF)" },
+      { category: "Backend & Orquestrador", tech: "Google Apps Script (V8 Engine), doGet (Gatekeeper), doPost (Webhook)" },
+      { category: "Geração de Documentos", tech: "Google Docs API, Google Drive API, Conversão Automatizada para PDF" },
+      { category: "Assinatura & Segurança", tech: "Autentique GraphQL API v2, Tokens Descartáveis, Sistema OTP, AppSheet" }
     ]
   },
   {
