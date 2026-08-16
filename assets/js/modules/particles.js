@@ -12,7 +12,8 @@ export function initParticles() {
     return;
   }
 
-  const AMBIENT_COUNT = 20;
+  const isMobile = window.innerWidth < 768;
+  const AMBIENT_COUNT = isMobile ? 8 : 18;
   const particles = [];
   const colors = [
     { bg: 'rgba(128, 179, 255, 0.45)', glow: 'rgba(128, 179, 255, 0.7)' },

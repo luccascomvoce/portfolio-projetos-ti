@@ -289,3 +289,19 @@
   }
 }
 
+/* ==========================================================================
+   9. Mobile GPU Acceleration & Fill-rate Optimization
+   ========================================================================== */
+@media (max-width: 768px), (pointer: coarse) {
+  .lava-lamp-container {
+    filter: blur(45px);
+    opacity: 0.55;
+  }
+  .blob-1 { width: 340px; height: 340px; }
+  .blob-2 { width: 360px; height: 360px; }
+  .blob-3 { width: 300px; height: 300px; }
+  #spotlight {
+    display: none;
+  }
+}
+
