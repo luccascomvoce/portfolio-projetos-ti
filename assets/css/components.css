@@ -228,8 +228,8 @@
 /* Avatar Presence Dot (Discord/Telegram presence style) */
 .avatar-presence-indicator {
   position: absolute;
-  bottom: -2px;
-  right: -2px;
+  bottom: -3px;
+  right: -3px;
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -238,9 +238,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 0 10px rgba(16, 185, 129, 0.3);
   transition: transform var(--transition-spring);
+  pointer-events: none;
 }
 
 .hero-avatar-wrapper:hover .avatar-presence-indicator {
