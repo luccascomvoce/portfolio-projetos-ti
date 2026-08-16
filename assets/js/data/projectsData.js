@@ -307,7 +307,7 @@ export const PROJECTS_DATA = [
     categoryLabel: "Scripts & OS",
     status: "Produção Ativa",
     highlight: false,
-    summary: "Utilitário de sistema e extensão do Windows Explorer para extração instantânea de topologias de diretórios com filtragem inteligente de ruídos (.git, node_modules, .venv), persistência UTF-8 em disco, fallback duplo na área de transferência (Set-Clipboard / clip.exe), compilação nativa em binário (ps2exe) e empacotador Inno Setup.",
+    summary: "A arte da sobreengenharia para nunca mais digitar comandos longos: faz o mesmo que '$txt = tree /f /a; $txt | Out-File ...; $txt | Set-Clipboard', só que com 1 clique no menu de contexto do Windows, com DFS recursivo, blacklist inteligente de dependências, binário ps2exe e instalador Inno Setup.",
     tags: ["PowerShell 5.1/pwsh", "Windows Shell API", "ps2exe Compiler", "Inno Setup (Pascal)", "GitHub Actions", "Tree DFS Algorithm"],
     docPath: "docs/projetos/listar-estrutura-diretorios.md",
     metrics: [
@@ -315,7 +315,13 @@ export const PROJECTS_DATA = [
       { label: "Privilégios", value: "User-Scope (Sem UAC)" },
       { label: "Entrega Contínua", value: "GitHub Actions CI/CD" }
     ],
-    overview: "Utilitário de produtividade integrado diretamente ao menu de contexto do Windows Explorer (Directory e Directory\\Background). Elimina o atrito de documentação de repositórios e geração de prompts para LLMs mapeando diretórios de forma recursiva, aplicando blacklisting de dependências e alimentando a área de transferência do Windows de forma instantânea.",
+    overview: `
+      <div style="background: rgba(128, 179, 255, 0.08); border-left: 3px solid var(--accent); padding: 0.85rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.25rem; font-family: var(--font-code); font-size: 0.84rem; color: #e2e8f0; line-height: 1.55;">
+        💡 <strong>TL;DR &amp; Humor de Engenharia:</strong><br>
+        <em>"Faz exatamente o mesmo que <code>$txt = tree /f /a; $txt | Out-File -Encoding utf8 .\\estrutura-da-pasta.txt; $txt | Set-Clipboard</code>, só que com o suprassumo da sobreengenharia via menu de contexto do Windows Explorer com 1 clique — porque lembrar de comandos de terminal com flags de encoding é opcional."</em>
+      </div>
+      Utilitário de produtividade integrado nativamente ao menu de contexto do Windows Explorer (nós <code>Directory</code> e <code>Directory\\Background</code>). Elimina o atrito de documentação de repositórios e geração de prompts para LLMs mapeando diretórios de forma recursiva, aplicando blacklisting de dependências e alimentando a área de transferência do Windows de forma instantânea.
+    `,
     liveUrl: "https://github.com/luccascomvoce/retorna_nomes_arquivos_pastas",
     liveLabel: "Ver Repositório no GitHub",
     liveType: "web",

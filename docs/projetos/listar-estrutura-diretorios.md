@@ -18,6 +18,9 @@ No fluxo diário de desenvolvimento de software, documentar a arquitetura de pas
 2. **Scripts manuais repetitivos:** Exigem copiar e colar arquivos `.ps1` ou `.py` dentro de cada repositório, poluindo o *working tree* do Git.
 3. **Barreiras de Privilégio (UAC/Admin):** Utilitários que exigem instalação no escopo de máquina (`HKLM`) são frequentemente bloqueados por políticas de segurança corporativas.
 
+> 💡 **TL;DR & A Arte da Sobreengenharia:**  
+> *"Faz exatamente o mesmo que `$txt = tree /f /a; $txt | Out-File -Encoding utf8 .\estrutura-da-pasta.txt; $txt | Set-Clipboard`, só que com o suprassumo da sobreengenharia via menu de contexto do Windows Explorer com 1 clique — porque lembrar de comandos de terminal com flags de encoding é opcional."*
+
 O **Gerador de Estrutura de Pastas** foi projetado para eliminar completamente esse atrito: com um único clique com o botão direito em qualquer pasta do Windows Explorer, a ferramenta gera uma árvore de texto perfeitamente formatada, grava um arquivo `estrutura-da-pasta.txt` em UTF-8 e copia o resultado diretamente para o *Clipboard* do sistema operacional.
 
 ---
