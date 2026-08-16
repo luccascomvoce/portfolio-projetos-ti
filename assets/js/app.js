@@ -75,7 +75,49 @@ document.addEventListener('DOMContentLoaded', () => {
     audioToggleBtn.addEventListener('mouseenter', () => soundEngine.playHover());
   }
 
-  // 7. Attach sound cues to all interactive elements
+  // 7. Header Actions Horizontal Scroll & Drag Engine
+  const headerActions = document.querySelector('.header-actions');
+  if (headerActions) {
+    // Mouse wheel horizontal scroll
+    headerActions.addEventListener('wheel', (e) => {
+      if (headerActions.scrollWidth > headerActions.clientWidth) {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          headerActions.scrollLeft += e.deltaY;
+        }
+      }
+    }, { passive: false });
+
+    // Mouse drag-to-scroll
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    headerActions.addEventListener('mousedown', (e) => {
+      // Don't drag if clicking buttons directly with left click
+      isDown = true;
+      startX = e.pageX - headerActions.offsetLeft;
+      scrollLeft = headerActions.scrollLeft;
+    });
+
+    headerActions.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+
+    headerActions.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    headerActions.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - headerActions.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      headerActions.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+  // 8. Attach sound cues to all interactive elements
   const interactiveElements = document.querySelectorAll('a, button, .social-pill');
   interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => soundEngine.playHover(), { passive: true });
