@@ -264,5 +264,40 @@ export const PROJECTS_DATA = [
       { category: "Orquestração & CDN", tech: "GitHub Actions (Cron 1h), Git-as-Database, GitHub Pages CDN" },
       { category: "Mensageria", tech: "Telegram Bot API (sendPhoto / sendMessage com HTML escape)" }
     ]
+  },
+  {
+    id: "telegram-bot-games-hub",
+    title: "Telegram Games Hub — Plataforma Multiplayer em Tempo Real (TMA)",
+    category: "bots",
+    categoryLabel: "Bots & Automação",
+    status: "Produção Ativa",
+    highlight: false,
+    summary: "Plataforma distribuída de jogos multiplayer (Pôquer Texas Hold'em & UNO) em Telegram Mini Apps (TMA): backend reativo orientado a eventos em Python 3.12 / FastAPI / WebSockets, autoridade estrita do servidor (Anti-Cheat), autenticação criptográfica HMAC-SHA256 e renderização Canvas a 60 FPS.",
+    tags: ["Telegram Mini Apps (TMA)", "Python 3.12 (FastAPI)", "WebSockets (Real-Time)", "HTML5 Canvas (60 FPS)", "HMAC-SHA256 Auth", "PokerKit / FSM", "SQLite WAL", "Docker / Cloudflare Tunnels"],
+    docPath: "docs/projetos/telegram-bot-games-hub.md",
+    metrics: [
+      { label: "Sincronização", value: "WebSockets Real-Time" },
+      { label: "Renderização", value: "Canvas 60 FPS" },
+      { label: "Segurança", value: "HMAC-SHA256 + Anti-Cheat" }
+    ],
+    overview: "Plataforma de entretenimento multiplayer de alta performance no ecossistema Telegram. Combina a praticidade dos Telegram Mini Apps (TMA) com um backend assíncrono orientado a eventos via WebSockets para partidas síncronas de Pôquer e UNO sem downloads externos.",
+    liveUrl: "https://t.me/vamojogarbot",
+    liveLabel: "Acessar o Hub no Telegram",
+    liveType: "telegram",
+    architecture: `
+      <ul>
+        <li><strong>1. Telegram Mini Apps & Canvas 60 FPS:</strong> Interface leve em HTML5 Canvas e Vanilla JS com renderização procedural de feltro, cartas e feedback tátil, eliminando frameworks pesados.</li>
+        <li><strong>2. Núcleo Reativo & WebSockets (FastAPI):</strong> Roteador de salas com heartbeat, desconexão graciosa e inicialização sob demanda (lazy initialization) alocada apenas com jogadores conectados.</li>
+        <li><strong>3. Autoridade do Servidor & Anti-Cheat:</strong> Máscara de segurança que oculta cartas de adversários até o Showdown e validação do invariante físico de 108 cartas no UNO.</li>
+        <li><strong>4. Game Registry & Máquinas de Estado:</strong> Arquitetura desacoplada (Registry & Factory Patterns) permitindo plugar novos jogos e IAs heurísticas concorrentes sem refatorar o núcleo de rede.</li>
+        <li><strong>5. Segurança Criptográfica & Observabilidade:</strong> Validação de identidade com HMAC-SHA256, sanitização LGPD/GDPR em logs JSON estruturados e 73 testes automatizados (pytest).</li>
+      </ul>
+    `,
+    techTable: [
+      { category: "Backend & Conexões", tech: "Python 3.12, FastAPI (ASGI), Uvicorn, WebSockets Nativos, Pydantic v2, uv" },
+      { category: "Telegram & Mini Apps", tech: "aiogram v3, Telegram Mini Apps SDK, HMAC-SHA256 initData Auth, Inline Queries" },
+      { category: "Lógica de Jogos & IA", tech: "PokerKit (Hold'em FSM), Motor de UNO (108 cartas, regra estrita +4), Bots Heurísticos" },
+      { category: "Frontend & Infra", tech: "HTML5 Canvas API, Web Audio API, Haptic Feedback, SQLite WAL, Docker, Cloudflare Tunnels" }
+    ]
   }
 ];

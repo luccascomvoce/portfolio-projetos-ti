@@ -86,14 +86,15 @@ portfolio-projetos-ti/
 
 | Projeto | Categoria | Destaques Técnicos |
 |---|---|---|
+| **Telegram Games Hub (TMA)** | `Bots & Automação` | Plataforma multiplayer (Pôquer & UNO) em Telegram Mini Apps, WebSockets em tempo real, Canvas 60 FPS, HMAC-SHA256 e Anti-Cheat. |
 | **Engenharia Reversa Android IoT** | `Engenharia Reversa` | Amputação Smali (`return-void`), supressão ViewBinding (`0.0dip`), fusão de Split APKs (Anti-Split) e telemetria Wireless ADB. |
 | **Modding Avançado em C# (7 Days to Die)** | `Game Mods` | Suíte de 7 mods em C# / Unity, injeção de bytecode via Harmony, I/O assíncrono multithread e busca $O(1)$ de POIs. |
 | **ADA Prices Bot** | `Bots & Automação` | Ingestão híbrida (8 CEXs/DEXs WebSockets + REST), filtro Z-Score, velas OHLCV, 24+ indicadores técnicos (`pandas-ta`) e OCI Free Tier. |
 | **Blumenau News Pipeline** | `Bots & Automação` | Pipeline serverless em duas etapas: gerador GitOps RSS 2.0 (Python / GHA) e consumidor Cloudflare Workers com Workers KV. |
+| **Gestão de Contratos & Assinaturas (CLM)** | `Bots & Automação` | Onboarding com BrasilAPI, OTP de 6 dígitos, quarentena/aprovação, fusão no Google Docs e Autentique GraphQL API com posições visuais. |
+| **Pipeline de Dados & AppSheet** | `Web & Dashboards` | Arquitetura em 4 camadas (AppSheet Mobile > Relational Core > ETL > Dashboard), validação de domínio e Row-Level Security (RLS). |
 | **Automação Servidor Minecraft & Cloud** | `Scripts & OS` | Orquestrador PowerShell com shutdown gracioso de JVM, compressão temporal e backup offsite criptografado via MTProto Telegram. |
 | **Landing Page Splash Piscinas** | `Web & Dashboards` | Catálogo desacoplado em JSON, 100% fontes WOFF2 locais, SEO técnico e redundância multi-nuvem (Vercel Edge + GitHub Pages). |
-| **Dashboard Financeiro em Tempo Real** | `Web & Dashboards` | Processamento client-side em Vanilla ES6+, persistência local via IndexedDB e gráficos reativos a 60 FPS sem bibliotecas externas pesadas. |
-| **Gestão de Contratos & Assinaturas** | `Bots & Automação` | Automação do ciclo de vida contratual (CLM), geração dinâmica de minutas PDF, checksum SHA-256 e webhooks assíncronos. |
 
 ---
 
