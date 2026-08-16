@@ -1,0 +1,6 @@
+# robots.txt para o Portfólio Técnico de Luccas
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://luccascomvoce.github.io/portfolio-projetos-ti/sitemap.xml

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80b3ff"/>
+      <stop offset="100%" stop-color="#38edf2"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#182030"/>
+      <stop offset="100%" stop-color="#090d14"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#surface)" stroke="url(#bg)" stroke-width="2.5"/>
+  <!-- Code Emblem <L/> -->
+  <text x="32" y="40" font-family="'Fira Code', 'Courier New', monospace" font-size="24" font-weight="800" fill="url(#bg)" text-anchor="middle" letter-spacing="-1">&lt;L/&gt;</text>
+</svg>
