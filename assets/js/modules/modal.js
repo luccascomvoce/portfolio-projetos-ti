@@ -1,6 +1,7 @@
 /**
  * Responsive Modal System with FLIP Organic Expansion & Collapse Engine
  * Expands organically from the originating card geometry and smoothly collapses back on dismiss
+ * Enhanced with WAI-ARIA Dialog modal focus trap & keyboard accessibility
  */
 
 import { PROJECTS_DATA } from '../data/projectsData.js';
@@ -16,7 +17,9 @@ class ModalController {
     this.bodyEl = null;
     this.closeBtn = null;
     this.originEl = null;
+    this.triggerElement = null;
     this.isAnimating = false;
+    this.boundTrapFocus = this.trapFocus.bind(this);
   }
 
   init() {
@@ -54,11 +57,38 @@ class ModalController {
     });
   }
 
+  trapFocus(e) {
+    if (e.key !== 'Tab' || !this.overlay.classList.contains('active')) return;
+
+    const focusableElements = this.overlay.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusableElements.length) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+
   openProject(projectId, originElement = null) {
     if (this.isAnimating) return;
 
     const project = PROJECTS_DATA.find(p => p.id === projectId);
     if (!project || !this.overlay) return;
+
+    // Save triggering element for accessible focus return
+    this.triggerElement = document.activeElement;
 
     soundEngine.playClick();
     setTiltEnabled(false); // Pause tilt during modal view
@@ -77,7 +107,7 @@ class ModalController {
       this.bodyEl.innerHTML = `
         <div class="modal-section">
           <h4 class="modal-section-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
               <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -90,7 +120,7 @@ class ModalController {
 
         <div class="modal-section">
           <h4 class="modal-section-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
               <polyline points="2 17 12 22 22 17"></polyline>
               <polyline points="2 12 12 17 22 12"></polyline>
@@ -102,24 +132,25 @@ class ModalController {
 
         <div class="modal-section">
           <h4 class="modal-section-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span>Stack Tecnológica &amp; Palavras-Chave</span>
+            <span>Especificações &amp; Tecnologias</span>
           </h4>
-          <table class="modal-tech-table">
+          <table class="modal-table" role="table">
             <thead>
               <tr>
-                <th>Categoria</th>
-                <th>Tecnologias / Conceitos</th>
+                <th scope="col">Camada</th>
+                <th scope="col">Tecnologia / Ferramentas</th>
               </tr>
             </thead>
             <tbody>
               ${project.techTable.map(row => `
                 <tr>
                   <td><strong>${row.category}</strong></td>
-                  <td><code>${row.tech}</code></td>
+                  <td>${row.tech}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -128,36 +159,39 @@ class ModalController {
 
         ${project.liveUrl ? `
           <div class="modal-actions">
-            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn ${project.liveType === 'telegram' ? 'telegram' : ''}" onclick="event.stopPropagation();">
+            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn ${project.liveType === 'telegram' ? 'modal-cta-telegram' : 'modal-cta-web'}">
               ${project.liveType === 'telegram' ? `
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
                 </svg>
               ` : `
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10"></circle>
                   <line x1="2" y1="12" x2="22" y2="12"></line>
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                 </svg>
               `}
-              <span>${project.liveLabel || 'Acessar Implementação'}</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
+              <span>${project.liveLabel || 'Acessar em Produção'}</span>
             </a>
           </div>
         ` : ''}
       `;
     }
 
-    // Check reduced motion
+    // Modal accessibility state
+    this.overlay.setAttribute('aria-hidden', 'false');
+    window.addEventListener('keydown', this.boundTrapFocus);
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Direct open fallback if no origin element exists or reduced motion is preferred
     if (!this.originEl || prefersReducedMotion) {
       this.overlay.classList.add('active');
+      this.overlay.style.opacity = '1';
+      this.container.style.transform = 'translate3d(0, 0, 0) scale(1, 1)';
+      this.container.style.borderRadius = 'var(--radius-xl)';
       document.body.style.overflow = 'hidden';
+      if (this.closeBtn) this.closeBtn.focus();
       return;
     }
 
@@ -166,37 +200,29 @@ class ModalController {
     // ========================================================================
     this.isAnimating = true;
 
-    // 1. First: Measure Origin geometry
+    // 1. First: Geometry of origin card
     const firstRect = this.originEl.getBoundingClientRect();
 
-    // 2. Prepare Overlay & Container in DOM
-    this.overlay.classList.add('active');
+    // 2. Last: Prepare active modal
     document.body.style.overflow = 'hidden';
-    this.overlay.style.transition = 'none';
+    this.overlay.classList.add('active');
     this.overlay.style.opacity = '0';
-    this.container.style.transition = 'none';
-    this.container.style.transform = 'none';
+    this.originEl.style.opacity = '0';
 
-    // 3. Last: Measure Target geometry
+    if (this.bodyEl) this.bodyEl.style.opacity = '0';
+
+    // 3. Last Geometry: Destination modal bounding rect
     const lastRect = this.container.getBoundingClientRect();
 
-    // 4. Invert: Compute scale and translation deltas
+    // 4. Invert: Compute exact scale & coordinate delta
     const scaleX = Math.max(firstRect.width / lastRect.width, 0.1);
     const scaleY = Math.max(firstRect.height / lastRect.height, 0.1);
     const deltaX = (firstRect.left + firstRect.width / 2) - (lastRect.left + lastRect.width / 2);
     const deltaY = (firstRect.top + firstRect.height / 2) - (lastRect.top + lastRect.height / 2);
 
-    this.container.style.transformOrigin = 'center center';
+    this.container.style.transition = 'none';
     this.container.style.transform = `translate3d(${deltaX.toFixed(2)}px, ${deltaY.toFixed(2)}px, 0) scale(${scaleX.toFixed(4)}, ${scaleY.toFixed(4)})`;
     this.container.style.borderRadius = 'var(--radius-lg)';
-
-    if (this.bodyEl) {
-      this.bodyEl.style.opacity = '0';
-      this.bodyEl.style.transition = 'none';
-    }
-
-    this.originEl.style.opacity = '0.2';
-    this.originEl.style.transition = 'opacity 0.2s ease';
 
     // Force browser reflow
     void this.container.offsetHeight;
@@ -222,12 +248,16 @@ class ModalController {
         this.container.style.transition = '';
         this.container.style.willChange = '';
         this.isAnimating = false;
+        if (this.closeBtn) this.closeBtn.focus();
       }, 490);
     });
   }
 
   close() {
     if (this.isAnimating || !this.overlay || !this.overlay.classList.contains('active')) return;
+
+    window.removeEventListener('keydown', this.boundTrapFocus);
+    this.overlay.setAttribute('aria-hidden', 'true');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -237,6 +267,7 @@ class ModalController {
       this.container.style.transform = '';
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      if (this.triggerElement) this.triggerElement.focus();
       return;
     }
 
@@ -290,6 +321,11 @@ class ModalController {
       setTiltEnabled(true);
       this.originEl = null;
       this.isAnimating = false;
+
+      if (this.triggerElement) {
+        this.triggerElement.focus();
+        this.triggerElement = null;
+      }
     }, 400);
   }
 }

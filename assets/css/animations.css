@@ -239,3 +239,53 @@
 .shimmer-card:hover::before {
   left: 150%;
 }
+
+/* ==========================================================================
+   8. Accessibility: Prefers-Reduced-Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .blob,
+  .blob-1,
+  .blob-2,
+  .blob-3 {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .pulse-emerald,
+  .pulse-emerald::after,
+  .pulse-emerald::before {
+    animation: none !important;
+  }
+
+  .bounce-indicator {
+    animation: none !important;
+  }
+
+  .shimmer-card::before {
+    display: none !important;
+  }
+
+  .typewriter-cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  #particles-container,
+  #spotlight {
+    display: none !important;
+  }
+}
+

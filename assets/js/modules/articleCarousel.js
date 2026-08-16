@@ -195,7 +195,9 @@ class ArticleCarouselManager {
     this.modalBody = null;
     this.modalCloseBtn = null;
     this.originCard = null;
+    this.triggerElement = null;
     this.isAnimating = false;
+    this.boundTrapFocus = this.trapFocus.bind(this);
   }
 
   init() {
@@ -385,28 +387,48 @@ class ArticleCarouselManager {
     }
   }
 
+  trapFocus(e) {
+    if (e.key !== 'Tab' || !this.modalEl.classList.contains('active')) return;
+
+    const focusableElements = this.modalEl.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusableElements.length) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+
   openArticle(id, originCard = null) {
     if (this.isAnimating || !this.modalEl) return;
 
     const article = ARTICLES_DATA.find(a => a.id === id);
     if (!article) return;
 
+    this.triggerElement = document.activeElement;
+    this.originCard = originCard || document.querySelector(`[data-article-id="${id}"]`);
+
     soundEngine.playClick();
     setTiltEnabled(false);
-
-    if (!originCard) {
-      originCard = document.querySelector(`[data-article-id="${id}"]`);
-    }
-    this.originCard = originCard;
 
     if (this.modalTitle) this.modalTitle.textContent = article.title;
     if (this.modalBadge) this.modalBadge.textContent = article.category;
     if (this.modalMeta) {
       this.modalMeta.innerHTML = `
-        <span>Por <strong>${article.author}</strong></span>
-        <span>•</span>
         <span>${article.date}</span>
-        <span>•</span>
+        <span aria-hidden="true">•</span>
         <span>${article.readTime} de leitura</span>
       `;
     }
@@ -415,11 +437,18 @@ class ArticleCarouselManager {
       this.modalBody.innerHTML = ARTICLE_CONTENTS[id] || `<p>${article.summary}</p>`;
     }
 
+    this.modalEl.setAttribute('aria-hidden', 'false');
+    window.addEventListener('keydown', this.boundTrapFocus);
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!this.originCard || prefersReducedMotion) {
       this.modalEl.classList.add('active');
+      this.modalEl.style.opacity = '1';
+      this.modalContainer.style.transform = 'translate3d(0, 0, 0) scale(1, 1)';
+      this.modalContainer.style.borderRadius = 'var(--radius-xl)';
       document.body.style.overflow = 'hidden';
+      if (this.modalCloseBtn) this.modalCloseBtn.focus();
       return;
     }
 
@@ -476,12 +505,16 @@ class ArticleCarouselManager {
         this.modalContainer.style.transition = '';
         this.modalContainer.style.willChange = '';
         this.isAnimating = false;
+        if (this.modalCloseBtn) this.modalCloseBtn.focus();
       }, 490);
     });
   }
 
   closeArticle() {
     if (this.isAnimating || !this.modalEl || !this.modalEl.classList.contains('active')) return;
+
+    window.removeEventListener('keydown', this.boundTrapFocus);
+    this.modalEl.setAttribute('aria-hidden', 'true');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -492,6 +525,7 @@ class ArticleCarouselManager {
       this.modalContainer.style.willChange = '';
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      if (this.triggerElement) this.triggerElement.focus();
       return;
     }
 
@@ -543,8 +577,14 @@ class ArticleCarouselManager {
       setTiltEnabled(true);
       this.originCard = null;
       this.isAnimating = false;
+
+      if (this.triggerElement) {
+        this.triggerElement.focus();
+        this.triggerElement = null;
+      }
     }, 400);
   }
 }
 
 export const articleCarousel = new ArticleCarouselManager();
+

@@ -28,6 +28,9 @@
 </head>
 <body>
 
+  <!-- Skip to Content Link (Accessibility) -->
+  <a href="#projetos" class="skip-link">Pular para o conteúdo principal</a>
+
   <!-- Dynamic Spotlight (Cursor Follower) -->
   <div id="spotlight" aria-hidden="true"></div>
 
@@ -45,32 +48,32 @@
        1. Floating Header
        ======================================================================== -->
   <header class="header-floating" id="main-header">
-    <a href="#hero" class="header-brand" title="Luccas — Início">
-      <div class="brand-logo">&lt;L/&gt;</div>
+    <a href="#hero" class="header-brand" title="Luccas — Início" aria-label="Luccas — Página Inicial">
+      <div class="brand-logo" aria-hidden="true">&lt;L/&gt;</div>
       <span class="brand-title">Luccas</span>
     </a>
 
-    <div class="header-actions">
+    <nav class="header-actions" aria-label="Navegação Principal">
       <a href="#destaque" class="nav-link-btn">Destaque</a>
       <a href="#projetos" class="nav-link-btn">Projetos</a>
       <a href="#artigos" class="nav-link-btn">Artigos</a>
       <a href="#contato" class="nav-link-btn">Contato</a>
 
       <!-- Web Audio API Synthesizer Toggle Button -->
-      <button id="audio-toggle-btn" class="btn-icon" title="Ativar/Desativar Sons da Interface" aria-label="Alternar som">
-        <svg id="audio-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button id="audio-toggle-btn" class="btn-icon" title="Ativar/Desativar Sons da Interface" aria-label="Alternar efeitos sonoros" aria-pressed="false">
+        <svg id="audio-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <line x1="23" y1="9" x2="17" y2="15"></line>
           <line x1="17" y1="9" x2="23" y2="15"></line>
         </svg>
       </button>
-    </div>
+    </nav>
   </header>
 
   <!-- ========================================================================
        2. Hero Section
        ======================================================================== -->
-  <main>
+  <main id="main-content">
     <section class="section hero-section" id="hero">
       <div class="container">
         
@@ -289,18 +292,21 @@
           </div>
 
           <!-- M3 Segmented Buttons -->
-          <div class="category-tabs" role="tablist">
-            <button class="category-tab-btn active" data-category="all" role="tab">Todos</button>
-            <button class="category-tab-btn" data-category="scripts" role="tab">Scripts &amp; OS</button>
-            <button class="category-tab-btn" data-category="bots" role="tab">Bots &amp; Automação</button>
-            <button class="category-tab-btn" data-category="web" role="tab">Web &amp; Dashboards</button>
-            <button class="category-tab-btn" data-category="re" role="tab">Engenharia Reversa</button>
-            <button class="category-tab-btn" data-category="mods" role="tab">Game Mods</button>
+          <div class="category-tabs" role="tablist" aria-label="Filtrar projetos por categoria">
+            <button class="category-tab-btn active" id="tab-all" data-category="all" role="tab" aria-selected="true" aria-controls="projects-grid" tabindex="0">Todos</button>
+            <button class="category-tab-btn" id="tab-scripts" data-category="scripts" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1">Scripts &amp; OS</button>
+            <button class="category-tab-btn" id="tab-bots" data-category="bots" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1">Bots &amp; Automação</button>
+            <button class="category-tab-btn" id="tab-web" data-category="web" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1">Web &amp; Dashboards</button>
+            <button class="category-tab-btn" id="tab-re" data-category="re" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1">Engenharia Reversa</button>
+            <button class="category-tab-btn" id="tab-mods" data-category="mods" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1">Game Mods</button>
           </div>
         </div>
 
+        <!-- Accessible Live Status for Screen Readers -->
+        <div id="projects-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
         <!-- Responsive Projects Grid -->
-        <div class="projects-grid" id="projects-grid">
+        <div class="projects-grid" id="projects-grid" role="region" aria-label="Lista de estudos de caso">
           <!-- Injected dynamically by projectFilter.js -->
         </div>
 
@@ -321,9 +327,9 @@
           </p>
         </div>
 
-        <div class="carousel-outer-wrapper">
+        <div class="carousel-outer-wrapper" role="region" aria-roledescription="carousel" aria-label="Carrossel de artigos e insights técnicos">
           <div class="articles-carousel-container" id="articles-carousel-container">
-            <div class="articles-carousel-track" id="articles-carousel-track">
+            <div class="articles-carousel-track" id="articles-carousel-track" aria-live="polite">
               <!-- Injected dynamically by articleCarousel.js -->
             </div>
           </div>

@@ -1,6 +1,6 @@
 /**
  * Project Filtering & Card Rendering Engine with Gliding Category Pill Indicator
- * Handles instant full-text search, M3 segmented category switching and responsive rendering
+ * Handles instant full-text search, M3 segmented category switching, WAI-ARIA tab navigation and live regions
  */
 
 import { PROJECTS_DATA } from '../data/projectsData.js';
@@ -16,6 +16,7 @@ class ProjectFilterManager {
     this.tabsContainer = null;
     this.tabIndicator = null;
     this.categoryTabs = null;
+    this.liveStatusEl = null;
     this.activeCategory = 'all';
     this.currentSearch = '';
   }
@@ -25,28 +26,42 @@ class ProjectFilterManager {
     this.searchInput = document.getElementById('project-search-input');
     this.searchClearBtn = document.getElementById('project-search-clear');
     this.tabsContainer = document.querySelector('.category-tabs');
-    this.categoryTabs = document.querySelectorAll('.category-tab-btn');
+    this.categoryTabs = Array.from(document.querySelectorAll('.category-tab-btn'));
+    this.liveStatusEl = document.getElementById('projects-live-status');
 
     if (!this.gridEl) return;
 
     // Initialize Gliding Indicator Pill
     this.initTabIndicator();
 
-    // Category Tabs click listeners
-    this.categoryTabs.forEach(tab => {
+    // Category Tabs click & keyboard listeners
+    this.categoryTabs.forEach((tab, index) => {
       tab.addEventListener('click', () => {
-        const category = tab.getAttribute('data-category');
-        if (category === this.activeCategory) return;
-
-        soundEngine.playClick();
-        this.categoryTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        this.activeCategory = category;
-        this.updateTabIndicator(false);
-        this.render();
+        this.selectTab(tab);
       });
 
       tab.addEventListener('mouseenter', () => soundEngine.playHover());
+
+      // WAI-ARIA Keyboard Arrow Navigation (ArrowLeft, ArrowRight, Home, End)
+      tab.addEventListener('keydown', (e) => {
+        let newIndex = -1;
+        if (e.key === 'ArrowRight') {
+          newIndex = (index + 1) % this.categoryTabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (index - 1 + this.categoryTabs.length) % this.categoryTabs.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = this.categoryTabs.length - 1;
+        }
+
+        if (newIndex !== -1) {
+          e.preventDefault();
+          const targetTab = this.categoryTabs[newIndex];
+          targetTab.focus();
+          this.selectTab(targetTab);
+        }
+      });
     });
 
     // Search Input listeners
@@ -82,6 +97,26 @@ class ProjectFilterManager {
     this.render();
   }
 
+  selectTab(tab) {
+    const category = tab.getAttribute('data-category');
+    if (category === this.activeCategory) return;
+
+    soundEngine.playClick();
+    this.categoryTabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
+
+    this.activeCategory = category;
+    this.updateTabIndicator(false);
+    this.render();
+  }
+
   initTabIndicator() {
     if (!this.tabsContainer) return;
 
@@ -89,6 +124,7 @@ class ProjectFilterManager {
     if (!this.tabIndicator) {
       this.tabIndicator = document.createElement('div');
       this.tabIndicator.className = 'category-tab-indicator';
+      this.tabIndicator.setAttribute('aria-hidden', 'true');
       this.tabsContainer.prepend(this.tabIndicator);
     }
 
@@ -159,10 +195,19 @@ class ProjectFilterManager {
 
     const filtered = this.getFilteredProjects();
 
+    // Update Accessible Live Region for Screen Readers
+    if (this.liveStatusEl) {
+      if (filtered.length === 0) {
+        this.liveStatusEl.textContent = 'Nenhum projeto encontrado para os filtros atuais.';
+      } else {
+        this.liveStatusEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'projeto encontrado' : 'projetos encontrados'}.`;
+      }
+    }
+
     if (filtered.length === 0) {
       this.gridEl.innerHTML = `
-        <div class="projects-empty-state">
-          <div class="empty-state-icon">
+        <div class="projects-empty-state" role="status">
+          <div class="empty-state-icon" aria-hidden="true">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -176,24 +221,24 @@ class ProjectFilterManager {
     }
 
     this.gridEl.innerHTML = filtered.map(project => `
-      <article class="project-card shimmer-card" data-project-id="${project.id}">
+      <article class="project-card shimmer-card" data-project-id="${project.id}" aria-labelledby="card-title-${project.id}">
         <div class="card-top">
           <span class="card-category-badge">
             ${project.categoryLabel}
           </span>
         </div>
 
-        <h3 class="card-title">${project.title}</h3>
+        <h3 class="card-title" id="card-title-${project.id}">${project.title}</h3>
         <p class="card-summary">${project.summary}</p>
 
-        <div class="card-tags">
+        <div class="card-tags" aria-label="Tecnologias utilizadas">
           ${project.tags.map(tag => `<span class="card-tag">#${tag}</span>`).join('')}
         </div>
 
         <div class="card-actions">
-          <button class="btn-card-details" data-action="open-modal" data-id="${project.id}">
+          <button class="btn-card-details" data-action="open-modal" data-id="${project.id}" aria-label="Ver estudo de caso completo: ${project.title}">
             <span>Ver Estudo de Caso</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>

@@ -12,6 +12,9 @@ export function setTiltEnabled(enabled) {
 export function applyTiltEffect(element, maxAngle = 7) {
   if (!element) return;
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
   const handlePointerMove = (e) => {
     if (!tiltEnabled) return;
 

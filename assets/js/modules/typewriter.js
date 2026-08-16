@@ -7,6 +7,12 @@ export function initTypewriter(elementId, phrases, typingSpeed = 60, deletingSpe
   const el = document.getElementById(elementId);
   if (!el || !phrases || phrases.length === 0) return;
 
+  // Render static text immediately if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = phrases[0];
+    return;
+  }
+
   let phraseIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
