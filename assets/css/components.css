@@ -194,11 +194,22 @@
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-spring), border-color var(--transition-normal);
   transform: translateZ(0);
+  overflow: hidden;
 }
 
 .hero-avatar:hover {
   transform: scale(1.06) rotate(3deg);
   border-color: var(--accent);
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  transform: translateZ(0);
+  pointer-events: none;
 }
 
 .hero-avatar-text {
