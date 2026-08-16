@@ -163,8 +163,9 @@ class ProjectFilterManager {
       this.tabIndicator.style.transform = `translate3d(${left.toFixed(2)}px, ${top.toFixed(2)}px, 0)`;
       this.tabIndicator.style.width = `${width.toFixed(2)}px`;
       this.tabIndicator.style.height = `${height.toFixed(2)}px`;
-      void this.tabIndicator.offsetHeight;
-      this.tabIndicator.style.transition = '';
+      requestAnimationFrame(() => {
+        this.tabIndicator.style.transition = '';
+      });
     } else {
       this.tabIndicator.style.transform = `translate3d(${left.toFixed(2)}px, ${top.toFixed(2)}px, 0)`;
       this.tabIndicator.style.width = `${width.toFixed(2)}px`;
@@ -231,7 +232,7 @@ class ProjectFilterManager {
         <h3 class="card-title" id="card-title-${project.id}">${project.title}</h3>
         <p class="card-summary">${project.summary}</p>
 
-        <div class="card-tags" aria-label="Tecnologias utilizadas">
+        <div class="card-tags">
           ${project.tags.map(tag => `<span class="card-tag">#${tag}</span>`).join('')}
         </div>
 

@@ -143,7 +143,19 @@
       }
     ]
   }
-  </script>
+  <!-- Module Preloads for Instant Parallel Execution (Network Dependency Optimization) -->
+  <link rel="modulepreload" href="assets/js/app.js">
+  <link rel="modulepreload" href="assets/js/config.js">
+  <link rel="modulepreload" href="assets/js/data/projectsData.js">
+  <link rel="modulepreload" href="assets/js/data/articlesData.js">
+  <link rel="modulepreload" href="assets/js/modules/projectFilter.js">
+  <link rel="modulepreload" href="assets/js/modules/articleCarousel.js">
+  <link rel="modulepreload" href="assets/js/modules/modal.js">
+  <link rel="modulepreload" href="assets/js/modules/particles.js">
+  <link rel="modulepreload" href="assets/js/modules/typewriter.js">
+  <link rel="modulepreload" href="assets/js/modules/audio.js">
+  <link rel="modulepreload" href="assets/js/modules/tilt.js">
+  <link rel="modulepreload" href="assets/js/modules/spotlight.js">
 
   <!-- Google Fonts (Outfit, Plus Jakarta Sans, Fira Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -209,7 +221,7 @@
           <div class="hero-avatar-glow" aria-hidden="true"></div>
           <div class="hero-avatar">
             <span class="hero-avatar-text">&lt;L/&gt;</span>
-            <div class="avatar-presence-indicator" aria-label="Status: Disponível para Automação &amp; Dev">
+            <div class="avatar-presence-indicator" role="status" aria-label="Status: Disponível para Automação &amp; Dev">
               <span class="pulse-emerald"></span>
             </div>
           </div>

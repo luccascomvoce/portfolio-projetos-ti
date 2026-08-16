@@ -1,6 +1,7 @@
 /**
  * DOM Particle System with LERP Physics (Zero Canvas 2D)
  * Provides organic ambient floating particles and interactive click/touch bursts
+ * Optimized for Zero Main-Thread Thrashing and Zero Forced Reflows
  */
 
 export function initParticles() {
@@ -12,7 +13,16 @@ export function initParticles() {
     return;
   }
 
-  const isMobile = window.innerWidth < 768;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+
+  const handleResize = () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+  };
+  window.addEventListener('resize', handleResize, { passive: true });
+
+  const isMobile = width < 768;
   const AMBIENT_COUNT = isMobile ? 8 : 18;
   const particles = [];
   const colors = [
@@ -35,8 +45,8 @@ export function initParticles() {
     
     container.appendChild(el);
 
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
+    const x = Math.random() * width;
+    const y = Math.random() * height;
 
     particles.push({
       el,
@@ -50,11 +60,13 @@ export function initParticles() {
     });
   }
 
-  let animationFrameId;
+  let animationFrameId = null;
 
   function update() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    if (document.hidden) {
+      animationFrameId = requestAnimationFrame(update);
+      return;
+    }
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
@@ -77,16 +89,25 @@ export function initParticles() {
     animationFrameId = requestAnimationFrame(update);
   }
 
-  animationFrameId = requestAnimationFrame(update);
+  // Defer animation loop start until browser completes initial paint
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      animationFrameId = requestAnimationFrame(update);
+    }, { timeout: 300 });
+  } else {
+    setTimeout(() => {
+      animationFrameId = requestAnimationFrame(update);
+    }, 150);
+  }
 
   // 2. Interactive Burst on Click/Touch everywhere across all contexts
   const triggerBurst = (clientX, clientY) => {
-    const burstCount = 10;
+    const burstCount = 8;
     
     for (let i = 0; i < burstCount; i++) {
       const el = document.createElement('div');
       el.className = 'dom-particle burst-particle';
-      const size = Math.random() * 4 + 2.5; // Identical size range (2.5px - 6.5px)
+      const size = Math.random() * 4 + 2.5;
       const colorObj = colors[Math.floor(Math.random() * colors.length)];
       
       el.style.width = `${size}px`;
@@ -95,18 +116,14 @@ export function initParticles() {
       el.style.boxShadow = `0 0 ${size * 3}px ${colorObj.glow}`;
       container.appendChild(el);
 
-      // Angle with balanced radial distribution and subtle drift
       const angle = (Math.PI * 2 / burstCount) * i + (Math.random() * 0.4 - 0.2);
-      // Gentle, natural distance (40px to 110px)
       const distance = Math.random() * 70 + 40;
       const destX = clientX + Math.cos(angle) * distance;
-      // Slight upward buoyancy (-15px)
       const destY = clientY + Math.sin(angle) * distance - 15;
 
       el.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) scale(1)`;
       el.style.opacity = '0.95';
-      // Slow, smooth transition (1.6s to 1.9s duration with smooth cubic-bezier easing)
-      const duration = (1.6 + Math.random() * 0.4).toFixed(2);
+      const duration = (1.5 + Math.random() * 0.3).toFixed(2);
       el.style.transition = `transform ${duration}s cubic-bezier(0.12, 0.85, 0.25, 1), opacity ${duration}s cubic-bezier(0.4, 0, 0.8, 1)`;
 
       requestAnimationFrame(() => {
@@ -120,10 +137,12 @@ export function initParticles() {
     }
   };
 
-  // Listen to pointerdown on window (captures mouse, touch, pen in all contexts without blocking)
   window.addEventListener('pointerdown', (e) => {
     triggerBurst(e.clientX, e.clientY);
   }, { passive: true });
 
-  return () => cancelAnimationFrame(animationFrameId);
+  return () => {
+    window.removeEventListener('resize', handleResize);
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  };
 }

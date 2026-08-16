@@ -800,11 +800,12 @@
 .card-status-badge {
   font-size: 0.72rem;
   font-family: var(--font-code);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
-  background: rgba(16, 185, 129, 0.1);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-weight: 600;
 }
 
 .card-title {
@@ -815,8 +816,8 @@
 }
 
 .card-summary {
-  font-size: 0.92rem;
-  color: var(--on-surface-muted);
+  font-size: 0.94rem;
+  color: #cbd5e1;
   line-height: 1.6;
   margin-bottom: 1.25rem;
   flex-grow: 1;
@@ -831,12 +832,13 @@
 
 .card-tag {
   background: var(--surface-container);
-  color: var(--on-surface-muted);
+  color: #e2e8f0;
   font-family: var(--font-code);
   font-size: 0.72rem;
+  font-weight: 500;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(128, 179, 255, 0.15);
 }
 
 .card-actions {
@@ -1398,7 +1400,7 @@
 }
 
 .footer-brand-desc {
-  color: var(--on-surface-muted);
+  color: #cbd5e1;
   font-size: 0.95rem;
   margin-top: 0.75rem;
   max-width: 380px;
@@ -1420,7 +1422,7 @@
 }
 
 .footer-link {
-  color: var(--on-surface-muted);
+  color: #cbd5e1;
   font-size: 0.9rem;
   transition: color var(--transition-fast);
 }
