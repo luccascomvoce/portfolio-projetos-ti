@@ -161,6 +161,9 @@
   margin-bottom: 1.75rem;
   position: relative;
   display: inline-block;
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .hero-avatar-glow {
@@ -171,6 +174,8 @@
   opacity: 0.35;
   filter: blur(25px);
   z-index: 0;
+  pointer-events: none;
+  transform: translateZ(0);
   /* animation: ripplePulse 3s infinite; -- Preservado para reativação futura */
   animation: none;
 }
@@ -188,6 +193,7 @@
   justify-content: center;
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-spring), border-color var(--transition-normal);
+  transform: translateZ(0);
 }
 
 .hero-avatar:hover {
@@ -201,7 +207,11 @@
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary-light), var(--accent));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Avatar Presence Dot (Discord/Telegram presence style) */
