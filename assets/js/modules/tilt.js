@@ -1,6 +1,7 @@
 /**
  * 3D Tilt Engine for Cards & Interactive Elements
  * Calculates local cursor offset and applies smooth GPU matrix rotation
+ * Automatically disabled on touch devices to prevent mobile scroll layer lag
  */
 
 let tiltEnabled = true;
@@ -12,11 +13,14 @@ export function setTiltEnabled(enabled) {
 export function applyTiltEffect(element, maxAngle = 7) {
   if (!element) return;
 
+  // Only enable 3D tilt on devices with a mouse/fine pointer and without reduced motion
+  const isTouchDevice = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
+
+  if (isTouchDevice || prefersReducedMotion) return;
 
   const handlePointerMove = (e) => {
-    if (!tiltEnabled) return;
+    if (!tiltEnabled || e.pointerType === 'touch') return;
 
     const rect = element.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -31,7 +35,8 @@ export function applyTiltEffect(element, maxAngle = 7) {
     element.style.transition = 'transform 0.1s ease-out';
   };
 
-  const handlePointerLeave = () => {
+  const handlePointerLeave = (e) => {
+    if (e.pointerType === 'touch') return;
     element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     element.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
   };
