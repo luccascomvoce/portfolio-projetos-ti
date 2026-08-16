@@ -46,21 +46,15 @@
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: var(--on-primary);
-  font-family: var(--font-code);
-  font-weight: 800;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   box-shadow: 0 0 15px rgba(56, 237, 242, 0.35);
-  transition: transform var(--transition-spring);
+  transition: transform var(--transition-spring), filter var(--transition-normal);
   flex-shrink: 0;
 }
 
 .header-brand:hover .brand-logo {
   transform: rotate(12deg) scale(1.08);
+  filter: drop-shadow(0 0 8px rgba(56, 237, 242, 0.6));
 }
 
 .brand-title {
