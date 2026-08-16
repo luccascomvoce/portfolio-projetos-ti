@@ -1,0 +1,76 @@
+/**
+ * Design Tokens — Material Design 3 Expressive (Dark Tonal Palette)
+ * Portfólio de Tecnologia — Luccas
+ */
+
+:root {
+  /* Surface Tonal Palette */
+  --surface: #090d14;
+  --surface-dim: #05070a;
+  --surface-container-low: #111622;
+  --surface-container: #182030;
+  --surface-container-high: #222c40;
+  --surface-container-highest: #2d3952;
+  
+  /* Primary & Accent Tonal Colors */
+  --primary: #80b3ff;
+  --on-primary: #002b5c;
+  --primary-container: #00438a;
+  --primary-light: #b3d1ff;
+  
+  --tertiary: #e5b8e7;
+  --on-tertiary: #441949;
+  --tertiary-container: #5c2c62;
+  
+  --accent: #38edf2;
+  --on-accent: #00363a;
+  --accent-container: #004f55;
+  
+  /* Outline & Borders */
+  --outline: #5a6477;
+  --outline-variant: #3f4756;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(128, 179, 255, 0.3);
+
+  /* Typography / Text Colors */
+  --on-surface: #e2e8f0;
+  --on-surface-muted: #94a3b8;
+  --on-surface-dim: #64748b;
+  --on-surface-bright: #ffffff;
+  
+  /* Feedback Colors */
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.4);
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  /* Typography Families */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+
+  /* Elevation & Glow Shadows */
+  --shadow-neon-primary: 0 0 35px rgba(128, 179, 255, 0.25);
+  --shadow-neon-tertiary: 0 0 35px rgba(229, 184, 231, 0.25);
+  --shadow-neon-accent: 0 0 35px rgba(56, 237, 242, 0.25);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  --shadow-card-hover: 0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(128, 179, 255, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Expressive Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Dynamic Spotlight coordinates (fallback defaults) */
+  --mouse-x: 50vw;
+  --mouse-y: 50vh;
+}

@@ -1,0 +1,9 @@
+/**
+ * Main CSS Orchestrator — Portfólio Luccas
+ * Imports modular CSS stylesheets in logical dependency order
+ */
+
+@import url('./variables.css');
+@import url('./base.css');
+@import url('./animations.css');
+@import url('./components.css');
