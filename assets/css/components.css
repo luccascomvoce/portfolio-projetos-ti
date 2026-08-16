@@ -344,46 +344,44 @@
 .terminal-body {
   padding: 0.85rem 1.25rem;
   background: rgba(9, 13, 20, 0.7);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  gap: 0.45rem 0.55rem;
+  display: block;
+  text-align: left;
   font-family: var(--font-code);
   font-size: 1.05rem;
-  min-height: 60px;
-  text-align: left;
-  line-height: 1.5;
+  line-height: 1.6;
+  min-height: calc(2 * 1.6em + 1.7rem);
   box-sizing: border-box;
 }
 
 .terminal-prompt {
+  display: inline;
   color: var(--success);
   font-weight: 700;
   user-select: none;
-  flex-shrink: 0;
 }
 
 .terminal-cmd {
+  display: inline;
   color: var(--primary-light);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.95em;
   user-select: none;
-  flex-shrink: 0;
 }
 
 .terminal-arrow {
+  display: inline;
   color: var(--on-surface-dim);
   user-select: none;
-  flex-shrink: 0;
+  margin-right: 0.35rem;
 }
 
 .terminal-typewriter-text {
+  display: inline;
   color: var(--accent);
   font-weight: 600;
   text-shadow: 0 0 12px rgba(56, 237, 242, 0.35);
-  display: inline;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .hero-description {
@@ -1467,12 +1465,9 @@
   }
   .terminal-body {
     font-size: 0.92rem;
-    padding: 0.85rem 1rem;
-    min-height: 84px; /* Altura estável calculada para 2 linhas de prompt + texto sem empurrar o layout */
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 0.35rem 0.45rem;
-    line-height: 1.45;
+    padding: 0.75rem 1rem;
+    line-height: 1.55;
+    min-height: calc(2 * 1.55em + 1.5rem);
   }
   .terminal-title {
     font-size: 0.72rem;
@@ -1515,6 +1510,9 @@
     display: none; /* Em telas muito estreitas, oculta o texto da marca mantendo o ícone para dar espaço total às opções */
   }
   .terminal-body {
-    min-height: 94px; /* Altura vertical fixa para até 3 linhas de texto prevenindo qualquer salto de layout (zero CLS) */
+    font-size: 0.88rem;
+    padding: 0.7rem 0.85rem;
+    line-height: 1.5;
+    min-height: calc(2 * 1.5em + 1.4rem);
   }
 }
