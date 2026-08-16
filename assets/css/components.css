@@ -1247,6 +1247,7 @@
 }
 
 .carousel-dot {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: var(--radius-full);
@@ -1254,6 +1255,17 @@
   border: none;
   cursor: pointer;
   transition: all var(--transition-normal);
+  padding: 0;
+}
+
+.carousel-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 36px;
+  min-height: 36px;
 }
 
 .carousel-dot.active {
@@ -1400,7 +1412,7 @@
 }
 
 .footer-brand-desc {
-  color: #cbd5e1;
+  color: #8c9cb0;
   font-size: 0.95rem;
   margin-top: 0.75rem;
   max-width: 380px;
@@ -1422,7 +1434,7 @@
 }
 
 .footer-link {
-  color: #cbd5e1;
+  color: #8c9cb0;
   font-size: 0.9rem;
   transition: color var(--transition-fast);
 }
@@ -1438,7 +1450,7 @@
   justify-content: center;
   align-items: center;
   font-size: 0.85rem;
-  color: var(--on-surface-dim);
+  color: #8090a4;
   text-align: center;
 }
 
