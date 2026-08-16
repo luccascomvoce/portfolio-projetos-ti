@@ -94,6 +94,7 @@ portfolio-projetos-ti/
 | **Gestão de Contratos & Assinaturas (CLM)** | `Bots & Automação` | Onboarding com BrasilAPI, OTP de 6 dígitos, quarentena/aprovação, fusão no Google Docs e Autentique GraphQL API com posições visuais. |
 | **Pipeline de Dados & AppSheet** | `Web & Dashboards` | Arquitetura em 4 camadas (AppSheet Mobile > Relational Core > ETL > Dashboard), validação de domínio e Row-Level Security (RLS). |
 | **Automação Servidor Minecraft & Cloud** | `Scripts & OS` | Orquestrador PowerShell com shutdown gracioso de JVM, compressão temporal e backup offsite criptografado via MTProto Telegram. |
+| **Gerador de Estrutura de Pastas** | `Scripts & OS` | Extensão de Shell Windows Explorer em PowerShell com DFS, fallback duplo de Clipboard, compilação `ps2exe` e CI/CD Inno Setup no GHA. |
 | **Landing Page Splash Piscinas** | `Web & Dashboards` | Catálogo desacoplado em JSON, 100% fontes WOFF2 locais, SEO técnico e redundância multi-nuvem (Vercel Edge + GitHub Pages). |
 
 ---

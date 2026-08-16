@@ -299,5 +299,40 @@ export const PROJECTS_DATA = [
       { category: "Lógica de Jogos & IA", tech: "PokerKit (Hold'em FSM), Motor de UNO (108 cartas, regra estrita +4), Bots Heurísticos" },
       { category: "Frontend & Infra", tech: "HTML5 Canvas API, Web Audio API, Haptic Feedback, SQLite WAL, Docker, Cloudflare Tunnels" }
     ]
+  },
+  {
+    id: "listar-estrutura-diretorios",
+    title: "Gerador de Estrutura de Pastas — Extensão Shell Windows & CI/CD",
+    category: "scripts",
+    categoryLabel: "Scripts & OS",
+    status: "Produção Ativa",
+    highlight: false,
+    summary: "Utilitário de sistema e extensão do Windows Explorer para extração instantânea de topologias de diretórios com filtragem inteligente de ruídos (.git, node_modules, .venv), persistência UTF-8 em disco, fallback duplo na área de transferência (Set-Clipboard / clip.exe), compilação nativa em binário (ps2exe) e empacotador Inno Setup.",
+    tags: ["PowerShell 5.1/pwsh", "Windows Shell API", "ps2exe Compiler", "Inno Setup (Pascal)", "GitHub Actions", "Tree DFS Algorithm"],
+    docPath: "docs/projetos/listar-estrutura-diretorios.md",
+    metrics: [
+      { label: "Tempo de Execução", value: "< 1s (1 Clique)" },
+      { label: "Privilégios", value: "User-Scope (Sem UAC)" },
+      { label: "Entrega Contínua", value: "GitHub Actions CI/CD" }
+    ],
+    overview: "Utilitário de produtividade integrado diretamente ao menu de contexto do Windows Explorer (Directory e Directory\\Background). Elimina o atrito de documentação de repositórios e geração de prompts para LLMs mapeando diretórios de forma recursiva, aplicando blacklisting de dependências e alimentando a área de transferência do Windows de forma instantânea.",
+    liveUrl: "https://github.com/luccascomvoce/retorna_nomes_arquivos_pastas",
+    liveLabel: "Ver Repositório no GitHub",
+    liveType: "web",
+    architecture: `
+      <ul>
+        <li><strong>1. Integração Shell sem UAC:</strong> Registro na colmeia <code>HKEY_CURRENT_USER\\Software\\Classes</code> para acionamento com <code>%1</code> (pasta selecionada) e <code>%V</code> (fundo do Explorer aberto).</li>
+        <li><strong>2. Algoritmo Get-Tree (DFS):</strong> Varredura recursiva com <code>-LiteralPath</code> para suporte a caracteres especiais, ordenação de diretórios antes de arquivos e renderização determinística de conectores (<code>|-- </code> e <code>\\-- </code>).</li>
+        <li><strong>3. Filtragem de Ruído em Memória:</strong> Supressão automática de pastas volumosas (<code>.git</code>, <code>node_modules</code>, <code>.venv</code>) e auto-exclusão do script em execução.</li>
+        <li><strong>4. Saída Dupla com Fallback:</strong> Gravação direta em disco no arquivo <code>estrutura-da-pasta.txt</code> (UTF-8) e injeção no Clipboard com fallback automático para <code>clip.exe</code>.</li>
+        <li><strong>5. Pipeline DevOps & Inno Setup:</strong> Transpilação do script para executável autônomo (<code>ps2exe -noConsole</code>), instalador Pascal e publicação contínua de releases no GitHub Actions.</li>
+      </ul>
+    `,
+    techTable: [
+      { category: "Scripting & Engine", tech: "PowerShell (5.1 / pwsh), Windows Batch (.cmd), Pascal Scripting" },
+      { category: "Sistema & Shell", tech: "Windows Registry API (HKCU), Context Menu Extensions (%1 e %V), Set-Clipboard, clip.exe" },
+      { category: "Compilação & Packaging", tech: "ps2exe (PowerShell to Win32 EXE), Inno Setup 6 (ISCC Compiler)" },
+      { category: "DevOps & CI/CD", tech: "GitHub Actions (windows-latest), Versionamento Cronológico de Release" }
+    ]
   }
 ];
