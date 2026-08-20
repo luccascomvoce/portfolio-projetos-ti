@@ -14,7 +14,7 @@
   width: calc(100% - 2rem);
   max-width: 1120px;
   z-index: 100;
-  background: rgba(17, 22, 34, 0.78);
+  background: var(--glass-header);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-subtle);
@@ -136,6 +136,56 @@
   box-shadow: 0 0 12px rgba(56, 237, 242, 0.25);
 }
 
+/* Theme Toggle Button (Sun/Moon) with organic icon cross-fade */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transition: transform var(--transition-spring), opacity var(--transition-normal);
+  will-change: transform, opacity;
+}
+
+/* Light (default/fallback) → show Moon (indicates switching to dark) */
+.icon-sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5) translateY(-6px);
+}
+.icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1) translateY(0);
+}
+
+/* Dark → show Sun (indicates switching to light) */
+[data-theme="dark"] .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1) translateY(0);
+}
+[data-theme="dark"] .icon-moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5) translateY(6px);
+}
+
+/* TL;DR callout rendered inside project modals */
+.modal-callout {
+  background: var(--primary-tint);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-code);
+  font-size: 0.84rem;
+  color: var(--on-surface);
+  line-height: 1.55;
+}
+
 /* ==========================================================================
    2. Hero Section
    ========================================================================== */
@@ -247,13 +297,13 @@
   bottom: -2.2rem;
   left: 50%;
   transform: translateX(-50%) translateY(6px);
-  background: rgba(17, 22, 34, 0.95);
+  background: var(--glass-status);
   border: 1px solid rgba(16, 185, 129, 0.35);
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   font-size: 0.76rem;
   font-weight: 600;
-  color: #6ee7b7;
+  color: var(--success-soft);
   font-family: var(--font-body);
   white-space: nowrap;
   pointer-events: none;
@@ -359,7 +409,7 @@
 
 .terminal-body {
   padding: 0.85rem 1.25rem;
-  background: rgba(9, 13, 20, 0.7);
+  background: var(--glass-terminal);
   display: block;
   text-align: left;
   font-family: var(--font-code);
@@ -486,7 +536,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   font-size: 0.8rem;
   font-family: var(--font-code);
   text-decoration: none;
@@ -655,7 +705,7 @@
   left: 1.1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   pointer-events: none;
   width: 20px;
   height: 20px;
@@ -676,7 +726,7 @@
 }
 
 .search-input::placeholder {
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   opacity: 1;
 }
 
@@ -691,7 +741,7 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   display: none;
   padding: 0.2rem;
 }
@@ -711,7 +761,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.4rem;
-  background: rgba(17, 22, 34, 0.7);
+  background: var(--glass-filter);
   padding: 0.35rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
@@ -754,7 +804,7 @@
 }
 
 .category-tab-btn.active {
-  color: #ffffff;
+  color: var(--on-primary-container);
   font-weight: 700;
 }
 
@@ -814,7 +864,7 @@
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-xs);
   background: rgba(16, 185, 129, 0.15);
-  color: #6ee7b7;
+  color: var(--success-soft);
   border: 1px solid rgba(16, 185, 129, 0.35);
   font-weight: 600;
 }
@@ -828,7 +878,7 @@
 
 .card-summary {
   font-size: 0.94rem;
-  color: #cbd5e1;
+  color: var(--on-surface-muted);
   line-height: 1.6;
   margin-bottom: 1.25rem;
   flex-grow: 1;
@@ -843,7 +893,7 @@
 
 .card-tag {
   background: var(--surface-container);
-  color: #e2e8f0;
+  color: var(--on-surface);
   font-family: var(--font-code);
   font-size: 0.72rem;
   font-weight: 500;
@@ -1070,9 +1120,9 @@
   font-weight: 600;
   font-size: 0.92rem;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--primary);
+  color: var(--on-primary);
+  border: 1px solid var(--border-subtle);
   box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
@@ -1081,8 +1131,8 @@
 .modal-cta-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(14, 165, 233, 0.45);
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-  color: #ffffff;
+  background: var(--primary-light);
+  color: var(--on-primary);
 }
 
 .modal-cta-btn.telegram {
@@ -1163,7 +1213,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: rgba(17, 22, 34, 0.85);
+  background: var(--glass-legend);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-subtle);
@@ -1423,7 +1473,7 @@
 }
 
 .footer-brand-desc {
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   font-size: 0.95rem;
   margin-top: 0.75rem;
   max-width: 380px;
@@ -1445,7 +1495,7 @@
 }
 
 .footer-link {
-  color: #8c9cb0;
+  color: var(--on-surface-muted);
   font-size: 0.9rem;
   transition: color var(--transition-fast);
 }
@@ -1461,7 +1511,7 @@
   justify-content: center;
   align-items: center;
   font-size: 0.85rem;
-  color: #8090a4;
+  color: var(--on-surface-dim);
   text-align: center;
 }
 

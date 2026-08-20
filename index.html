@@ -12,8 +12,29 @@
   <meta name="author" content="Luccas">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://luccascomvoce.github.io/portfolio-projetos-ti/">
-  <meta name="theme-color" content="#090d14">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Theme bootstrap: resolve user/system theme before first paint (prevents FOUC) -->
+  <script>
+    (function () {
+      var theme = 'light';
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') {
+          theme = stored;
+        } else if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        }
+      } catch (e) { /* fallback light */ }
+      document.documentElement.setAttribute('data-theme', theme);
+      var surface = theme === 'dark' ? '#090d14' : '#f5f7fb';
+      var metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.setAttribute('content', surface);
+      var metaScheme = document.querySelector('meta[name="color-scheme"]');
+      if (metaScheme) metaScheme.setAttribute('content', theme);
+    })();
+  </script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -165,6 +186,7 @@
   <link rel="modulepreload" href="assets/js/modules/audio.js">
   <link rel="modulepreload" href="assets/js/modules/tilt.js">
   <link rel="modulepreload" href="assets/js/modules/spotlight.js">
+  <link rel="modulepreload" href="assets/js/modules/theme.js">
 
   <!-- Google Fonts (Outfit, Plus Jakarta Sans, Fira Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,6 +233,24 @@
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <line x1="23" y1="9" x2="17" y2="15"></line>
           <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+
+      <!-- Theme Toggle (Sun/Moon) Button -->
+      <button id="theme-toggle-btn" class="btn-icon theme-toggle-btn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro" aria-pressed="false">
+        <svg class="theme-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
     </nav>
@@ -545,6 +585,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Theme Circular Reveal Overlay (positioned & animated by theme.js) -->
+  <div id="theme-reveal" class="theme-reveal" aria-hidden="true"></div>
 
   <!-- Modular JavaScript Orchestrator -->
   <script type="module" src="assets/js/app.js"></script>

@@ -316,7 +316,7 @@ export const PROJECTS_DATA = [
       { label: "Entrega Contínua", value: "GitHub Actions CI/CD" }
     ],
     overview: `
-      <div style="background: rgba(128, 179, 255, 0.08); border-left: 3px solid var(--accent); padding: 0.85rem 1.1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.25rem; font-family: var(--font-code); font-size: 0.84rem; color: #e2e8f0; line-height: 1.55;">
+      <div class="modal-callout">
         💡 <strong>TL;DR &amp; Humor de Engenharia:</strong><br>
         <em>"Faz exatamente o mesmo que <code>$txt = tree /f /a; $txt | Out-File -Encoding utf8 .\\estrutura-da-pasta.txt; $txt | Set-Clipboard</code>, só que com o suprassumo da superengenharia via menu de contexto do Windows Explorer com 1 clique — porque lembrar de comandos de terminal com flags de encoding é opcional."</em>
       </div>

@@ -12,8 +12,12 @@ import { projectFilter } from './modules/projectFilter.js';
 import { modalManager } from './modules/modal.js';
 import { articleCarousel } from './modules/articleCarousel.js';
 import { applyTiltEffect } from './modules/tilt.js';
+import { themeManager } from './modules/theme.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Initialize Theme Manager (Light/Dark + circular reveal)
+  themeManager.init();
+
   // 1. Initialize Visual Effects (Zero Canvas 2D Engine)
   initSpotlight();
   initParticles();

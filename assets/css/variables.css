@@ -1,48 +1,54 @@
 /**
- * Design Tokens — Material Design 3 Expressive (Dark Tonal Palette)
+ * Design Tokens — Material Design 3 Expressive
  * Portfólio de Tecnologia — Luccas
+ *
+ * Tema claro é o padrão/fallback (`:root` + `[data-theme="light"]`).
+ * O tema escuro é ativado via `[data-theme="dark"]`.
  */
 
-:root {
-  /* Surface Tonal Palette */
-  --surface: #090d14;
-  --surface-dim: #05070a;
-  --surface-container-low: #111622;
-  --surface-container: #182030;
-  --surface-container-high: #222c40;
-  --surface-container-highest: #2d3952;
-  
-  /* Primary & Accent Tonal Colors */
-  --primary: #80b3ff;
-  --on-primary: #002b5c;
-  --primary-container: #00438a;
-  --primary-light: #b3d1ff;
-  
-  --tertiary: #e5b8e7;
-  --on-tertiary: #441949;
-  --tertiary-container: #5c2c62;
-  
-  --accent: #38edf2;
-  --on-accent: #00363a;
-  --accent-container: #004f55;
-  
+:root,
+[data-theme="light"] {
+  /* Surface Tonal Palette (Light) */
+  --surface: #f5f7fb;
+  --surface-dim: #e3e8f0;
+  --surface-container-low: #ffffff;
+  --surface-container: #eef2f8;
+  --surface-container-high: #e2e8f2;
+  --surface-container-highest: #d7dfeb;
+
+  /* Primary & Accent Tonal Colors (Light) */
+  --primary: #0b5fd1;
+  --on-primary: #ffffff;
+  --primary-container: #d4e3fd;
+  --on-primary-container: #0b3f8a;
+  --primary-light: #4a86e8;
+
+  --tertiary: #7a4a7f;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #f6d9f8;
+
+  --accent: #00777c;
+  --on-accent: #ffffff;
+  --accent-container: #c9f2f2;
+
   /* Outline & Borders */
-  --outline: #5a6477;
-  --outline-variant: #3f4756;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(128, 179, 255, 0.3);
+  --outline: #6e7787;
+  --outline-variant: #c3c9d4;
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --border-glow: rgba(11, 95, 209, 0.25);
 
   /* Typography / Text Colors */
-  --on-surface: #e2e8f0;
-  --on-surface-muted: #94a3b8;
+  --on-surface: #1e293b;
+  --on-surface-muted: #475569;
   --on-surface-dim: #64748b;
-  --on-surface-bright: #ffffff;
-  
+  --on-surface-bright: #0f172a;
+
   /* Feedback Colors */
-  --success: #10b981;
-  --success-glow: rgba(16, 185, 129, 0.4);
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --success: #0e9f6e;
+  --success-glow: rgba(14, 159, 110, 0.35);
+  --success-soft: #0b8f64;
+  --warning: #d97706;
+  --error: #dc2626;
 
   /* Typography Families */
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -50,12 +56,22 @@
   --font-code: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
 
   /* Elevation & Glow Shadows */
-  --shadow-neon-primary: 0 0 35px rgba(128, 179, 255, 0.25);
-  --shadow-neon-tertiary: 0 0 35px rgba(229, 184, 231, 0.25);
-  --shadow-neon-accent: 0 0 35px rgba(56, 237, 242, 0.25);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-  --shadow-card-hover: 0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(128, 179, 255, 0.2);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-neon-primary: 0 0 35px rgba(11, 95, 209, 0.18);
+  --shadow-neon-tertiary: 0 0 35px rgba(122, 74, 127, 0.18);
+  --shadow-neon-accent: 0 0 35px rgba(0, 119, 124, 0.18);
+  --shadow-card: 0 10px 30px -12px rgba(15, 23, 42, 0.18), 0 0 1px 1px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 20px 40px -14px rgba(15, 23, 42, 0.25), 0 0 20px rgba(11, 95, 209, 0.15);
+  --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.14);
+
+  /* Translucent "glass" surfaces */
+  --glass-header: rgba(255, 255, 255, 0.72);
+  --glass-status: rgba(255, 255, 255, 0.95);
+  --glass-terminal: rgba(255, 255, 255, 0.72);
+  --glass-filter: rgba(255, 255, 255, 0.6);
+  --glass-legend: rgba(255, 255, 255, 0.85);
+
+  /* Auxiliary tints */
+  --primary-tint: rgba(11, 95, 209, 0.08);
 
   /* Expressive Radii */
   --radius-xs: 6px;
@@ -69,8 +85,70 @@
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
+
   /* Dynamic Spotlight coordinates (fallback defaults) */
   --mouse-x: 50vw;
   --mouse-y: 50vh;
+}
+
+[data-theme="dark"] {
+  /* Surface Tonal Palette (Dark — original) */
+  --surface: #090d14;
+  --surface-dim: #05070a;
+  --surface-container-low: #111622;
+  --surface-container: #182030;
+  --surface-container-high: #222c40;
+  --surface-container-highest: #2d3952;
+
+  /* Primary & Accent Tonal Colors (Dark) */
+  --primary: #80b3ff;
+  --on-primary: #002b5c;
+  --primary-container: #00438a;
+  --on-primary-container: #ffffff;
+  --primary-light: #b3d1ff;
+
+  --tertiary: #e5b8e7;
+  --on-tertiary: #441949;
+  --tertiary-container: #5c2c62;
+
+  --accent: #38edf2;
+  --on-accent: #00363a;
+  --accent-container: #004f55;
+
+  /* Outline & Borders */
+  --outline: #5a6477;
+  --outline-variant: #3f4756;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(128, 179, 255, 0.3);
+
+  /* Typography / Text Colors */
+  --on-surface: #e2e8f0;
+  --on-surface-muted: #94a3b8;
+  --on-surface-dim: #64748b;
+  --on-surface-bright: #ffffff;
+
+  /* Feedback Colors */
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.4);
+  --success-soft: #6ee7b7;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  /* Elevation & Glow Shadows */
+  --shadow-neon-primary: 0 0 35px rgba(128, 179, 255, 0.25);
+  --shadow-neon-tertiary: 0 0 35px rgba(229, 184, 231, 0.25);
+  --shadow-neon-accent: 0 0 35px rgba(56, 237, 242, 0.25);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  --shadow-card-hover: 0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(128, 179, 255, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Translucent "glass" surfaces */
+  --glass-header: rgba(17, 22, 34, 0.78);
+  --glass-status: rgba(17, 22, 34, 0.95);
+  --glass-terminal: rgba(9, 13, 20, 0.7);
+  --glass-filter: rgba(17, 22, 34, 0.7);
+  --glass-legend: rgba(17, 22, 34, 0.85);
+
+  /* Auxiliary tints */
+  --primary-tint: rgba(128, 179, 255, 0.08);
 }
