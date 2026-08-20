@@ -7,6 +7,7 @@ import { PROJECTS_DATA } from '../data/projectsData.js';
 import { applyTiltEffect } from './tilt.js';
 import { modalManager } from './modal.js';
 import { soundEngine } from './audio.js';
+import { i18n } from '../i18n/i18n.js';
 
 class ProjectFilterManager {
   constructor() {
@@ -97,6 +98,21 @@ class ProjectFilterManager {
     this.render();
   }
 
+  localize(project) {
+    const base = `projects.${project.id}`;
+    return {
+      title: i18n.t(`${base}.title`, null, project.title),
+      categoryLabel: i18n.t(`categories.${project.category}`, null, project.categoryLabel),
+      summary: i18n.t(`${base}.summary`, null, project.summary),
+      tags: i18n.t(`${base}.tags`, null, project.tags),
+    };
+  }
+
+  reapply() {
+    this.updateTabIndicator(true);
+    this.render();
+  }
+
   selectTab(tab) {
     const category = tab.getAttribute('data-category');
     if (category === this.activeCategory) return;
@@ -182,10 +198,12 @@ class ProjectFilterManager {
       // Search text check
       if (!this.currentSearch) return true;
 
-      const titleMatch = project.title.toLowerCase().includes(this.currentSearch);
-      const summaryMatch = project.summary.toLowerCase().includes(this.currentSearch);
-      const tagMatch = project.tags.some(t => t.toLowerCase().includes(this.currentSearch));
-      const categoryMatch = project.categoryLabel.toLowerCase().includes(this.currentSearch);
+      const localized = this.localize(project);
+      const query = this.currentSearch;
+      const titleMatch = localized.title.toLowerCase().includes(query);
+      const summaryMatch = localized.summary.toLowerCase().includes(query);
+      const tagMatch = localized.tags.some((t) => t.toLowerCase().includes(query));
+      const categoryMatch = localized.categoryLabel.toLowerCase().includes(query);
 
       return titleMatch || summaryMatch || tagMatch || categoryMatch;
     });
@@ -199,9 +217,11 @@ class ProjectFilterManager {
     // Update Accessible Live Region for Screen Readers
     if (this.liveStatusEl) {
       if (filtered.length === 0) {
-        this.liveStatusEl.textContent = 'Nenhum projeto encontrado para os filtros atuais.';
+        this.liveStatusEl.textContent = i18n.t('showcase.liveNone');
+      } else if (filtered.length === 1) {
+        this.liveStatusEl.textContent = i18n.t('showcase.liveFoundSingular');
       } else {
-        this.liveStatusEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'projeto encontrado' : 'projetos encontrados'}.`;
+        this.liveStatusEl.textContent = i18n.t('showcase.liveFoundPlural', { n: filtered.length });
       }
     }
 
@@ -214,38 +234,41 @@ class ProjectFilterManager {
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </div>
-          <h3>Nenhum projeto encontrado</h3>
-          <p>Tente ajustar os termos de busca ou selecione outra categoria.</p>
+          <h3>${i18n.t('showcase.emptyTitle')}</h3>
+          <p>${i18n.t('showcase.emptyText')}</p>
         </div>
       `;
       return;
     }
 
-    this.gridEl.innerHTML = filtered.map(project => `
+    this.gridEl.innerHTML = filtered.map((project) => {
+      const localized = this.localize(project);
+      return `
       <article class="project-card shimmer-card" data-project-id="${project.id}" aria-labelledby="card-title-${project.id}">
         <div class="card-top">
           <span class="card-category-badge">
-            ${project.categoryLabel}
+            ${localized.categoryLabel}
           </span>
         </div>
 
-        <h3 class="card-title" id="card-title-${project.id}">${project.title}</h3>
-        <p class="card-summary">${project.summary}</p>
+        <h3 class="card-title" id="card-title-${project.id}">${localized.title}</h3>
+        <p class="card-summary">${localized.summary}</p>
 
         <div class="card-tags">
-          ${project.tags.map(tag => `<span class="card-tag">#${tag}</span>`).join('')}
+          ${localized.tags.map((tag) => `<span class="card-tag">#${tag}</span>`).join('')}
         </div>
 
         <div class="card-actions">
-          <button class="btn-card-details" data-action="open-modal" data-id="${project.id}" aria-label="Ver estudo de caso completo: ${project.title}">
-            <span>Ver Estudo de Caso</span>
+          <button class="btn-card-details" data-action="open-modal" data-id="${project.id}" aria-label="${i18n.t('showcase.caseAria', { title: localized.title })}">
+            <span>${i18n.t('showcase.caseButton')}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
 
     // Attach Tilt & Event Listeners to newly rendered cards
     const cards = this.gridEl.querySelectorAll('.project-card');

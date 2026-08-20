@@ -7,6 +7,7 @@
 import { PROJECTS_DATA } from '../data/projectsData.js';
 import { setTiltEnabled } from './tilt.js';
 import { soundEngine } from './audio.js';
+import { i18n } from '../i18n/i18n.js';
 
 class ModalController {
   constructor() {
@@ -19,6 +20,7 @@ class ModalController {
     this.originEl = null;
     this.triggerElement = null;
     this.isAnimating = false;
+    this.activeProjectId = null;
     this.boundTrapFocus = this.trapFocus.bind(this);
   }
 
@@ -81,27 +83,23 @@ class ModalController {
     }
   }
 
-  openProject(projectId, originElement = null) {
-    if (this.isAnimating) return;
+  localize(project) {
+    const base = `projects.${project.id}`;
+    return {
+      title: i18n.t(`${base}.title`, null, project.title),
+      categoryLabel: i18n.t(`categories.${project.category}`, null, project.categoryLabel),
+      overview: i18n.t(`${base}.overview`, null, project.overview),
+      architecture: i18n.t(`${base}.architecture`, null, project.architecture),
+      techTable: i18n.t(`${base}.techTable`, null, project.techTable),
+      liveLabel: i18n.t(`${base}.liveLabel`, null, project.liveLabel),
+    };
+  }
 
-    const project = PROJECTS_DATA.find(p => p.id === projectId);
-    if (!project || !this.overlay) return;
+  renderContent(project) {
+    const localized = this.localize(project);
 
-    // Save triggering element for accessible focus return
-    this.triggerElement = document.activeElement;
-
-    soundEngine.playClick();
-    setTiltEnabled(false); // Pause tilt during modal view
-
-    // If originElement wasn't passed directly, find it in the DOM
-    if (!originElement) {
-      originElement = document.querySelector(`[data-project-id="${projectId}"]`) || document.querySelector('.highlight-banner');
-    }
-    this.originEl = originElement;
-
-    // Populate modal contents
-    if (this.titleEl) this.titleEl.textContent = project.title;
-    if (this.badgeEl) this.badgeEl.textContent = project.categoryLabel;
+    if (this.titleEl) this.titleEl.textContent = localized.title;
+    if (this.badgeEl) this.badgeEl.textContent = localized.categoryLabel;
 
     if (this.bodyEl) {
       this.bodyEl.innerHTML = `
@@ -113,9 +111,9 @@ class ModalController {
               <line x1="16" y1="13" x2="8" y2="13"></line>
               <line x1="16" y1="17" x2="8" y2="17"></line>
             </svg>
-            <span>Visão Geral &amp; Estudo de Caso</span>
+            <span>${i18n.t('modal.overviewTitle')}</span>
           </h3>
-          <p>${project.overview}</p>
+          <p>${localized.overview}</p>
         </div>
 
         <div class="modal-section">
@@ -125,9 +123,9 @@ class ModalController {
               <polyline points="2 17 12 22 22 17"></polyline>
               <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
-            <span>Arquitetura &amp; Fluxo Técnico</span>
+            <span>${i18n.t('modal.architectureTitle')}</span>
           </h3>
-          <div class="modal-architecture">${project.architecture}</div>
+          <div class="modal-architecture">${localized.architecture}</div>
         </div>
 
         <div class="modal-section">
@@ -137,17 +135,17 @@ class ModalController {
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span>Especificações &amp; Tecnologias</span>
+            <span>${i18n.t('modal.specsTitle')}</span>
           </h3>
           <table class="modal-table" role="table">
             <thead>
               <tr>
-                <th scope="col">Camada</th>
-                <th scope="col">Tecnologia / Ferramentas</th>
+                <th scope="col">${i18n.t('modal.colLayer')}</th>
+                <th scope="col">${i18n.t('modal.colTech')}</th>
               </tr>
             </thead>
             <tbody>
-              ${project.techTable.map(row => `
+              ${localized.techTable.map((row) => `
                 <tr>
                   <td><strong>${row.category}</strong></td>
                   <td>${row.tech}</td>
@@ -171,12 +169,41 @@ class ModalController {
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                 </svg>
               `}
-              <span>${project.liveLabel || 'Acessar em Produção'}</span>
+              <span>${localized.liveLabel || i18n.t('modal.defaultCta')}</span>
             </a>
           </div>
         ` : ''}
       `;
     }
+  }
+
+  refresh() {
+    if (this.activeProjectId && this.overlay && this.overlay.classList.contains('active')) {
+      const project = PROJECTS_DATA.find((p) => p.id === this.activeProjectId);
+      if (project) this.renderContent(project);
+    }
+  }
+
+  openProject(projectId, originElement = null) {
+    if (this.isAnimating) return;
+
+    const project = PROJECTS_DATA.find(p => p.id === projectId);
+    if (!project || !this.overlay) return;
+
+    // Save triggering element for accessible focus return
+    this.triggerElement = document.activeElement;
+
+    soundEngine.playClick();
+    setTiltEnabled(false); // Pause tilt during modal view
+
+    // If originElement wasn't passed directly, find it in the DOM
+    if (!originElement) {
+      originElement = document.querySelector(`[data-project-id="${projectId}"]`) || document.querySelector('.highlight-banner');
+    }
+    this.originEl = originElement;
+
+    this.activeProjectId = projectId;
+    this.renderContent(project);
 
     // Modal accessibility state
     this.overlay.setAttribute('aria-hidden', 'false');
@@ -259,6 +286,7 @@ class ModalController {
   close() {
     if (this.isAnimating || !this.overlay || !this.overlay.classList.contains('active')) return;
 
+    this.activeProjectId = null;
     window.removeEventListener('keydown', this.boundTrapFocus);
     this.overlay.setAttribute('aria-hidden', 'true');
 

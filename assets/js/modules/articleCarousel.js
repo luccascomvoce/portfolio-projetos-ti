@@ -6,6 +6,7 @@
 import { ARTICLES_DATA } from '../data/articlesData.js';
 import { applyTiltEffect, setTiltEnabled } from './tilt.js';
 import { soundEngine } from './audio.js';
+import { i18n } from '../i18n/i18n.js';
 
 // Pre-compiled full article contents with local asset references
 const ARTICLE_CONTENTS = {
@@ -197,6 +198,7 @@ class ArticleCarouselManager {
     this.originCard = null;
     this.triggerElement = null;
     this.isAnimating = false;
+    this.activeArticleId = null;
     this.boundTrapFocus = this.trapFocus.bind(this);
   }
 
@@ -279,33 +281,73 @@ class ArticleCarouselManager {
     }, { passive: true });
   }
 
+  localizeArticle(article) {
+    const base = `articles.${article.id}`;
+    return {
+      title: i18n.t(`${base}.title`, null, article.title),
+      category: i18n.t(`${base}.category`, null, article.category),
+      summary: i18n.t(`${base}.summary`, null, article.summary),
+      tags: i18n.t(`${base}.tags`, null, article.tags),
+      date: i18n.t(`${base}.date`, null, article.date),
+      body: i18n.t(`${base}.body`, null, ARTICLE_CONTENTS[article.id]),
+    };
+  }
+
+  reapply() {
+    this.renderArticles();
+  }
+
+  refreshOpenArticle() {
+    if (this.activeArticleId && this.modalEl && this.modalEl.classList.contains('active')) {
+      const article = ARTICLES_DATA.find((a) => a.id === this.activeArticleId);
+      if (article) {
+        const localized = this.localizeArticle(article);
+        if (this.modalTitle) this.modalTitle.textContent = localized.title;
+        if (this.modalBadge) this.modalBadge.textContent = localized.category;
+        if (this.modalMeta) {
+          this.modalMeta.innerHTML = `
+            <span>${localized.date}</span>
+            <span aria-hidden="true">•</span>
+            <span>${article.readTime} ${i18n.t('articles.readTimeSuffix')}</span>
+          `;
+        }
+        if (this.modalBody) {
+          this.modalBody.innerHTML = localized.body || `<p>${localized.summary}</p>`;
+        }
+      }
+    }
+  }
+
   renderArticles() {
     if (!this.track) return;
 
-    this.track.innerHTML = ARTICLES_DATA.map(article => `
+    this.track.innerHTML = ARTICLES_DATA.map((article) => {
+      const localized = this.localizeArticle(article);
+      const readTimeSuffix = i18n.t('articles.readTimeSuffix');
+      return `
       <article class="article-carousel-card shimmer-card" data-article-id="${article.id}">
         <div class="article-card-cover-wrapper">
-          <img src="${article.coverImage}" alt="${article.title}" class="article-card-cover" loading="lazy">
-          <span class="article-card-category">${article.category}</span>
+          <img src="${article.coverImage}" alt="${localized.title}" class="article-card-cover" loading="lazy">
+          <span class="article-card-category">${localized.category}</span>
         </div>
 
         <div class="article-card-content">
           <div class="article-card-meta">
-            <span>${article.date}</span>
+            <span>${localized.date}</span>
             <span>•</span>
-            <span>${article.readTime} de leitura</span>
+            <span>${article.readTime} ${readTimeSuffix}</span>
           </div>
 
-          <h3 class="article-card-title">${article.title}</h3>
-          <p class="article-card-summary">${article.summary}</p>
+          <h3 class="article-card-title">${localized.title}</h3>
+          <p class="article-card-summary">${localized.summary}</p>
 
           <div class="article-card-tags">
-            ${article.tags.slice(0, 4).map(tag => `<span class="card-tag">#${tag}</span>`).join('')}
+            ${localized.tags.slice(0, 4).map((tag) => `<span class="card-tag">#${tag}</span>`).join('')}
           </div>
 
           <div class="article-card-actions">
             <button class="btn-card-details" data-action="read-article" data-id="${article.id}">
-              <span>Ler Artigo Completo</span>
+              <span>${i18n.t('articles.readArticle')}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -313,7 +355,8 @@ class ArticleCarouselManager {
           </div>
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
 
     // Apply tilt and attach read click listener
     const cards = this.track.querySelectorAll('.article-carousel-card');
@@ -338,7 +381,7 @@ class ArticleCarouselManager {
   renderDots() {
     if (!this.dotsContainer) return;
     this.dotsContainer.innerHTML = ARTICLES_DATA.map((_, index) => `
-      <button class="carousel-dot ${index === this.currentIndex ? 'active' : ''}" data-index="${index}" aria-label="Ir para artigo ${index + 1}"></button>
+      <button class="carousel-dot ${index === this.currentIndex ? 'active' : ''}" data-index="${index}" aria-label="${i18n.t('articles.goToArticle', { n: index + 1 })}"></button>
     `).join('');
 
     const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
@@ -423,18 +466,21 @@ class ArticleCarouselManager {
     soundEngine.playClick();
     setTiltEnabled(false);
 
-    if (this.modalTitle) this.modalTitle.textContent = article.title;
-    if (this.modalBadge) this.modalBadge.textContent = article.category;
+    this.activeArticleId = id;
+    const localized = this.localizeArticle(article);
+
+    if (this.modalTitle) this.modalTitle.textContent = localized.title;
+    if (this.modalBadge) this.modalBadge.textContent = localized.category;
     if (this.modalMeta) {
       this.modalMeta.innerHTML = `
-        <span>${article.date}</span>
+        <span>${localized.date}</span>
         <span aria-hidden="true">•</span>
-        <span>${article.readTime} de leitura</span>
+        <span>${article.readTime} ${i18n.t('articles.readTimeSuffix')}</span>
       `;
     }
 
     if (this.modalBody) {
-      this.modalBody.innerHTML = ARTICLE_CONTENTS[id] || `<p>${article.summary}</p>`;
+      this.modalBody.innerHTML = localized.body || `<p>${localized.summary}</p>`;
     }
 
     this.modalEl.setAttribute('aria-hidden', 'false');

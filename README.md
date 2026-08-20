@@ -65,6 +65,13 @@ portfolio-projetos-ti/
     │   └── main.css             # Orquestrador de imports CSS
     └── js/                      # Orquestrador modular ES6
         ├── config.js            # Mapeamento e centralização de contatos e redes sociais
+        ├── i18n/                # Motor de internacionalização pt-BR / en / es
+        │   ├── languages.js     # Registro central dos idiomas suportados
+        │   ├── i18n.js          # LanguageManager + API t() com fallback
+        │   └── translations/    # Um arquivo autocontido por idioma
+        │       ├── pt-BR.js     # Fonte de verdade das strings de UI
+        │       ├── en.js        # Overrides completos em inglês
+        │       └── es.js        # Overrides completos em espanhol
         ├── data/
         │   ├── projectsData.js  # Dataset dos 8 estudos de caso com links de produção
         │   └── articlesData.js  # Dataset dos 4 artigos técnicos com metadados
@@ -96,6 +103,28 @@ portfolio-projetos-ti/
 | **Automação Servidor Minecraft & Cloud** | `Scripts & OS` | Orquestrador PowerShell com shutdown gracioso de JVM, compressão temporal e backup offsite criptografado via MTProto Telegram. |
 | **Gerador de Estrutura de Pastas** | `Scripts & OS` | Extensão de Shell Windows Explorer em PowerShell com DFS, fallback duplo de Clipboard, compilação `ps2exe` e CI/CD Inno Setup no GHA. |
 | **Landing Page Splash Piscinas** | `Web & Dashboards` | Catálogo desacoplado em JSON, 100% fontes WOFF2 locais, SEO técnico e redundância multi-nuvem (Vercel Edge + GitHub Pages). |
+
+---
+
+## 🌍 Internacionalização (i18n)
+
+O portfólio suporta **Português (pt-BR)**, **Inglês (en)** e **Espanhol (es)**, com troca instantânea pelo seletor de idiomas no cabeçalho (ícone de globo).
+
+**Arquitetura:**
+
+- O **português é a fonte de verdade** e vive no próprio HTML estático e nos datasets (`projectsData.js`, `articlesData.js`, `ARTICLE_CONTENTS`).
+- Cada idioma adicional é **um único arquivo** em `assets/js/i18n/translations/` que sobrescreve as chaves daquele locale.
+- `i18n.t('chave', params, fallback)` resolve nesta ordem: **idioma ativo → pt-BR → fallback explícito → a própria chave**. Chaves ainda não traduzidas degradam graciosamente para o português (a UI nunca quebra).
+- A troca de idioma atualiza `<html lang>`, `<title>`, metas de SEO/OpenGraph, o texto estático (via `data-i18n` / `data-i18n-attr`) e re-renderiza os componentes dinâmicos (grid, carrossel, typewriter e modais abertos).
+- A preferência é persistida em `localStorage` e detectada automaticamente pelo `navigator.language` na primeira visita.
+
+**Para adicionar um novo idioma (ex.: francês):**
+
+1. Crie `assets/js/i18n/translations/fr.js` exportando um objeto no mesmo formato de `en.js`.
+2. Registre-o em `assets/js/i18n/languages.js` (`{ code: 'fr', name: 'Français', nativeName: 'Français', short: 'FR', dir: 'ltr' }`).
+3. (Opcional) adicione o mapeamento de `og:locale` em `assets/js/i18n/i18n.js`.
+
+> Os **artigos completos** (corpos de texto) ainda não estão traduzidos; nesses casos o leitor mostra o texto em português até que as chaves `articles.*` sejam adicionadas ao dicionário do idioma.
 
 ---
 

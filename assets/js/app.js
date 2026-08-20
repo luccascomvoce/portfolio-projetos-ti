@@ -4,26 +4,54 @@
  */
 
 import { SITE_CONFIG } from './config.js';
+import { i18n, languageManager } from './i18n/i18n.js';
 import { soundEngine } from './modules/audio.js';
 import { initSpotlight } from './modules/spotlight.js';
 import { initParticles } from './modules/particles.js';
-import { initTypewriter } from './modules/typewriter.js';
+import { typewriter } from './modules/typewriter.js';
 import { projectFilter } from './modules/projectFilter.js';
 import { modalManager } from './modules/modal.js';
 import { articleCarousel } from './modules/articleCarousel.js';
 import { applyTiltEffect } from './modules/tilt.js';
 import { themeManager } from './modules/theme.js';
 
+function updateAudioButton() {
+  const btn = document.getElementById('audio-toggle-btn');
+  if (!btn) return;
+  const active = soundEngine.isSoundActive();
+  btn.setAttribute('title', active ? i18n.t('nav.audio.on') : i18n.t('nav.audio.off'));
+  btn.setAttribute('aria-pressed', String(active));
+}
+
+function renderAudioIcon(active) {
+  const icon = document.getElementById('audio-icon');
+  if (!icon) return;
+  if (active) {
+    icon.innerHTML = `
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    `;
+  } else {
+    icon.innerHTML = `
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    `;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Initialize Theme Manager (Light/Dark + circular reveal)
+  // 0. Initialize Theme Manager (Light/Dark + circular reveal) and i18n
   themeManager.init();
+  languageManager.init();
+  themeManager.applyTheme(themeManager.currentTheme); // refaz rótulos do tema no idioma resolvido
 
   // 1. Initialize Visual Effects (Zero Canvas 2D Engine)
   initSpotlight();
   initParticles();
 
   // 2. Initialize Hero Typewriter
-  initTypewriter('typewriter-text', SITE_CONFIG.typewriterPhrases, 55, 30, 2400);
+  typewriter.init('typewriter-text', i18n.t('hero.typewriter', null, SITE_CONFIG.typewriterPhrases), 55, 30, 2400);
 
   // 3. Initialize Modals, Showcase Filters and Article Carousel
   modalManager.init();
@@ -49,35 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Audio Toggle Button
   const audioToggleBtn = document.getElementById('audio-toggle-btn');
-  const audioIcon = document.getElementById('audio-icon');
 
   if (audioToggleBtn) {
     audioToggleBtn.addEventListener('click', () => {
       const active = soundEngine.toggleSound();
-      if (active) {
-        audioToggleBtn.classList.add('active');
-        audioToggleBtn.setAttribute('title', 'Desativar Sons da Interface');
-        if (audioIcon) {
-          audioIcon.innerHTML = `
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          `;
-        }
-      } else {
-        audioToggleBtn.classList.remove('active');
-        audioToggleBtn.setAttribute('title', 'Ativar Sons da Interface');
-        if (audioIcon) {
-          audioIcon.innerHTML = `
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-          `;
-        }
-      }
+      audioToggleBtn.classList.toggle('active', active);
+      renderAudioIcon(active);
+      updateAudioButton();
     });
 
     audioToggleBtn.addEventListener('mouseenter', () => soundEngine.playHover());
   }
+
+  updateAudioButton();
+  renderAudioIcon(soundEngine.isSoundActive());
 
   // 7. Header Actions Horizontal Scroll & Drag Engine
   const headerActions = document.querySelector('.header-actions');
@@ -126,6 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
   interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => soundEngine.playHover(), { passive: true });
     el.addEventListener('click', () => soundEngine.playClick(), { passive: true });
+  });
+
+  // 9. Re-render dynamic modules when the language changes
+  i18n.subscribe(() => {
+    typewriter.setPhrases(i18n.t('hero.typewriter', null, SITE_CONFIG.typewriterPhrases));
+    projectFilter.reapply();
+    articleCarousel.reapply();
+    articleCarousel.refreshOpenArticle();
+    modalManager.refresh();
+    themeManager.applyTheme(themeManager.currentTheme);
+    updateAudioButton();
   });
 
   console.log('[System] Portfólio Luccas inicializado com sucesso (M3 Expressive Modular Architecture).');

@@ -1,48 +1,83 @@
 /**
  * Typewriter Effect Module
- * Continuously cycles through specialties with natural character timing
+ * Continuously cycles through specialties with natural character timing.
+ * Exposed as a controller so the language manager can swap phrases live.
  */
 
-export function initTypewriter(elementId, phrases, typingSpeed = 60, deletingSpeed = 35, pauseTime = 2200) {
-  const el = document.getElementById(elementId);
-  if (!el || !phrases || phrases.length === 0) return;
+const typewriter = {
+  el: null,
+  phrases: [],
+  typingSpeed: 60,
+  deletingSpeed: 35,
+  pauseTime: 2200,
+  phraseIndex: 0,
+  charIndex: 0,
+  isDeleting: false,
+  timer: null,
 
-  // Render static text immediately if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    el.textContent = phrases[0];
-    return;
-  }
+  init(elementId, phrases, typingSpeed = 60, deletingSpeed = 35, pauseTime = 2200) {
+    this.el = document.getElementById(elementId);
+    if (!this.el) return;
+    this.typingSpeed = typingSpeed;
+    this.deletingSpeed = deletingSpeed;
+    this.pauseTime = pauseTime;
+    this.setPhrases(phrases);
+  },
 
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+  setPhrases(phrases) {
+    if (!this.el) return;
+    this.stop();
+    this.phrases = Array.isArray(phrases) && phrases.length ? phrases : [''];
+    this.phraseIndex = 0;
+    this.charIndex = 0;
+    this.isDeleting = false;
 
-  function tick() {
-    const currentPhrase = phrases[phraseIndex];
+    // Render static text immediately if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.el.textContent = this.phrases[0];
+      return;
+    }
 
-    if (isDeleting) {
-      el.textContent = currentPhrase.substring(0, charIndex - 1);
-      charIndex--;
+    this.tick();
+  },
+
+  stop() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+  },
+
+  tick() {
+    const currentPhrase = this.phrases[this.phraseIndex];
+
+    if (this.isDeleting) {
+      this.el.textContent = currentPhrase.substring(0, this.charIndex - 1);
+      this.charIndex -= 1;
     } else {
-      el.textContent = currentPhrase.substring(0, charIndex + 1);
-      charIndex++;
+      this.el.textContent = currentPhrase.substring(0, this.charIndex + 1);
+      this.charIndex += 1;
     }
 
-    let delay = isDeleting ? deletingSpeed : typingSpeed;
+    let delay = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
 
-    if (!isDeleting && charIndex === currentPhrase.length) {
-      // Finished typing current phrase
-      delay = pauseTime;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      // Finished deleting
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      delay = 400; // brief pause before typing next
+    if (!this.isDeleting && this.charIndex === currentPhrase.length) {
+      delay = this.pauseTime;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.charIndex === 0) {
+      this.isDeleting = false;
+      this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+      delay = 400;
     }
 
-    setTimeout(tick, delay);
-  }
+    this.timer = setTimeout(() => this.tick(), delay);
+  },
+};
 
-  tick();
+/** Backward-compatible facade. */
+export function initTypewriter(elementId, phrases, typingSpeed = 60, deletingSpeed = 35, pauseTime = 2200) {
+  typewriter.init(elementId, phrases, typingSpeed, deletingSpeed, pauseTime);
+  return typewriter;
 }
+
+export { typewriter };

@@ -4,6 +4,8 @@
  * persists the user choice and animates theme changes from the header toggle button.
  */
 
+import { i18n } from '../i18n/i18n.js';
+
 const STORAGE_KEY = 'theme';
 const SURFACES = { dark: '#090d14', light: '#f5f7fb' };
 
@@ -40,8 +42,8 @@ const themeManager = {
     if (this.toggleBtn) {
       const isDark = theme === 'dark';
       this.toggleBtn.setAttribute('aria-pressed', String(isDark));
-      this.toggleBtn.setAttribute('title', isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro');
-      this.toggleBtn.setAttribute('aria-label', isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro');
+      this.toggleBtn.setAttribute('title', isDark ? i18n.t('nav.theme.toLight') : i18n.t('nav.theme.toDark'));
+      this.toggleBtn.setAttribute('aria-label', isDark ? i18n.t('nav.theme.toLight') : i18n.t('nav.theme.toDark'));
     }
 
     if (persist) {
