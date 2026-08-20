@@ -15,7 +15,7 @@
  *    graciosamente para o texto em português (nunca quebra a UI).
  */
 
-import { LANGUAGES, DEFAULT_LANG } from './languages.js';
+import { LANGUAGES, DEFAULT_LANG, FALLBACK_LANG } from './languages.js';
 import ptBR from './translations/pt-BR.js';
 import en from './translations/en.js';
 import es from './translations/es.js';
@@ -112,19 +112,16 @@ const languageManager = {
   resolveLang() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && (stored === DEFAULT_LANG || DICTIONARIES[stored])) return stored;
+      if (stored && DICTIONARIES[stored]) return stored;
     } catch (e) { /* localStorage indisponível */ }
 
     if (typeof navigator !== 'undefined' && navigator.language) {
-      const primary = navigator.language.toLowerCase();
+      const primary = navigator.language.toLowerCase().split('-')[0];
       for (const lang of LANGUAGES) {
-        if (lang.code === DEFAULT_LANG) continue;
-        if (primary === lang.code.toLowerCase() || primary.startsWith(lang.code.split('-')[0])) {
-          return lang.code;
-        }
+        if (lang.code.toLowerCase().split('-')[0] === primary) return lang.code;
       }
     }
-    return DEFAULT_LANG;
+    return FALLBACK_LANG;
   },
 
   cacheOriginal(el) {
@@ -283,6 +280,11 @@ const languageManager = {
     this.toggleBtn = document.getElementById('lang-toggle-btn');
     this.menuEl = document.getElementById('lang-menu');
     this.codeEl = document.getElementById('lang-toggle-code');
+
+    // Move o menu para <body>: o header usa `transform` (que cria containing block
+    // para `position: fixed`) e `.header-actions` tem `overflow` — ambos quebrariam
+    // o posicionamento do dropdown.
+    if (this.menuEl && document.body) document.body.appendChild(this.menuEl);
 
     state.lang = this.resolveLang();
     this.applyMeta();

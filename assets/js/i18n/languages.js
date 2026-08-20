@@ -15,4 +15,5 @@ export const LANGUAGES = [
   { code: 'es', name: 'Español', nativeName: 'Español', short: 'ES', dir: 'ltr' },
 ];
 
-export const DEFAULT_LANG = 'pt-BR';
+export const DEFAULT_LANG = 'pt-BR'; // fonte de verdade do conteúdo e fallback de chaves
+export const FALLBACK_LANG = 'en';   // idioma exibido quando nada é detectado

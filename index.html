@@ -39,15 +39,16 @@
   <!-- Language bootstrap: resolve stored/browser language before first paint -->
   <script>
     (function () {
-      var lang = 'pt-BR';
+      var lang = 'en';
       try {
         var stored = localStorage.getItem('lang');
         if (stored === 'en' || stored === 'es' || stored === 'pt-BR') {
           lang = stored;
         } else if (typeof navigator === 'object' && navigator.language) {
-          var primary = String(navigator.language).toLowerCase();
-          if (primary === 'en' || primary.indexOf('en-') === 0) lang = 'en';
-          else if (primary === 'es' || primary.indexOf('es-') === 0) lang = 'es';
+          var primary = String(navigator.language).toLowerCase().split('-')[0];
+          if (primary === 'pt') lang = 'pt-BR';
+          else if (primary === 'es') lang = 'es';
+          // senão, mantém 'en' como padrão
         }
       } catch (e) { /* ignore */ }
       document.documentElement.setAttribute('lang', lang);
