@@ -495,7 +495,7 @@ class ArticleCarouselManager {
       this.modalContainer.style.borderRadius = 'var(--radius-xl)';
 
       if (this.modalBody) {
-        this.modalBody.style.transition = 'opacity 0.3s ease 0.15s';
+        this.modalBody.style.transition = 'opacity 0.3s ease';
         this.modalBody.style.opacity = '1';
       }
 
@@ -541,6 +541,13 @@ class ArticleCarouselManager {
     const deltaX = (targetRect.left + targetRect.width / 2) - (firstRect.left + firstRect.width / 2);
     const deltaY = (targetRect.top + targetRect.height / 2) - (firstRect.top + firstRect.height / 2);
 
+    // Reveal the origin card underneath as the modal collapses back into it,
+    // avoiding the late "pop-in" that broke the motion continuity.
+    if (this.originCard) {
+      this.originCard.style.opacity = '1';
+      this.originCard.style.transition = 'opacity 0.3s ease';
+    }
+
     if (this.modalBody) {
       this.modalBody.style.transition = 'opacity 0.18s ease';
       this.modalBody.style.opacity = '0';
@@ -554,11 +561,6 @@ class ArticleCarouselManager {
     this.modalContainer.style.borderRadius = 'var(--radius-lg)';
 
     setTimeout(() => {
-      if (this.originCard) {
-        this.originCard.style.opacity = '1';
-        this.originCard.style.transition = 'opacity 0.2s ease';
-      }
-
       this.modalEl.classList.remove('active');
       this.modalEl.style.opacity = '';
       this.modalEl.style.transition = '';

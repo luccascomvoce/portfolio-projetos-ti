@@ -207,6 +207,9 @@ class ModalController {
     document.body.style.overflow = 'hidden';
     this.overlay.classList.add('active');
     this.overlay.style.opacity = '0';
+    // Cross-fade the origin card out (instead of hiding instantly) so it seems
+    // to grow into the modal without an empty "flash" gap.
+    this.originEl.style.transition = 'opacity 0.2s ease';
     this.originEl.style.opacity = '0';
 
     if (this.bodyEl) this.bodyEl.style.opacity = '0';
@@ -238,7 +241,7 @@ class ModalController {
       this.container.style.borderRadius = 'var(--radius-xl)';
 
       if (this.bodyEl) {
-        this.bodyEl.style.transition = 'opacity 0.3s ease 0.15s';
+        this.bodyEl.style.transition = 'opacity 0.3s ease';
         this.bodyEl.style.opacity = '1';
       }
 
@@ -285,6 +288,13 @@ class ModalController {
     const deltaX = (targetRect.left + targetRect.width / 2) - (firstRect.left + firstRect.width / 2);
     const deltaY = (targetRect.top + targetRect.height / 2) - (firstRect.top + firstRect.height / 2);
 
+    // Reveal the origin card underneath as the modal collapses back into it,
+    // avoiding the late "pop-in" that broke the motion continuity.
+    if (this.originEl) {
+      this.originEl.style.opacity = '1';
+      this.originEl.style.transition = 'opacity 0.3s ease';
+    }
+
     if (this.bodyEl) {
       this.bodyEl.style.transition = 'opacity 0.18s ease';
       this.bodyEl.style.opacity = '0';
@@ -298,11 +308,6 @@ class ModalController {
     this.container.style.borderRadius = 'var(--radius-lg)';
 
     setTimeout(() => {
-      if (this.originEl) {
-        this.originEl.style.opacity = '1';
-        this.originEl.style.transition = 'opacity 0.2s ease';
-      }
-
       this.overlay.classList.remove('active');
       this.overlay.style.opacity = '';
       this.overlay.style.transition = '';
