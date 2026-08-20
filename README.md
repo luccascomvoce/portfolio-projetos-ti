@@ -124,7 +124,7 @@ O portfólio suporta **Português (pt-BR)**, **Inglês (en)** e **Espanhol (es)*
 2. Registre-o em `assets/js/i18n/languages.js` (`{ code: 'fr', name: 'Français', nativeName: 'Français', short: 'FR', dir: 'ltr' }`).
 3. (Opcional) adicione o mapeamento de `og:locale` em `assets/js/i18n/i18n.js`.
 
-> Os **artigos completos** (corpos de texto) ainda não estão traduzidos; nesses casos o leitor mostra o texto em português até que as chaves `articles.*` sejam adicionadas ao dicionário do idioma.
+> Todo o conteúdo é traduzido por idioma, inclusive os **artigos completos** (corpos de texto). Chaves ainda não traduzidas em um idioma degradam graciosamente para o português (a UI nunca quebra).
 
 ---
 

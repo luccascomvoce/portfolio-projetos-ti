@@ -282,7 +282,7 @@ class ArticleCarouselManager {
   }
 
   localizeArticle(article) {
-    const base = `articles.${article.id}`;
+    const base = `articleContents.${article.id}`;
     return {
       title: i18n.t(`${base}.title`, null, article.title),
       category: i18n.t(`${base}.category`, null, article.category),
