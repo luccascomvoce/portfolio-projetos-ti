@@ -85,9 +85,13 @@ class ModalController {
 
   localize(project) {
     const base = `projects.${project.id}`;
+    const categoryKeys = project.categories || [project.category];
+    const categoryLabel = categoryKeys
+      .map((key) => i18n.t(`categories.${key}`, null, null))
+      .join(' • ');
     return {
       title: i18n.t(`${base}.title`, null, project.title),
-      categoryLabel: i18n.t(`categories.${project.category}`, null, project.categoryLabel),
+      categoryLabel,
       overview: i18n.t(`${base}.overview`, null, project.overview),
       architecture: i18n.t(`${base}.architecture`, null, project.architecture),
       techTable: i18n.t(`${base}.techTable`, null, project.techTable),

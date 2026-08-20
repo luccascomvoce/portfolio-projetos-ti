@@ -167,6 +167,7 @@ export const PROJECTS_DATA = [
     id: "mods-7dtd",
     title: "Engenharia de Software e Modding Avançado em C# — 7 Days to Die",
     category: "mods",
+    categories: ["mods", "re"],
     categoryLabel: "Game Mods",
     status: "Produção Ativa",
     highlight: false,

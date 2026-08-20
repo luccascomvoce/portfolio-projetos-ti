@@ -100,9 +100,10 @@ class ProjectFilterManager {
 
   localize(project) {
     const base = `projects.${project.id}`;
+    const categoryKeys = project.categories || [project.category];
     return {
       title: i18n.t(`${base}.title`, null, project.title),
-      categoryLabel: i18n.t(`categories.${project.category}`, null, project.categoryLabel),
+      categories: categoryKeys.map((key) => i18n.t(`categories.${key}`, null, null)),
       summary: i18n.t(`${base}.summary`, null, project.summary),
       tags: i18n.t(`${base}.tags`, null, project.tags),
     };
@@ -192,7 +193,7 @@ class ProjectFilterManager {
   getFilteredProjects() {
     return PROJECTS_DATA.filter(project => {
       // Category check
-      const matchesCategory = this.activeCategory === 'all' || project.category === this.activeCategory;
+      const matchesCategory = this.activeCategory === 'all' || (project.categories || [project.category]).includes(this.activeCategory);
       if (!matchesCategory) return false;
 
       // Search text check
@@ -203,7 +204,7 @@ class ProjectFilterManager {
       const titleMatch = localized.title.toLowerCase().includes(query);
       const summaryMatch = localized.summary.toLowerCase().includes(query);
       const tagMatch = localized.tags.some((t) => t.toLowerCase().includes(query));
-      const categoryMatch = localized.categoryLabel.toLowerCase().includes(query);
+      const categoryMatch = localized.categories.some((c) => c.toLowerCase().includes(query));
 
       return titleMatch || summaryMatch || tagMatch || categoryMatch;
     });
@@ -246,9 +247,9 @@ class ProjectFilterManager {
       return `
       <article class="project-card shimmer-card" data-project-id="${project.id}" aria-labelledby="card-title-${project.id}">
         <div class="card-top">
-          <span class="card-category-badge">
-            ${localized.categoryLabel}
-          </span>
+          <div class="card-categories">
+            ${localized.categories.map((label) => `<span class="card-category-badge">${label}</span>`).join('')}
+          </div>
         </div>
 
         <h3 class="card-title" id="card-title-${project.id}">${localized.title}</h3>

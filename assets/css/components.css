@@ -944,6 +944,12 @@
   margin-bottom: 1.25rem;
 }
 
+.card-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
 .card-category-badge {
   display: inline-flex;
   align-items: center;

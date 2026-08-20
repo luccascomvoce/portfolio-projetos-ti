@@ -95,7 +95,7 @@ portfolio-projetos-ti/
 |---|---|---|
 | **Telegram Games Hub (TMA)** | `Bots & Automação` | Plataforma multiplayer (Pôquer & UNO) em Telegram Mini Apps, WebSockets em tempo real, Canvas 60 FPS, HMAC-SHA256 e Anti-Cheat. |
 | **Engenharia Reversa Android IoT** | `Engenharia Reversa` | Amputação Smali (`return-void`), supressão ViewBinding (`0.0dip`), fusão de Split APKs (Anti-Split) e telemetria Wireless ADB. |
-| **Modding Avançado em C# (7 Days to Die)** | `Game Mods` | Suíte de 7 mods em C# / Unity, injeção de bytecode via Harmony, I/O assíncrono multithread e busca $O(1)$ de POIs. |
+| **Modding Avançado em C# (7 Days to Die)** | `Game Mods` / `Engenharia Reversa` | Suíte de 7 mods em C# / Unity, injeção de bytecode via Harmony, I/O assíncrono multithread e busca $O(1)$ de POIs. |
 | **ADA Prices Bot** | `Bots & Automação` | Ingestão híbrida (8 CEXs/DEXs WebSockets + REST), filtro Z-Score, velas OHLCV, 24+ indicadores técnicos (`pandas-ta`) e OCI Free Tier. |
 | **Blumenau News Pipeline** | `Bots & Automação` | Pipeline serverless em duas etapas: gerador GitOps RSS 2.0 (Python / GHA) e consumidor Cloudflare Workers com Workers KV. |
 | **Gestão de Contratos & Assinaturas (CLM)** | `Bots & Automação` | Onboarding com BrasilAPI, OTP de 6 dígitos, quarentena/aprovação, fusão no Google Docs e Autentique GraphQL API com posições visuais. |
