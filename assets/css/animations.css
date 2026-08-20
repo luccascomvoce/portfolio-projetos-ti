@@ -272,20 +272,22 @@
 }
 
 /* ==========================================================================
-   10. Theme Circular Reveal Overlay
+   10. Theme Circular Reveal (View Transitions API)
    ========================================================================== */
-.theme-reveal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9990;
-  transform: scale(0);
-  transform-origin: center;
-  will-change: transform;
-  background: var(--surface);
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  clip-path: circle(0px at var(--theme-reveal-x, 50vw) var(--theme-reveal-y, 50vh));
+  animation: themeRevealClip 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes themeRevealClip {
+  to {
+    clip-path: circle(var(--theme-reveal-radius, 150vmax) at var(--theme-reveal-x, 50vw) var(--theme-reveal-y, 50vh));
+  }
 }
 

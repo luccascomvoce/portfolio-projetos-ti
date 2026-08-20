@@ -43,6 +43,10 @@
   --on-surface-dim: #64748b;
   --on-surface-bright: #0f172a;
 
+  /* Hero name gradient (legible in light theme) */
+  --gradient-hero-from: #0f172a;
+  --gradient-hero-to: #475569;
+
   /* Feedback Colors */
   --success: #0e9f6e;
   --success-glow: rgba(14, 159, 110, 0.35);
@@ -126,6 +130,10 @@
   --on-surface-muted: #94a3b8;
   --on-surface-dim: #64748b;
   --on-surface-bright: #ffffff;
+
+  /* Hero name gradient */
+  --gradient-hero-from: #ffffff;
+  --gradient-hero-to: #cbd5e1;
 
   /* Feedback Colors */
   --success: #10b981;

@@ -8,10 +8,10 @@ const STORAGE_KEY = 'theme';
 const SURFACES = { dark: '#090d14', light: '#f5f7fb' };
 
 const themeManager = {
-  revealEl: null,
   toggleBtn: null,
   mediaQuery: null,
   currentTheme: 'light',
+  isAnimating: false,
 
   resolveTheme() {
     try {
@@ -49,58 +49,51 @@ const themeManager = {
     }
   },
 
-  /* Circular reveal from the toggle button center, then swap the theme underneath. */
-  runReveal(targetTheme) {
+  /* Circular reveal via the View Transitions API: the whole new theme (content included)
+     expands from the toggle button. Falls back to an instant swap when unsupported. */
+  animateTheme(targetTheme) {
     const reducedMotion = typeof window.matchMedia === 'function'
       && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const canAnimate = this.revealEl && typeof this.revealEl.animate === 'function';
-
-    if (canAnimate && !reducedMotion) {
-      const btnRect = this.toggleBtn ? this.toggleBtn.getBoundingClientRect() : null;
-      const cx = btnRect ? btnRect.left + btnRect.width / 2 : window.innerWidth / 2;
-      const cy = btnRect ? btnRect.top + btnRect.height / 2 : window.innerHeight / 2;
-
-      // Radius required to cover the whole viewport from the click center.
-      const radius = Math.ceil(Math.hypot(
-        Math.max(cx, window.innerWidth - cx),
-        Math.max(cy, window.innerHeight - cy)
-      ));
-      const size = radius * 2;
-      const reveal = this.revealEl;
-
-      reveal.style.width = `${size}px`;
-      reveal.style.height = `${size}px`;
-      reveal.style.left = `${cx - radius}px`;
-      reveal.style.top = `${cy - radius}px`;
-      reveal.style.background = SURFACES[targetTheme] || SURFACES.light;
-      reveal.style.transform = 'scale(0)';
-
-      const animation = reveal.animate(
-        [{ transform: 'scale(0)' }, { transform: 'scale(1)' }],
-        { duration: 520, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'both' }
-      );
-
-      animation.onfinish = () => {
-        this.applyTheme(targetTheme, { persist: true });
-        reveal.style.transform = 'scale(0)';
-        reveal.style.width = '0';
-        reveal.style.height = '0';
-        reveal.style.left = '0';
-        reveal.style.top = '0';
-        reveal.style.background = '';
-      };
-    } else {
+    if (typeof document.startViewTransition !== 'function' || reducedMotion) {
       this.applyTheme(targetTheme, { persist: true });
+      return;
     }
+
+    const rect = this.toggleBtn
+      ? this.toggleBtn.getBoundingClientRect()
+      : { left: 0, top: 0, width: 0, height: 0 };
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const radius = Math.ceil(Math.hypot(
+      Math.max(cx, window.innerWidth - cx),
+      Math.max(cy, window.innerHeight - cy)
+    ));
+
+    const root = document.documentElement;
+    root.style.setProperty('--theme-reveal-x', `${cx}px`);
+    root.style.setProperty('--theme-reveal-y', `${cy}px`);
+    root.style.setProperty('--theme-reveal-radius', `${radius}px`);
+
+    this.isAnimating = true;
+    const transition = document.startViewTransition(() => {
+      this.applyTheme(targetTheme, { persist: true });
+    });
+
+    transition.finished.finally(() => {
+      this.isAnimating = false;
+      root.style.removeProperty('--theme-reveal-x');
+      root.style.removeProperty('--theme-reveal-y');
+      root.style.removeProperty('--theme-reveal-radius');
+    });
   },
 
   toggle() {
-    this.runReveal(this.currentTheme === 'dark' ? 'light' : 'dark');
+    if (this.isAnimating) return;
+    this.animateTheme(this.currentTheme === 'dark' ? 'light' : 'dark');
   },
 
   init() {
-    this.revealEl = document.getElementById('theme-reveal');
     this.toggleBtn = document.getElementById('theme-toggle-btn');
 
     // Ensure a correct initial state even if the inline bootstrap was skipped.
