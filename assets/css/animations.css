@@ -91,7 +91,7 @@
 }
 
 /* ==========================================================================
-   3. DOM Particle System Container
+   3. Binary Digit Rain System
    ========================================================================== */
 #particles-container {
   position: fixed;
@@ -101,11 +101,148 @@
   overflow: hidden;
 }
 
-.dom-particle {
+.binary-digit {
   position: absolute;
-  border-radius: 50%;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+  font-weight: 700;
   pointer-events: none;
   will-change: transform, opacity;
+  user-select: none;
+  line-height: 1;
+  /* No text-shadow — keeps digits crisp and legible */
+}
+
+/* ==========================================================================
+   3A. Matrix Easter Egg Overlay
+   ========================================================================== */
+#matrix-easter-egg {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  background: #000;
+}
+
+#matrix-easter-egg.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* CRT Power-Off: circle shrinks to center point */
+#matrix-easter-egg.crt-off {
+  clip-path: circle(150vmax at 50% 50%);
+  animation: crtPowerOff 0.8s cubic-bezier(0.6, 0, 1, 1) forwards;
+}
+
+/* CRT Power-On: circle expands from center (dismiss) */
+#matrix-easter-egg.crt-on {
+  clip-path: circle(0px at 50% 50%);
+  animation: crtPowerOn 0.6s cubic-bezier(0.2, 0, 0.4, 1) forwards;
+}
+
+@keyframes crtPowerOff {
+  0%   { clip-path: circle(150vmax at 50% 50%); background: #fff; }
+  15%  { clip-path: circle(150vmax at 50% 50%); background: #fff; }
+  50%  { clip-path: circle(50vmax at 50% 50%); background: #0a0a0a; }
+  80%  { clip-path: circle(8px at 50% 50%); background: #000; }
+  90%  { clip-path: circle(3px at 50% 50%); background: #000; }
+  100% { clip-path: circle(0px at 50% 50%); background: #000; }
+}
+
+@keyframes crtPowerOn {
+  0%   { clip-path: circle(0px at 50% 50%); background: #000; }
+  30%  { clip-path: circle(12px at 50% 50%); background: #000; }
+  100% { clip-path: circle(150vmax at 50% 50%); background: #000; }
+}
+
+#matrix-easter-egg.dismiss {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: visibility 0s 0.6s, opacity 0.2s;
+}
+
+/* Terminal content inside easter egg */
+.matrix-terminal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+  z-index: 1;
+}
+
+#matrix-easter-egg.terminal-visible .matrix-terminal {
+  opacity: 1;
+}
+
+.matrix-terminal-box {
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 90%;
+}
+
+.matrix-message {
+  color: #00ff41;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 30px rgba(0, 255, 65, 0.2);
+}
+
+.matrix-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.15em;
+  background: #00ff41;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  opacity: 0;
+  animation: matrixCursorBlink 0.8s infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+}
+
+@keyframes matrixCursorBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* CRT Scanlines overlay */
+.matrix-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#matrix-easter-egg.terminal-visible .matrix-scanlines {
+  opacity: 1;
+}
+
+/* CRT flicker */
+#matrix-easter-egg.terminal-visible {
+  animation: matrixFlicker 0.15s infinite alternate;
+}
+
+@keyframes matrixFlicker {
+  0%   { opacity: 1; }
+  100% { opacity: 0.98; }
 }
 
 /* ==========================================================================
