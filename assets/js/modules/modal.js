@@ -9,6 +9,7 @@ import { setTiltEnabled } from './tilt.js';
 import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 import { cinemaPlayer } from './cinemaPlayer.js';
+import { deepLinkManager } from './deepLink.js';
 
 class ModalController {
   constructor() {
@@ -238,11 +239,44 @@ class ModalController {
     }
   }
 
+  restoreAllCardOpacities() {
+    document.querySelectorAll('.project-card, .highlight-banner').forEach(el => {
+      el.style.opacity = '';
+      el.style.transition = '';
+    });
+  }
+
   openProject(projectId, originElement = null) {
     if (this.isAnimating) return;
 
     const project = PROJECTS_DATA.find(p => p.id === projectId);
     if (!project || !this.overlay) return;
+
+    // If modal is ALREADY open, perform smooth in-place project switch
+    if (this.overlay.classList.contains('active')) {
+      if (this.activeProjectId === projectId) return;
+
+      this.restoreAllCardOpacities();
+      this.activeProjectId = projectId;
+      deepLinkManager.setProjectHash(projectId);
+      soundEngine.playClick();
+
+      if (this.bodyEl) {
+        this.bodyEl.style.transition = 'opacity 0.15s ease';
+        this.bodyEl.style.opacity = '0';
+        setTimeout(() => {
+          this.renderContent(project);
+          this.bodyEl.scrollTop = 0;
+          this.bodyEl.style.opacity = '1';
+        }, 150);
+      } else {
+        this.renderContent(project);
+      }
+      return;
+    }
+
+    // Always ensure all cards in the grid are restored before opening
+    this.restoreAllCardOpacities();
 
     // Save triggering element for accessible focus return
     this.triggerElement = document.activeElement;
@@ -258,6 +292,7 @@ class ModalController {
 
     this.activeProjectId = projectId;
     this.renderContent(project);
+    deepLinkManager.setProjectHash(projectId);
 
     // Modal accessibility state
     this.overlay.setAttribute('aria-hidden', 'false');
@@ -288,8 +323,6 @@ class ModalController {
     document.body.style.overflow = 'hidden';
     this.overlay.classList.add('active');
     this.overlay.style.opacity = '0';
-    // Cross-fade the origin card out (instead of hiding instantly) so it seems
-    // to grow into the modal without an empty "flash" gap.
     this.originEl.style.transition = 'opacity 0.2s ease';
     this.originEl.style.opacity = '0';
 
@@ -327,7 +360,6 @@ class ModalController {
       }
 
       setTimeout(() => {
-        // Clear transform to remove GPU raster bitmap texture and restore native vector text crispness
         this.container.style.transform = '';
         this.container.style.transition = '';
         this.container.style.willChange = '';
@@ -337,21 +369,29 @@ class ModalController {
     });
   }
 
-  close() {
+  close(immediate = false) {
     if (this.isAnimating || !this.overlay || !this.overlay.classList.contains('active')) return;
 
     this.activeProjectId = null;
+    deepLinkManager.clearHash('projetos');
     window.removeEventListener('keydown', this.boundTrapFocus);
     this.overlay.setAttribute('aria-hidden', 'true');
+    this.restoreAllCardOpacities();
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!this.originEl || prefersReducedMotion || !document.body.contains(this.originEl)) {
+    if (immediate || !this.originEl || prefersReducedMotion || !document.body.contains(this.originEl)) {
       this.overlay.classList.remove('active');
       this.overlay.style.opacity = '';
+      this.overlay.style.transition = '';
       this.container.style.transform = '';
+      this.container.style.transition = '';
+      this.container.style.borderRadius = '';
+      this.container.style.willChange = '';
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      this.originEl = null;
+      this.isAnimating = false;
       if (this.triggerElement) this.triggerElement.focus();
       return;
     }
@@ -370,8 +410,6 @@ class ModalController {
     const deltaX = (targetRect.left + targetRect.width / 2) - (firstRect.left + firstRect.width / 2);
     const deltaY = (targetRect.top + targetRect.height / 2) - (firstRect.top + firstRect.height / 2);
 
-    // Reveal the origin card underneath as the modal collapses back into it,
-    // avoiding the late "pop-in" that broke the motion continuity.
     if (this.originEl) {
       this.originEl.style.opacity = '1';
       this.originEl.style.transition = 'opacity 0.3s ease';
@@ -406,6 +444,7 @@ class ModalController {
 
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      this.restoreAllCardOpacities();
       this.originEl = null;
       this.isAnimating = false;
 

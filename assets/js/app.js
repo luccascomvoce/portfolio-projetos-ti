@@ -13,6 +13,7 @@ import { projectFilter } from './modules/projectFilter.js';
 import { modalManager } from './modules/modal.js';
 import { cinemaPlayer } from './modules/cinemaPlayer.js';
 import { articleCarousel } from './modules/articleCarousel.js';
+import { deepLinkManager } from './modules/deepLink.js';
 import { applyTiltEffect } from './modules/tilt.js';
 import { themeManager } from './modules/theme.js';
 
@@ -54,11 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Initialize Hero Typewriter
   typewriter.init('typewriter-text', i18n.t('hero.typewriter', null, SITE_CONFIG.typewriterPhrases), 55, 30, 2400);
 
-  // 3. Initialize Modals, Showcase Filters, Article Carousel and Cinema Player
+  // 3. Initialize Modals, Showcase Filters, Article Carousel, Cinema Player and Deep Linking
   modalManager.init();
   cinemaPlayer.init();
   projectFilter.init();
   articleCarousel.init();
+  deepLinkManager.init();
 
   // 4. Hero Avatar 3D Tilt
   const heroAvatar = document.querySelector('.hero-avatar');

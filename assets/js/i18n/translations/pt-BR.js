@@ -99,6 +99,10 @@ export default {
     cinemaPlay: `Reproduzir`,
     cinemaPause: `Pausar`,
     cinemaFullscreen: `Tela cheia`,
+    copyLink: `Copiar link direto`,
+    copyLinkTitle: `Copiar link direto deste projeto para compartilhamento`,
+    copyArticleLinkTitle: `Copiar link direto deste artigo para compartilhamento`,
+    linkCopied: `Link copiado!`,
   },
 
   articles: {

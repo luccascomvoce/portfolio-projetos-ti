@@ -214,6 +214,7 @@
   <link rel="modulepreload" href="assets/js/modules/articleCarousel.js">
   <link rel="modulepreload" href="assets/js/modules/modal.js">
   <link rel="modulepreload" href="assets/js/modules/cinemaPlayer.js">
+  <link rel="modulepreload" href="assets/js/modules/deepLink.js">
   <link rel="modulepreload" href="assets/js/modules/particles.js">
   <link rel="modulepreload" href="assets/js/modules/typewriter.js">
   <link rel="modulepreload" href="assets/js/modules/audio.js">
@@ -576,12 +577,21 @@
           <span class="card-category-badge" id="modal-project-badge">Categoria</span>
           <h3 class="modal-title" id="modal-project-title">Título do Projeto</h3>
         </div>
-        <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar modal" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.close; title:modal.closeTitle">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <div class="modal-header-actions">
+          <button class="modal-header-btn modal-share-btn" id="modal-project-share-btn" aria-label="Copiar link direto" title="Copiar link direto deste projeto para compartilhamento" data-i18n-attr="aria-label:modal.copyLink; title:modal.copyLinkTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <span class="share-toast" aria-live="polite">Link copiado!</span>
+          </button>
+          <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar modal" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.close; title:modal.closeTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="modal-body" id="modal-project-body">
@@ -603,12 +613,21 @@
             <!-- Rendered dynamically -->
           </div>
         </div>
-        <button class="modal-close-btn" id="modal-article-close-btn" aria-label="Fechar artigo" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.articleClose; title:modal.articleCloseTitle">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <div class="modal-header-actions">
+          <button class="modal-header-btn modal-share-btn" id="modal-article-share-btn" aria-label="Copiar link direto" title="Copiar link direto deste artigo para compartilhamento" data-i18n-attr="aria-label:modal.copyLink; title:modal.copyArticleLinkTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <span class="share-toast" aria-live="polite">Link copiado!</span>
+          </button>
+          <button class="modal-close-btn" id="modal-article-close-btn" aria-label="Fechar artigo" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.articleClose; title:modal.articleCloseTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="modal-body article-reader-body" id="modal-article-body">

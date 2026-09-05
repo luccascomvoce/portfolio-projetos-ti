@@ -107,6 +107,10 @@ showcase: {
     cinemaPlay: `Reproducir`,
     cinemaPause: `Pausar`,
     cinemaFullscreen: `Pantalla completa`,
+    copyLink: `Copiar enlace directo`,
+    copyLinkTitle: `Copiar enlace directo de este proyecto para compartir`,
+    copyArticleLinkTitle: `Copiar enlace directo de este artículo para compartir`,
+    linkCopied: `¡Enlace copiado!`,
   },
 
   articles: {

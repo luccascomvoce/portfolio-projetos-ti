@@ -7,6 +7,7 @@ import { ARTICLES_DATA } from '../data/articlesData.js';
 import { applyTiltEffect, setTiltEnabled } from './tilt.js';
 import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
+import { deepLinkManager } from './deepLink.js';
 
 // Pre-compiled full article contents with local asset references
 const ARTICLE_CONTENTS = {
@@ -454,11 +455,53 @@ class ArticleCarouselManager {
     }
   }
 
+  restoreAllCardOpacities() {
+    document.querySelectorAll('.article-carousel-card').forEach(el => {
+      el.style.opacity = '';
+      el.style.transition = '';
+    });
+  }
+
   openArticle(id, originCard = null) {
-    if (this.isAnimating || !this.modalEl) return;
+    if (this.isAnimating) return;
 
     const article = ARTICLES_DATA.find(a => a.id === id);
     if (!article) return;
+
+    // If modal is ALREADY open, perform smooth in-place article switch
+    if (this.modalEl && this.modalEl.classList.contains('active')) {
+      if (this.activeArticleId === id) return;
+
+      this.restoreAllCardOpacities();
+      this.activeArticleId = id;
+      deepLinkManager.setArticleHash(id);
+      soundEngine.playClick();
+
+      const localized = this.localizeArticle(article);
+      if (this.modalTitle) this.modalTitle.textContent = localized.title;
+      if (this.modalBadge) this.modalBadge.textContent = localized.category;
+      if (this.modalMeta) {
+        this.modalMeta.innerHTML = `
+          <span>${localized.date}</span>
+          <span aria-hidden="true">•</span>
+          <span>${article.readTime} ${i18n.t('articles.readTimeSuffix')}</span>
+        `;
+      }
+
+      if (this.modalBody) {
+        this.modalBody.style.transition = 'opacity 0.15s ease';
+        this.modalBody.style.opacity = '0';
+        setTimeout(() => {
+          this.modalBody.innerHTML = localized.body || `<p>${localized.summary}</p>`;
+          this.modalBody.scrollTop = 0;
+          this.modalBody.style.opacity = '1';
+        }, 150);
+      }
+      return;
+    }
+
+    // Always restore all cards in carousel before opening
+    this.restoreAllCardOpacities();
 
     this.triggerElement = document.activeElement;
     this.originCard = originCard || document.querySelector(`[data-article-id="${id}"]`);
@@ -467,6 +510,7 @@ class ArticleCarouselManager {
     setTiltEnabled(false);
 
     this.activeArticleId = id;
+    deepLinkManager.setArticleHash(id);
     const localized = this.localizeArticle(article);
 
     if (this.modalTitle) this.modalTitle.textContent = localized.title;
@@ -546,7 +590,6 @@ class ArticleCarouselManager {
       }
 
       setTimeout(() => {
-        // Clear transform to remove GPU raster bitmap texture and restore native vector text crispness
         this.modalContainer.style.transform = '';
         this.modalContainer.style.transition = '';
         this.modalContainer.style.willChange = '';
@@ -556,21 +599,26 @@ class ArticleCarouselManager {
     });
   }
 
-  closeArticle() {
+  closeArticle(immediate = false) {
     if (this.isAnimating || !this.modalEl || !this.modalEl.classList.contains('active')) return;
 
+    this.activeArticleId = null;
+    deepLinkManager.clearHash('artigos');
     window.removeEventListener('keydown', this.boundTrapFocus);
     this.modalEl.setAttribute('aria-hidden', 'true');
+    this.restoreAllCardOpacities();
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!this.originCard || prefersReducedMotion || !document.body.contains(this.originCard)) {
+    if (immediate || !this.originCard || prefersReducedMotion || !document.body.contains(this.originCard)) {
       this.modalEl.classList.remove('active');
       this.modalEl.style.opacity = '';
       this.modalContainer.style.transform = '';
       this.modalContainer.style.willChange = '';
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      this.originCard = null;
+      this.isAnimating = false;
       if (this.triggerElement) this.triggerElement.focus();
       return;
     }
@@ -587,8 +635,6 @@ class ArticleCarouselManager {
     const deltaX = (targetRect.left + targetRect.width / 2) - (firstRect.left + firstRect.width / 2);
     const deltaY = (targetRect.top + targetRect.height / 2) - (firstRect.top + firstRect.height / 2);
 
-    // Reveal the origin card underneath as the modal collapses back into it,
-    // avoiding the late "pop-in" that broke the motion continuity.
     if (this.originCard) {
       this.originCard.style.opacity = '1';
       this.originCard.style.transition = 'opacity 0.3s ease';
@@ -623,6 +669,7 @@ class ArticleCarouselManager {
 
       document.body.style.overflow = '';
       setTiltEnabled(true);
+      this.restoreAllCardOpacities();
       this.originCard = null;
       this.isAnimating = false;
 
