@@ -91,6 +91,14 @@ export default {
     closeTitle: `Fechar (Esc)`,
     articleClose: `Fechar artigo`,
     articleCloseTitle: `Fechar (Esc)`,
+    watchDemo: `Assistir Demonstração em Vídeo`,
+    watchDemoBtn: `Assistir Demonstração`,
+    demoBadge: `DEMO EM VÍDEO`,
+    demoHint: `Modo Inline em tempo real • Sem áudio`,
+    closeCinema: `Fechar vídeo (Esc)`,
+    cinemaPlay: `Reproduzir`,
+    cinemaPause: `Pausar`,
+    cinemaFullscreen: `Tela cheia`,
   },
 
   articles: {

@@ -99,6 +99,14 @@ showcase: {
     closeTitle: `Close (Esc)`,
     articleClose: `Close article`,
     articleCloseTitle: `Close (Esc)`,
+    watchDemo: `Watch Video Demonstration`,
+    watchDemoBtn: `Watch Demo`,
+    demoBadge: `VIDEO DEMO`,
+    demoHint: `Real-time Inline Mode • No audio`,
+    closeCinema: `Close video (Esc)`,
+    cinemaPlay: `Play`,
+    cinemaPause: `Pause`,
+    cinemaFullscreen: `Fullscreen`,
   },
 
   articles: {

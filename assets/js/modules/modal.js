@@ -8,6 +8,7 @@ import { PROJECTS_DATA } from '../data/projectsData.js';
 import { setTiltEnabled } from './tilt.js';
 import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
+import { cinemaPlayer } from './cinemaPlayer.js';
 
 class ModalController {
   constructor() {
@@ -107,6 +108,27 @@ class ModalController {
 
     if (this.bodyEl) {
       this.bodyEl.innerHTML = `
+        ${project.videoUrl ? `
+          <div class="modal-teaser-card shimmer-card" data-action="open-cinema" data-video="${project.videoUrl}" data-title="${localized.title}" role="button" tabindex="0" aria-label="${i18n.t('modal.watchDemo')}">
+            <div class="teaser-card-glow" aria-hidden="true"></div>
+            <div class="teaser-card-content">
+              <div class="teaser-badge">
+                <span class="pulse-cyan" aria-hidden="true"></span>
+                <span class="teaser-badge-label">${i18n.t('modal.demoBadge')}</span>
+              </div>
+              <div class="teaser-play-ring" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+              </div>
+              <div class="teaser-text-block">
+                <span class="teaser-title">${i18n.t('modal.watchDemo')}</span>
+                <span class="teaser-subtitle">${i18n.t('modal.demoHint')}</span>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
         <div class="modal-section">
           <h3 class="modal-section-title">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -159,25 +181,53 @@ class ModalController {
           </table>
         </div>
 
-        ${project.liveUrl ? `
+        ${(project.liveUrl || project.videoUrl) ? `
           <div class="modal-actions">
-            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn ${project.liveType === 'telegram' ? 'modal-cta-telegram' : 'modal-cta-web'}">
-              ${project.liveType === 'telegram' ? `
+            ${project.videoUrl ? `
+              <button type="button" class="modal-cta-btn modal-cta-video" data-action="open-cinema" data-video="${project.videoUrl}" data-title="${localized.title}" aria-label="${i18n.t('modal.watchDemo')}">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
-              ` : `
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                </svg>
-              `}
-              <span>${localized.liveLabel || i18n.t('modal.defaultCta')}</span>
-            </a>
+                <span>${i18n.t('modal.watchDemoBtn')}</span>
+              </button>
+            ` : ''}
+            ${project.liveUrl ? `
+              <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-cta-btn ${project.liveType === 'telegram' ? 'modal-cta-telegram' : 'modal-cta-web'}">
+                ${project.liveType === 'telegram' ? `
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
+                  </svg>
+                ` : `
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                `}
+                <span>${localized.liveLabel || i18n.t('modal.defaultCta')}</span>
+              </a>
+            ` : ''}
           </div>
         ` : ''}
       `;
+
+      // Attach Cinema Player triggers
+      const cinemaTriggers = this.bodyEl.querySelectorAll('[data-action="open-cinema"]');
+      cinemaTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const url = trigger.getAttribute('data-video');
+          const title = trigger.getAttribute('data-title');
+          cinemaPlayer.open(url, title, trigger);
+        });
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            trigger.click();
+          }
+        });
+        trigger.addEventListener('mouseenter', () => soundEngine.playHover());
+      });
     }
   }
 

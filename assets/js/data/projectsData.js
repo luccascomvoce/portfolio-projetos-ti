@@ -316,6 +316,7 @@ export const PROJECTS_DATA = [
       { label: "Proteção DoS", value: "Sliding Window + Drop" },
       { label: "Operação", value: "100% Inline Query" }
     ],
+    videoUrl: "assets/videos/quantoebot.mp4",
     overview: "Bot Telegram de alta performance e precisão matemática operando 100% no modo inline (<code>@quantoebot expressao</code>) em qualquer chat sem requerer adição a grupos. Desenvolvido em Python assíncrono com aiogram 3, conta com motor próprio de parsing e avaliação matemática sem dependências externas (usando <code>decimal.Decimal</code> com 28 dígitos de precisão), suporte a precedência estrita e associatividade à direita, radiciação encadeada, fatoriais e porcentagem contextualizada por AST. Inclui subsistema de configurações tipado e validado em tempo de inicialização via Pydantic Settings, proteção perimetral contra DoS com algoritmo Sliding Window em memória (silent drop) e telemetria estruturada de logs.",
     liveUrl: "https://t.me/quantoebot",
     liveLabel: "Testar o Bot no Telegram",

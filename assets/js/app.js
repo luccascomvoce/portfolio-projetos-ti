@@ -11,6 +11,7 @@ import { initParticles } from './modules/particles.js';
 import { typewriter } from './modules/typewriter.js';
 import { projectFilter } from './modules/projectFilter.js';
 import { modalManager } from './modules/modal.js';
+import { cinemaPlayer } from './modules/cinemaPlayer.js';
 import { articleCarousel } from './modules/articleCarousel.js';
 import { applyTiltEffect } from './modules/tilt.js';
 import { themeManager } from './modules/theme.js';
@@ -53,8 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Initialize Hero Typewriter
   typewriter.init('typewriter-text', i18n.t('hero.typewriter', null, SITE_CONFIG.typewriterPhrases), 55, 30, 2400);
 
-  // 3. Initialize Modals, Showcase Filters and Article Carousel
+  // 3. Initialize Modals, Showcase Filters, Article Carousel and Cinema Player
   modalManager.init();
+  cinemaPlayer.init();
   projectFilter.init();
   articleCarousel.init();
 

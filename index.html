@@ -213,6 +213,7 @@
   <link rel="modulepreload" href="assets/js/modules/projectFilter.js">
   <link rel="modulepreload" href="assets/js/modules/articleCarousel.js">
   <link rel="modulepreload" href="assets/js/modules/modal.js">
+  <link rel="modulepreload" href="assets/js/modules/cinemaPlayer.js">
   <link rel="modulepreload" href="assets/js/modules/particles.js">
   <link rel="modulepreload" href="assets/js/modules/typewriter.js">
   <link rel="modulepreload" href="assets/js/modules/audio.js">
@@ -617,7 +618,66 @@
   </div>
 
   <!-- ========================================================================
-       7. Footer
+       7. Cinema Video Player Modal (Minimalist Studio Stage)
+       ======================================================================== -->
+  <div class="modal-overlay cinema-modal-overlay" id="cinema-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Player de Demonstração em Vídeo">
+    <div class="cinema-ambient-glow" aria-hidden="true"></div>
+    <div class="cinema-stage-container">
+      <div class="cinema-stage-header">
+        <div class="cinema-badge-wrapper">
+          <span class="pulse-cyan" aria-hidden="true"></span>
+          <span class="cinema-badge-text" id="cinema-badge-title">DEMO INTERATIVA</span>
+        </div>
+        <button class="modal-close-btn cinema-close-btn" id="cinema-close-btn" aria-label="Fechar vídeo" title="Fechar (Esc)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cinema-screen-wrapper">
+        <video id="cinema-video" class="cinema-video-element" playsinline muted loop preload="none">
+          <source src="" type="video/mp4">
+        </video>
+        <div class="cinema-play-overlay" id="cinema-play-overlay" aria-hidden="true">
+          <div class="cinema-play-glyph">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="cinema-floating-hud" id="cinema-hud">
+        <button class="cinema-hud-btn" id="cinema-play-btn" aria-label="Reproduzir / Pausar">
+          <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+        <span class="cinema-time-display" id="cinema-time-display">0:00 / 0:00</span>
+        <div class="cinema-scrubber-track" id="cinema-scrubber" role="progressbar" aria-label="Progresso do vídeo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <div class="cinema-scrubber-progress" id="cinema-scrubber-progress"></div>
+          <div class="cinema-scrubber-thumb" id="cinema-scrubber-thumb"></div>
+        </div>
+        <button class="cinema-hud-btn" id="cinema-fullscreen-btn" aria-label="Tela cheia" title="Tela cheia (F)">
+          <svg class="icon-fullscreen-enter" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          <svg class="icon-fullscreen-exit" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       8. Footer
        ======================================================================== -->
   <footer class="footer">
     <div class="container">
