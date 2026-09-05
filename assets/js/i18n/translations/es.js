@@ -359,7 +359,34 @@ showcase: {
       ],
     },
 
-'listar-estrutura-diretorios': {
+    'telegram-bot-calculadora': {
+      title: `Quantoebot — Bot de Calculadora Inline, Motor RPN & Rate Limiting`,
+      status: `En Producción`,
+      summary: `Bot de Telegram 100% inline (@quantoebot expresión) para evaluación matemática de alta precisión (28 dígitos Decimal), parsing RPN (Shunting-yard), desambiguación de porcentajes humanos, protección DoS con Sliding Window Rate Limiting y observabilidad asíncrona.`,
+      tags: [`Python 3.12 (aiogram 3)`, `Shunting-Yard / RPN`, `Sliding Window Rate Limit`, `Pydantic Settings`, `FastAPI / Uvicorn`, `Docker Multi-Stage`, `Terraform / Ansible`],
+      metrics: [
+        { label: `Precisión Numérica`, value: `28 Dígitos (Decimal)` },
+        { label: `Protección DoS`, value: `Sliding Window + Drop` },
+        { label: `Operación`, value: `100% Inline Query` },
+      ],
+      overview: `Bot de Telegram de alto rendimiento y precisión matemática operando 100% en modo inline (<code>@quantoebot expresion</code>) en cualquier chat sin requerir membresía en grupos. Desarrollado en Python asíncrono con aiogram 3, cuenta con motor propio de parsing y evaluación matemática sin dependencias externas (utilizando <code>decimal.Decimal</code> con 28 dígitos de precisión), soporte para precedencia estricta y asociatividad a la derecha, radicación encadenada, factoriales y porcentajes contextualizados por AST. Incluye subsistema de configuración tipado y validado en el arranque vía Pydantic Settings, protección perimetral contra DoS con algoritmo de Ventana Deslizante en memoria (silent drop) y telemetría estructurada de logs.`,
+      liveLabel: `Probar el Bot en Telegram`,
+      architecture: `<ul>
+        <li><strong>1. Parsing Léxico & AST de Porcentajes:</strong> Normalización de operadores y superíndices Unicode (<code>2²</code>, <code>10⁻³</code>), tokenización con detección automática de convención numérica (punto/coma decimal) y desambiguación contextual de porcentajes con reglas aritméticas humanas (<code>a ± X% = a ± a*(X/100)</code> vs. módulo <code>15%2</code>).</li>
+        <li><strong>2. Motor RPN & Shunting-yard Asíncrono:</strong> Conversión infija a Notación Polaca Inversa con precedencia estricta y asociatividad a la derecha para potencias/raíces (<code>2^3^2 = 512</code>), evaluación con precisión contable de 28 dígitos con <code>decimal.Decimal</code> y límites de seguridad (factorial ≤ 1000, exponente ≤ 10000).</li>
+        <li><strong>3. Protección DoS con Sliding Window Limiter:</strong> Middleware perimetral en aiogram con algoritmo de ventana deslizante en memoria (15 req/10s por usuario), caché limitada a 10.000 usuarios con expulsión LRU en dos fases, bypass para administradores y <em>silent drop</em> sin consumo de tráfico de salida.</li>
+        <li><strong>4. Subsistema de Configuración Tipado (Pydantic Settings):</strong> Centralización singleton mediante <code>BaseSettings</code> con más de 20 variables, validación estricta en tiempo de arranque, coerción de tipos para listas y enteros, y normalización automática de niveles de log y cadenas.</li>
+        <li><strong>5. Observabilidad & Miniaturas Dinámicas:</strong> Logs estructurados en formato JSON con Trace IDs, despacho de alertas administrativas con control de saturación (throttling), endpoints de healthcheck con FastAPI/Uvicorn y renderizado adaptativo de miniaturas con fallback encadenado (QuickChart local &gt; QuickChart API &gt; placehold.co).</li>
+      </ul>`,
+      techTable: [
+        { category: `Lenguaje y Framework`, tech: `Python 3.12+, aiogram 3.15+ (asyncio), FastAPI, Uvicorn, uv` },
+        { category: `Parsing y Matemática`, tech: `Shunting-yard (RPN), AST de Porcentajes, decimal.Decimal (28 dígitos), Normalizador Unicode` },
+        { category: `Seguridad y Config`, tech: `Sliding Window Rate Limiter, Bounded Cache LRU, Pydantic Settings, Validación .env` },
+        { category: `DevOps y Monitoreo`, tech: `Docker Multi-stage, Terraform (OCI Always Free), Ansible Vault, Structured JSON Logger` },
+      ],
+    },
+
+    'listar-estrutura-diretorios': {
       title: `Generador de Estructura de Carpetas — Extensión Shell de Windows y CI/CD`,
       status: `En Producción`,
       summary: `El arte de la sobreingeniería para no volver a escribir comandos largos: hace lo mismo que '$txt = tree /f /a; $txt | Out-File ...; $txt | Set-Clipboard', pero con 1 clic en el menú contextual de Windows, DFS recursivo, blacklist inteligente de dependencias, binario ps2exe e instalador Inno Setup.`,

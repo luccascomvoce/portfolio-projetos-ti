@@ -359,7 +359,34 @@ showcase: {
       ],
     },
 
-'listar-estrutura-diretorios': {
+    'telegram-bot-calculadora': {
+      title: `Quantoebot — Inline Calculator Bot, RPN Engine & Rate Limiting`,
+      status: `In Production`,
+      summary: `100% inline Telegram bot (@quantoebot expression) for high-precision math evaluation (28-digit Decimal), RPN parsing (Shunting-yard), human percentage desugaring, DoS protection with Sliding Window Rate Limiting and asynchronous observability.`,
+      tags: [`Python 3.12 (aiogram 3)`, `Shunting-Yard / RPN`, `Sliding Window Rate Limit`, `Pydantic Settings`, `FastAPI / Uvicorn`, `Docker Multi-Stage`, `Terraform / Ansible`],
+      metrics: [
+        { label: `Numerical Precision`, value: `28 Digits (Decimal)` },
+        { label: `DoS Protection`, value: `Sliding Window + Drop` },
+        { label: `Operation`, value: `100% Inline Query` },
+      ],
+      overview: `High-performance Telegram bot for instant mathematical calculations operating 100% in inline mode (<code>@quantoebot expression</code>) in any chat without requiring group membership. Developed in asynchronous Python with aiogram 3, featuring a custom parsing and evaluation engine with zero external math dependencies (using <code>decimal.Decimal</code> with 28-digit precision), support for strict precedence and right-associativity, chained root extraction, factorials, and AST-contextualized human percentage. Includes a typed configuration subsystem validated at bootstrap via Pydantic Settings, edge flood/DoS protection with an in-memory Sliding Window algorithm (silent drop), and structured JSON log telemetry.`,
+      liveLabel: `Try the Bot on Telegram`,
+      architecture: `<ul>
+        <li><strong>1. Lexical Parsing & Percentage AST:</strong> Operator normalization and Unicode superscripts (<code>2²</code>, <code>10⁻³</code>), tokenization with automatic numeric convention detection (dot/comma decimal separator), and percentage desugaring based on human arithmetic rules (<code>a ± X% = a ± a*(X/100)</code> vs. modulo <code>15%2</code>).</li>
+        <li><strong>2. RPN Engine & Asynchronous Shunting-yard:</strong> Infix to Reverse Polish Notation conversion with strict precedence and right-associativity for powers/roots (<code>2^3^2 = 512</code>), evaluated under 28-digit financial precision with <code>decimal.Decimal</code> and safety limits (factorial ≤ 1000, exponent ≤ 10000).</li>
+        <li><strong>3. DoS Protection with Sliding Window Limiter:</strong> Edge middleware on aiogram with an in-memory sliding window algorithm (15 req/10s per user), bounded cache for 10,000 active users with two-tier LRU eviction, admin bypass, and <em>silent drop</em> without response traffic consumption.</li>
+        <li><strong>4. Typed Configuration Subsystem (Pydantic Settings):</strong> Singleton centralization via <code>BaseSettings</code> with 20+ variables, strict bootstrap validation, type coercion for lists and integers, and automatic string/log-level normalization.</li>
+        <li><strong>5. Observability & Dynamic Thumbnails:</strong> Structured JSON logs with Trace IDs, throttled administrator alert dispatching, FastAPI/Uvicorn healthcheck endpoints, and adaptive thumbnail rendering with chained fallbacks (local QuickChart &gt; public QuickChart API &gt; placehold.co).</li>
+      </ul>`,
+      techTable: [
+        { category: `Language & Framework`, tech: `Python 3.12+, aiogram 3.15+ (asyncio), FastAPI, Uvicorn, uv` },
+        { category: `Parsing & Mathematics`, tech: `Shunting-yard (RPN), Percentage AST, decimal.Decimal (28 digits), Unicode Normalizer` },
+        { category: `Security & Config`, tech: `Sliding Window Rate Limiter, Bounded Cache LRU, Pydantic Settings, .env Validation` },
+        { category: `DevOps & Monitoring`, tech: `Docker Multi-stage, Terraform (OCI Always Free), Ansible Vault, Structured JSON Logger` },
+      ],
+    },
+
+    'listar-estrutura-diretorios': {
       title: `Folder Structure Generator — Windows Shell Extension & CI/CD`,
       status: `In Production`,
       summary: `The art of over-engineering so you never type long commands again: does the same as '$txt = tree /f /a; $txt | Out-File ...; $txt | Set-Clipboard', but with 1 click on the Windows context menu, recursive DFS, smart dependency blacklist, ps2exe binary and Inno Setup installer.`,

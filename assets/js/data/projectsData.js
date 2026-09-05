@@ -302,6 +302,41 @@ export const PROJECTS_DATA = [
     ]
   },
   {
+    id: "telegram-bot-calculadora",
+    title: "Quantoebot — Bot de Calculadora Inline, Motor RPN & Rate Limiting",
+    category: "bots",
+    categoryLabel: "Bots & Automação",
+    status: "Produção Ativa",
+    highlight: false,
+    summary: "Bot Telegram 100% inline (@quantoebot expressão) para avaliação matemática de alta precisão (28 dígitos Decimal), parsing RPN (Shunting-yard), desambiguação sintática de porcentagem humana, proteção DoS com Sliding Window Rate Limiting e observabilidade assíncrona.",
+    tags: ["Python 3.12 (aiogram 3)", "Shunting-Yard / RPN", "Sliding Window Rate Limit", "Pydantic Settings", "FastAPI / Uvicorn", "Docker Multi-Stage", "Terraform / Ansible"],
+    docPath: "docs/projetos/telegram-bot-calculadora.md",
+    metrics: [
+      { label: "Precisão Numérica", value: "28 Dígitos (Decimal)" },
+      { label: "Proteção DoS", value: "Sliding Window + Drop" },
+      { label: "Operação", value: "100% Inline Query" }
+    ],
+    overview: "Bot Telegram de alta performance e precisão matemática operando 100% no modo inline (<code>@quantoebot expressao</code>) em qualquer chat sem requerer adição a grupos. Desenvolvido em Python assíncrono com aiogram 3, conta com motor próprio de parsing e avaliação matemática sem dependências externas (usando <code>decimal.Decimal</code> com 28 dígitos de precisão), suporte a precedência estrita e associatividade à direita, radiciação encadeada, fatoriais e porcentagem contextualizada por AST. Inclui subsistema de configurações tipado e validado em tempo de inicialização via Pydantic Settings, proteção perimetral contra DoS com algoritmo Sliding Window em memória (silent drop) e telemetria estruturada de logs.",
+    liveUrl: "https://t.me/quantoebot",
+    liveLabel: "Testar o Bot no Telegram",
+    liveType: "telegram",
+    architecture: `
+      <ul>
+        <li><strong>1. Parsing Léxico & AST de Porcentagem:</strong> Normalização de operadores e sobrescritos Unicode (<code>2²</code>, <code>10⁻³</code>), tokenização com detecção automática de convenção numérica (ponto/vírgula decimal) e desambiguação contextual de porcentagem com regras aritméticas humanas (<code>a ± X% = a ± a*(X/100)</code> vs. módulo <code>15%2</code>).</li>
+        <li><strong>2. Motor RPN & Shunting-yard Assíncrono:</strong> Conversão infixa para Notação Polonesa Reversa com precedência estrita e associatividade à direita para potências/raízes (<code>2^3^2 = 512</code>), avaliação contábil de 28 dígitos com <code>decimal.Decimal</code> e travas de segurança (fatorial ≤ 1000, expoente ≤ 10000).</li>
+        <li><strong>3. Proteção DoS com Sliding Window Limiter:</strong> Middleware de borda no aiogram com algoritmo de janela deslizante contínua em memória (15 req/10s por usuário), cache limitado a 10.000 usuários com evicção LRU em duas camadas, bypass para administradores e <em>silent drop</em> sem consumo de tráfego de resposta.</li>
+        <li><strong>4. Subsistema de Configurações Tipado (Pydantic Settings):</strong> Centralização singleton via <code>BaseSettings</code> com 20+ variáveis, validação estrita em tempo de inicialização, coerção de tipos para listas e inteiros, e normalização automática de níveis de log e strings.</li>
+        <li><strong>5. Observabilidade & Thumbnails Dinâmicas:</strong> Logs estruturados em formato JSON com Trace IDs, despacho de alertas administrativos com controle de saturação (throttling), endpoints de healthcheck com FastAPI/Uvicorn e renderização adaptativa de thumbnails com fallback em cadeia (QuickChart local &gt; QuickChart API &gt; placehold.co).</li>
+      </ul>
+    `,
+    techTable: [
+      { category: "Linguagem & Framework", tech: "Python 3.12+, aiogram 3.15+ (asyncio), FastAPI, Uvicorn, uv" },
+      { category: "Parsing & Matemática", tech: "Shunting-yard (RPN), AST de Porcentagem, decimal.Decimal (28 dígitos), Normalizador Unicode" },
+      { category: "Segurança & Config", tech: "Sliding Window Rate Limiter, Bounded Cache LRU, Pydantic Settings, Validação .env" },
+      { category: "DevOps & Monitoramento", tech: "Docker Multi-stage, Terraform (OCI Always Free), Ansible Vault, Structured JSON Logger" }
+    ]
+  },
+  {
     id: "listar-estrutura-diretorios",
     title: "Gerador de Estrutura de Pastas — Extensão Shell Windows & CI/CD",
     category: "scripts",

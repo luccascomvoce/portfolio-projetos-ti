@@ -46,10 +46,13 @@ portfolio-projetos-ti/
 │       ├── mods-7dtd.md
 │       ├── telegram-bot-precos.md
 │       ├── telegram-bot-noticias-blumenau.md
+│       ├── telegram-bot-games-hub.md
+│       ├── telegram-bot-calculadora.md
 │       ├── script-minecraft-server-java.md
 │       ├── pagina-loja-piscinas.md
 │       ├── dashboard-gastos.md
-│       └── contratos-assinaturas.md
+│       ├── contratos-assinaturas.md
+│       └── listar-estrutura-diretorios.md
 └── assets/
     ├── images/
     │   └── artigos/             # Repositório de imagens e mídias locais por artigo
@@ -73,7 +76,7 @@ portfolio-projetos-ti/
         │       ├── en.js        # Overrides completos em inglês
         │       └── es.js        # Overrides completos em espanhol
         ├── data/
-        │   ├── projectsData.js  # Dataset dos 8 estudos de caso com links de produção
+        │   ├── projectsData.js  # Dataset dos estudos de caso com links de produção
         │   └── articlesData.js  # Dataset dos 4 artigos técnicos com metadados
         ├── modules/
         │   ├── audio.js         # Sintetizador nativo Web Audio API
@@ -94,6 +97,7 @@ portfolio-projetos-ti/
 | Projeto | Categoria | Destaques Técnicos |
 |---|---|---|
 | **Telegram Games Hub (TMA)** | `Bots & Automação` | Plataforma multiplayer (Pôquer & UNO) em Telegram Mini Apps, WebSockets em tempo real, Canvas 60 FPS, HMAC-SHA256 e Anti-Cheat. |
+| **Quantoebot (Calculadora Inline Telegram)** | `Bots & Automação` | Bot inline de alta precisão (Decimal 28 dígitos), Shunting-yard RPN, AST de porcentagem humana, Sliding Window Rate Limiting e Pydantic Settings. |
 | **Engenharia Reversa Android IoT** | `Engenharia Reversa` | Amputação Smali (`return-void`), supressão ViewBinding (`0.0dip`), fusão de Split APKs (Anti-Split) e telemetria Wireless ADB. |
 | **Modding Avançado em C# (7 Days to Die)** | `Game Mods` / `Engenharia Reversa` | Suíte de 7 mods em C# / Unity, injeção de bytecode via Harmony, I/O assíncrono multithread e busca $O(1)$ de POIs. |
 | **ADA Prices Bot** | `Bots & Automação` | Ingestão híbrida (8 CEXs/DEXs WebSockets + REST), filtro Z-Score, velas OHLCV, 24+ indicadores técnicos (`pandas-ta`) e OCI Free Tier. |
