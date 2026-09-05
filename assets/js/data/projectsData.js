@@ -337,6 +337,41 @@ export const PROJECTS_DATA = [
     ]
   },
   {
+    id: "telegram-bot-fuxicobot",
+    title: "Fuxicobot — Mensagens Confidenciais Inline, Criptografia Fernet & Auditoria Segura",
+    category: "bots",
+    categoryLabel: "Bots & Automação",
+    status: "Produção Ativa",
+    highlight: false,
+    summary: "Bot Telegram 100% inline (@fuxicobot @usuario segredo) para troca de mensagens confidenciais e privadas dentro de grupos: criptografia simétrica autenticada Fernet (AES-128-CBC + HMAC-SHA256), ciclo de rascunhos efêmeros (anti-amplificação de escrita), rate limiting Sliding Window, internacionalização (PT/EN/ES) e auditoria assíncrona com hash anônimo.",
+    tags: ["Python 3.12 (aiogram 3)", "Criptografia Fernet (AES-128)", "Modo Inline Telegram", "Redis / SQLAlchemy Async", "Sliding Window Rate Limit", "I18n Tri-Idioma (PT/EN/ES)", "Docker Hardening"],
+    docPath: "docs/projetos/telegram-bot-fuxicobot.md",
+    metrics: [
+      { label: "Criptografia", value: "Fernet AES-128 + HMAC" },
+      { label: "Ciclo de Rascunho", value: "Anti-Amplificação (TTL 600s)" },
+      { label: "Internacionalização", value: "3 Idiomas (PT / EN / ES)" }
+    ],
+    overview: "Bot Telegram de alta segurança projetado para o envio de mensagens privadas e confidenciais ('fuxicos') dentro de grupos públicos ou chats privados através do modo inline (<code>@fuxicobot @usuario mensagem</code>). Desenvolvido em Python 3.12 com tipagem estrita (Mypy) e arquitetura hexagonal sobre aiogram 3, o sistema garante sigilo absoluto através de criptografia simétrica autenticada Fernet (AES-128-CBC + HMAC-SHA256), onde apenas o remetente e os destinatários autorizados conseguem descriptografar o conteúdo via pop-up modal. Apresenta pipeline de rascunhos efêmeros para neutralizar a amplificação de escrita durante a digitação inline, proteção contra DoS com Sliding Window Rate Limiting, motor de sugestões de contatos recentes e trilha de auditoria em banco relacional com hashes anônimos (zero vazamento de conteúdo).",
+    liveUrl: "https://t.me/fuxicobot",
+    liveLabel: "Testar o Bot no Telegram",
+    liveType: "telegram",
+    architecture: `
+      <ul>
+        <li><strong>1. Modo Inline & Parser Inteligente sem Aspas:</strong> Tokenização léxica em tempo real capaz de detectar múltiplos destinatários (<code>@username</code> e IDs numéricos) sem exigir delimitadores ou aspas, com motor de sugestões baseado em contatos recentes (MRU) e membros ativos.</li>
+        <li><strong>2. Criptografia Fernet & Ciclo de Rascunho Efêmero:</strong> Criptografia simétrica com <code>cryptography.fernet</code> (AES-128-CBC com HMAC-SHA256) e tokens criptográficos de 16 caracteres (<code>secrets.token_urlsafe</code>). O rascunho inicial reside apenas em memória/Redis com TTL de 600s e só é promovido a 24h na confirmação de envio (<code>ChosenInlineResult</code>), eliminando 100% da amplificação de escrita em disco.</li>
+        <li><strong>3. Revelação Segura & Controle de Autorização:</strong> Descriptografia sob demanda via callback query com abertura em pop-up modal (<code>show_alert=True</code>) truncado no limite nativo de 200 caracteres, bloqueando curiosos e emitindo respostas bem-humoradas para não-destinatários.</li>
+        <li><strong>4. Proteção Perimetral & Anti-Flood (Sliding Window):</strong> Middleware de throttling com algoritmo de janela deslizante contínua (Redis ou Memória LRU com limite de 10.000 usuários), auto-pruning e debouncer de auditoria (máximo 1 registro a cada 30s por usuário) para conter ataques de exaustão de I/O.</li>
+        <li><strong>5. Auditoria Criptográfica & Hardening em Camadas:</strong> Persistência assíncrona desacoplada (SQLAlchemy / aiosqlite / asyncpg) registrando apenas o hash SHA-256 parcial do ID do segredo, logging estruturado via <code>structlog</code>, container Docker com <code>read_only: true</code>, <code>cap_drop: ALL</code> e alertas em tempo real via Monitor Bot dedicado.</li>
+      </ul>
+    `,
+    techTable: [
+      { category: "Linguagem & Framework", tech: "Python 3.12+ (Mypy Strict), aiogram 3.17+ (asyncio), Pydantic Settings, uv" },
+      { category: "Criptografia & Segurança", tech: "Fernet (AES-128-CBC + HMAC-SHA256), secrets, SHA-256 Hash Anônimo, HTML Sanitization" },
+      { category: "Armazenamento & Cache", tech: "Redis (Cache & TTL), SQLAlchemy 2.0 Async, aiosqlite / asyncpg (Auditoria SQL)" },
+      { category: "DevOps & Hardening", tech: "Docker (read_only, cap_drop, tmpfs), Ansible, Terraform (AWS), structlog, Pytest (8 suítes)" }
+    ]
+  },
+  {
     id: "listar-estrutura-diretorios",
     title: "Gerador de Estrutura de Pastas — Extensão Shell Windows & CI/CD",
     category: "scripts",

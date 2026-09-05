@@ -386,6 +386,33 @@ showcase: {
       ],
     },
 
+    'telegram-bot-fuxicobot': {
+      title: `Fuxicobot — Mensajería Confidencial Inline en Telegram y Criptografía Segura`,
+      status: `En Producción`,
+      summary: `Bot de Telegram 100% inline (@fuxicobot @usuario secreto) para el intercambio de mensajes confidenciales y autodestructivos en grupos: criptografía simétrica autenticada Fernet (AES-128-CBC + HMAC-SHA256), ciclo de vida con borrador efímero (prevención de amplificación de escritura), rate limiting Sliding Window, internacionalización (PT/EN/ES) y auditoría asíncrona con hash anónimo.`,
+      tags: [`Python 3.12 (aiogram 3)`, `Criptografía Fernet (AES-128)`, `Modo Inline Telegram`, `Redis / SQLAlchemy Async`, `Sliding Window Rate Limit`, `I18n Tri-idioma (PT/EN/ES)`, `Docker Hardening`],
+      metrics: [
+        { label: `Criptografía`, value: `Fernet AES-128 + HMAC` },
+        { label: `Ciclo de Borrador`, value: `Anti-Amplificación (TTL 600s)` },
+        { label: `Internacionalización`, value: `3 Idiomas (PT / EN / ES)` },
+      ],
+      overview: `Bot de Telegram de alta seguridad diseñado para el envío de mensajes privados y confidenciales ('fuxicos') dentro de grupos públicos o chats privados mediante el modo inline (<code>@fuxicobot @usuario mensaje</code>). Desarrollado en Python 3.12 com tipado estricto (Mypy) y arquitectura hexagonal sobre aiogram 3, el sistema garantiza privacidad absoluta a través de criptografía simétrica autenticada Fernet (AES-128-CBC + HMAC-SHA256), donde únicamente el remitente y los destinatarios autorizados pueden descifrar el contenido vía un pop-up modal. Incorpora un pipeline de borradores efímeros para neutralizar la amplificación de escritura durante la escritura inline, protección contra DoS con Sliding Window Rate Limiting, motor de sugerencias de contactos recientes y registro de auditoría en base relacional con hashes anónimos (cero filtración de contenido).`,
+      liveLabel: `Probar el Bot en Telegram`,
+      architecture: `<ul>
+        <li><strong>1. Modo Inline y Parser Inteligente sin Comillas:</strong> Tokenización léxica en tiempo real capaz de detectar múltiples destinatarios (<code>@username</code> e IDs numéricos) sin requerir comillas delimitadoras, combinada con un motor de sugerencias basado en contactos recientes (MRU) y miembros activos del grupo.</li>
+        <li><strong>2. Criptografía Fernet y Ciclo de Borrador Efímero:</strong> Criptografía simétrica con <code>cryptography.fernet</code> (AES-128-CBC con HMAC-SHA256) y tokens criptográficos de 16 caracteres (<code>secrets.token_urlsafe</code>). El borrador inicial reside exclusivamente en memoria/Redis con un TTL de 600s y solo se extiende a 24h tras la confirmación de envío (<code>ChosenInlineResult</code>), eliminando el 100% de la amplificación de escritura en disco.</li>
+        <li><strong>3. Revelación Segura y Control de Autorización:</strong> Descifrado bajo demanda mediante callback query abierto en pop-up modal (<code>show_alert=True</code>) truncado en el límite nativo de 200 caracteres, bloqueando accesos no autorizados y emitiendo respuestas con humor para curiosos.</li>
+        <li><strong>4. Protección Perimetral y Anti-Flood (Sliding Window):</strong> Middleware de throttling con algoritmo de ventana deslizante continua (Redis o Memoria LRU con tope de 10.000 usuarios), auto-pruning y debouncer de auditoría (máximo 1 registro cada 30s por usuario) para mitigar ataques de agotamiento de I/O.</li>
+        <li><strong>5. Auditoría Criptográfica y Hardening por Capas:</strong> Persistencia asíncrona desacoplada (SQLAlchemy / aiosqlite / asyncpg) guardando únicamente el hash SHA-256 parcial del ID del secreto, logging estructurado vía <code>structlog</code>, contenedor Docker con <code>read_only: true</code>, <code>cap_drop: ALL</code> y alertas en tiempo real mediante un Monitor Bot dedicado.</li>
+      </ul>`,
+      techTable: [
+        { category: `Lenguaje y Framework`, tech: `Python 3.12+ (Mypy Strict), aiogram 3.17+ (asyncio), Pydantic Settings, uv` },
+        { category: `Criptografía y Seguridad`, tech: `Fernet (AES-128-CBC + HMAC-SHA256), secrets, Hash Anónimo SHA-256, Sanitización HTML` },
+        { category: `Almacenamiento y Caché`, tech: `Redis (Caché y TTL), SQLAlchemy 2.0 Async, aiosqlite / asyncpg (Auditoría SQL)` },
+        { category: `DevOps y Hardening`, tech: `Docker (read_only, cap_drop, tmpfs), Ansible, Terraform (AWS), structlog, Pytest (8 suites)` },
+      ],
+    },
+
     'listar-estrutura-diretorios': {
       title: `Generador de Estructura de Carpetas — Extensión Shell de Windows y CI/CD`,
       status: `En Producción`,

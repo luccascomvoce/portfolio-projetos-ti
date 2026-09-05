@@ -386,6 +386,33 @@ showcase: {
       ],
     },
 
+    'telegram-bot-fuxicobot': {
+      title: `Fuxicobot — Inline Confidential Messaging on Telegram & End-to-End Encryption`,
+      status: `In Production`,
+      summary: `100% inline Telegram bot (@fuxicobot @user secret) for confidential and self-destructing messages within groups: authenticated symmetric encryption via Fernet (AES-128-CBC + HMAC-SHA256), ephemeral draft lifecycle (write amplification prevention), Sliding Window Rate Limiting, tri-language i18n (PT/EN/ES) and asynchronous audit trail with anonymous hashing.`,
+      tags: [`Python 3.12 (aiogram 3)`, `Fernet Encryption (AES-128)`, `Telegram Inline Mode`, `Redis / SQLAlchemy Async`, `Sliding Window Rate Limit`, `Tri-Language I18n (PT/EN/ES)`, `Docker Hardening`],
+      metrics: [
+        { label: `Encryption`, value: `Fernet AES-128 + HMAC` },
+        { label: `Draft Lifecycle`, value: `Anti-Amplification (TTL 600s)` },
+        { label: `Internationalization`, value: `3 Languages (PT / EN / ES)` },
+      ],
+      overview: `High-security Telegram bot designed for sending private and confidential messages ('fuxicos') within public groups or private chats using inline mode (<code>@fuxicobot @user message</code>). Built in Python 3.12 with strict typing (Mypy) and a hexagonal architecture over aiogram 3, the system guarantees secrecy through authenticated symmetric encryption via Fernet (AES-128-CBC + HMAC-SHA256), where only the sender and authorized recipients can decrypt the content via a modal pop-up. Features an ephemeral draft pipeline to neutralize write amplification during inline typing, DoS protection with Sliding Window Rate Limiting, recent contact suggestion heuristics, and a relational database audit log storing anonymous hashes (zero plaintext or secret leakage).`,
+      liveLabel: `Test the Bot on Telegram`,
+      architecture: `<ul>
+        <li><strong>1. Inline Mode & Quoteless Smart Parser:</strong> Real-time lexical tokenization capable of detecting multiple recipients (<code>@username</code> and numeric IDs) without requiring delimiter quotes, paired with a suggestion engine based on recently used contacts (MRU) and active group members.</li>
+        <li><strong>2. Fernet Cryptography & Ephemeral Draft Lifecycle:</strong> Symmetric encryption using <code>cryptography.fernet</code> (AES-128-CBC with HMAC-SHA256) and 16-character cryptographic tokens (<code>secrets.token_urlsafe</code>). Initial drafts reside exclusively in memory/Redis with a 600s TTL and are only promoted to 24h upon send confirmation (<code>ChosenInlineResult</code>), eliminating 100% of disk write amplification.</li>
+        <li><strong>3. Secure Revelation & Authorization Control:</strong> On-demand decryption via callback query opened in a modal pop-up (<code>show_alert=True</code>) truncated at the native 200-character limit, blocking unauthorized users and delivering humorous fallback responses to eavesdroppers.</li>
+        <li><strong>4. Perimeter Protection & Anti-Flood (Sliding Window):</strong> Throttling middleware featuring a continuous sliding window algorithm (Redis or LRU Memory capped at 10,000 active users), auto-pruning, and audit debouncing (max 1 log / 30s per user) to repel I/O exhaustion attacks.</li>
+        <li><strong>5. Cryptographic Audit & Layered Hardening:</strong> Decoupled asynchronous persistence (SQLAlchemy / aiosqlite / asyncpg) storing only partial SHA-256 hashes of secret IDs, structured JSON logging via <code>structlog</code>, hardened Docker container with <code>read_only: true</code>, <code>cap_drop: ALL</code>, and real-time alerts dispatched through a dedicated Monitor Bot.</li>
+      </ul>`,
+      techTable: [
+        { category: `Language & Framework`, tech: `Python 3.12+ (Mypy Strict), aiogram 3.17+ (asyncio), Pydantic Settings, uv` },
+        { category: `Cryptography & Security`, tech: `Fernet (AES-128-CBC + HMAC-SHA256), secrets, Anonymous SHA-256 Hash, HTML Sanitization` },
+        { category: `Storage & Cache`, tech: `Redis (Cache & TTL), SQLAlchemy 2.0 Async, aiosqlite / asyncpg (SQL Audit)` },
+        { category: `DevOps & Hardening`, tech: `Docker (read_only, cap_drop, tmpfs), Ansible, Terraform (AWS), structlog, Pytest (8 suites)` },
+      ],
+    },
+
     'listar-estrutura-diretorios': {
       title: `Folder Structure Generator — Windows Shell Extension & CI/CD`,
       status: `In Production`,

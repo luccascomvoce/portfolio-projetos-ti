@@ -48,6 +48,7 @@ portfolio-projetos-ti/
 │       ├── telegram-bot-noticias-blumenau.md
 │       ├── telegram-bot-games-hub.md
 │       ├── telegram-bot-calculadora.md
+│       ├── telegram-bot-fuxicobot.md
 │       ├── script-minecraft-server-java.md
 │       ├── pagina-loja-piscinas.md
 │       ├── dashboard-gastos.md
@@ -98,6 +99,7 @@ portfolio-projetos-ti/
 |---|---|---|
 | **Telegram Games Hub (TMA)** | `Bots & Automação` | Plataforma multiplayer (Pôquer & UNO) em Telegram Mini Apps, WebSockets em tempo real, Canvas 60 FPS, HMAC-SHA256 e Anti-Cheat. |
 | **Quantoebot (Calculadora Inline Telegram)** | `Bots & Automação` | Bot inline de alta precisão (Decimal 28 dígitos), Shunting-yard RPN, AST de porcentagem humana, Sliding Window Rate Limiting e Pydantic Settings. |
+| **Fuxicobot (Mensagens Secretas Inline)** | `Bots & Automação` | Bot inline de mensagens confidenciais em grupos, criptografia Fernet (AES-128-CBC + HMAC-SHA256), ciclo de rascunhos efêmeros, Sliding Window Rate Limit e auditoria com hash anônimo. |
 | **Engenharia Reversa Android IoT** | `Engenharia Reversa` | Amputação Smali (`return-void`), supressão ViewBinding (`0.0dip`), fusão de Split APKs (Anti-Split) e telemetria Wireless ADB. |
 | **Modding Avançado em C# (7 Days to Die)** | `Game Mods` / `Engenharia Reversa` | Suíte de 7 mods em C# / Unity, injeção de bytecode via Harmony, I/O assíncrono multithread e busca $O(1)$ de POIs. |
 | **ADA Prices Bot** | `Bots & Automação` | Ingestão híbrida (8 CEXs/DEXs WebSockets + REST), filtro Z-Score, velas OHLCV, 24+ indicadores técnicos (`pandas-ta`) e OCI Free Tier. |
