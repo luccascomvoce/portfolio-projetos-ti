@@ -1,6 +1,7 @@
 /**
- * Project Filtering & Card Rendering Engine with Gliding Category Pill Indicator
- * Handles instant full-text search, M3 segmented category switching, WAI-ARIA tab navigation and live regions
+ * Project Filtering & Card Rendering Engine — Portfólio Luccas
+ * Handles instant full-text search, directory tree category filtering,
+ * WAI-ARIA live regions and card tilt effects.
  */
 
 import { PROJECTS_DATA } from '../data/projectsData.js';
@@ -14,56 +15,19 @@ class ProjectFilterManager {
     this.gridEl = null;
     this.searchInput = null;
     this.searchClearBtn = null;
-    this.tabsContainer = null;
-    this.tabIndicator = null;
-    this.categoryTabs = null;
     this.liveStatusEl = null;
     this.activeCategory = 'all';
     this.currentSearch = '';
+    this.onFilterChangeCallback = null;
   }
 
   init() {
     this.gridEl = document.getElementById('projects-grid');
     this.searchInput = document.getElementById('project-search-input');
     this.searchClearBtn = document.getElementById('project-search-clear');
-    this.tabsContainer = document.querySelector('.category-tabs');
-    this.categoryTabs = Array.from(document.querySelectorAll('.category-tab-btn'));
     this.liveStatusEl = document.getElementById('projects-live-status');
 
     if (!this.gridEl) return;
-
-    // Initialize Gliding Indicator Pill
-    this.initTabIndicator();
-
-    // Category Tabs click & keyboard listeners
-    this.categoryTabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => {
-        this.selectTab(tab);
-      });
-
-      tab.addEventListener('mouseenter', () => soundEngine.playHover());
-
-      // WAI-ARIA Keyboard Arrow Navigation (ArrowLeft, ArrowRight, Home, End)
-      tab.addEventListener('keydown', (e) => {
-        let newIndex = -1;
-        if (e.key === 'ArrowRight') {
-          newIndex = (index + 1) % this.categoryTabs.length;
-        } else if (e.key === 'ArrowLeft') {
-          newIndex = (index - 1 + this.categoryTabs.length) % this.categoryTabs.length;
-        } else if (e.key === 'Home') {
-          newIndex = 0;
-        } else if (e.key === 'End') {
-          newIndex = this.categoryTabs.length - 1;
-        }
-
-        if (newIndex !== -1) {
-          e.preventDefault();
-          const targetTab = this.categoryTabs[newIndex];
-          targetTab.focus();
-          this.selectTab(targetTab);
-        }
-      });
-    });
 
     // Search Input listeners
     if (this.searchInput) {
@@ -98,6 +62,11 @@ class ProjectFilterManager {
     this.render();
   }
 
+  setCategory(category) {
+    this.activeCategory = category;
+    this.render();
+  }
+
   localize(project) {
     const base = `projects.${project.id}`;
     const categoryKeys = project.categories || [project.category];
@@ -110,84 +79,7 @@ class ProjectFilterManager {
   }
 
   reapply() {
-    this.updateTabIndicator(true);
     this.render();
-  }
-
-  selectTab(tab) {
-    const category = tab.getAttribute('data-category');
-    if (category === this.activeCategory) return;
-
-    soundEngine.playClick();
-    this.categoryTabs.forEach(t => {
-      t.classList.remove('active');
-      t.setAttribute('aria-selected', 'false');
-      t.setAttribute('tabindex', '-1');
-    });
-
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
-    tab.setAttribute('tabindex', '0');
-
-    this.activeCategory = category;
-    this.updateTabIndicator(false);
-    this.render();
-  }
-
-  initTabIndicator() {
-    if (!this.tabsContainer) return;
-
-    this.tabIndicator = this.tabsContainer.querySelector('.category-tab-indicator');
-    if (!this.tabIndicator) {
-      this.tabIndicator = document.createElement('div');
-      this.tabIndicator.className = 'category-tab-indicator';
-      this.tabIndicator.setAttribute('aria-hidden', 'true');
-      this.tabsContainer.prepend(this.tabIndicator);
-    }
-
-    // Initial position without transition delay
-    requestAnimationFrame(() => {
-      this.updateTabIndicator(true);
-    });
-
-    window.addEventListener('resize', () => {
-      requestAnimationFrame(() => this.updateTabIndicator(true));
-    });
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        requestAnimationFrame(() => this.updateTabIndicator(true));
-      });
-    }
-  }
-
-  updateTabIndicator(immediate = false) {
-    if (!this.tabsContainer || !this.tabIndicator) return;
-
-    const activeBtn = this.tabsContainer.querySelector('.category-tab-btn.active');
-    if (!activeBtn) return;
-
-    const containerRect = this.tabsContainer.getBoundingClientRect();
-    const btnRect = activeBtn.getBoundingClientRect();
-
-    const left = btnRect.left - containerRect.left;
-    const top = btnRect.top - containerRect.top;
-    const width = btnRect.width;
-    const height = btnRect.height;
-
-    if (immediate) {
-      this.tabIndicator.style.transition = 'none';
-      this.tabIndicator.style.transform = `translate3d(${left.toFixed(2)}px, ${top.toFixed(2)}px, 0)`;
-      this.tabIndicator.style.width = `${width.toFixed(2)}px`;
-      this.tabIndicator.style.height = `${height.toFixed(2)}px`;
-      requestAnimationFrame(() => {
-        this.tabIndicator.style.transition = '';
-      });
-    } else {
-      this.tabIndicator.style.transform = `translate3d(${left.toFixed(2)}px, ${top.toFixed(2)}px, 0)`;
-      this.tabIndicator.style.width = `${width.toFixed(2)}px`;
-      this.tabIndicator.style.height = `${height.toFixed(2)}px`;
-    }
   }
 
   getFilteredProjects() {
@@ -224,6 +116,16 @@ class ProjectFilterManager {
       } else {
         this.liveStatusEl.textContent = i18n.t('showcase.liveFoundPlural', { n: filtered.length });
       }
+    }
+
+    // Update Section 3 breadcrumb count if active
+    const activeDirCountEl = document.getElementById('active-dir-count');
+    if (activeDirCountEl) {
+      const count = filtered.length;
+      const label = count === 1
+        ? i18n.t('tree.projectCountSingular', null, '1 projeto')
+        : i18n.t('tree.projectsCount', { n: count }, `${count} projetos`);
+      activeDirCountEl.textContent = `(${label})`;
     }
 
     if (filtered.length === 0) {

@@ -37,14 +37,37 @@ export default {
     label: `Cambiar idioma`,
   },
 
+  preferences: {
+    toggleBtn: `Preferencias del Sistema`,
+    panelTitle: `Preferencias del Sistema`,
+    tag: `Ambiente y Accesibilidad`,
+    theme: {
+      title: `Modo de Visualización`,
+      desc: `Alterna entre alto contraste para lectura técnica y tema claro para entornos iluminados.`,
+      light: `Claro`,
+      dark: `Oscuro`,
+      auto: `Sistema`,
+    },
+    lang: {
+      title: `Idioma y Localización`,
+      desc: `Define la traducción de estudios de caso, documentación técnica y métricas.`,
+    },
+    audio: {
+      title: `Retroalimentación Acústica`,
+      desc: `Sintetizador Web Audio nativo para confirmación acústica de clics y navegación.`,
+      enabled: `Activado`,
+      disabled: `Desactivado`,
+    },
+  },
+
   hero: {
     avatarWrapperTitle: `Disponible para Automatización y Desarrollo`,
     avatarAlt: `Foto de Perfil de Luccas`,
     statusLabel: `Estado: Disponible para Automatización y Desarrollo`,
     presenceTooltip: `Disponible para Automatización y Desarrollo`,
-    description: `Ingeniería de software orientada al alto rendimiento, infraestructura resiliente, descompilación de protocolos, automatización de rutinas críticas y soluciones a medida con costo operativo optimizado.`,
-    scrollLabel: `Explorar Casos Técnicos`,
-    scrollAria: `Explorar casos técnicos`,
+    description: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube de alto rendimiento.`,
+    scrollLabel: `Explorar Proyectos`,
+    scrollAria: `Explorar proyectos`,
     typewriter: [
       `Automatización de Procesos y DevOps`,
       `Ingeniería Inversa y Análisis de Protocolos`,
@@ -59,6 +82,36 @@ export default {
       emailTitle: `Correo electrónico (luccascomvoce@gmail.com)`,
       phoneTitle: `Teléfono (+55 47 98852-6046)`,
     },
+    cta: {
+      contact: `Ponerse en Contacto`,
+      contactAria: `Abrir central ejecutiva de contacto y canales directos`,
+      explore: `Explorar Proyectos`,
+      exploreAria: `Navegar a la vitrina técnica de proyectos`,
+    },
+  },
+
+  contact: {
+    modalTitle: `Formas de contacto`,
+    closeBtn: `Cerrar opciones de contacto`,
+    saveContactBtn: `Guardar contacto en la agenda`,
+    saveVcardTitle: `Descargar archivo vCard universal (.vcf)`,
+    qrZoomIn: `Ampliar Código QR`,
+    qrZoomOut: `Tamaño Normal`,
+    qrHint: `Apunta la cámara del móvil para guardar`,
+    copy: `Copiar`,
+    copied: `¡Copiado! ✓`,
+    copyEmail: `Copiar correo`,
+    copyPhone: `Copiar teléfono`,
+    copyHandle: `Copiar usuario`,
+    endpoints: {
+      emailTitle: `Correo`,
+      phoneTitle: `Teléfono y Mensajes`,
+      identityTitle: `Otras Redes`,
+    },
+    chips: {
+      sendEmail: `Enviar Correo`,
+      call: `Llamada Directa`,
+    },
   },
 
   categories: {
@@ -70,10 +123,24 @@ export default {
     mods: `Game Mods`,
   },
 
+  tree: {
+    headerPath: `~/capacidades-y-arquitectura/`,
+    activeModules: `{n} módulos activos`,
+    expandAll: `Expandir Todo`,
+    collapseAll: `Contraer Todo`,
+    allModules: `[Todos los Módulos de Ingeniería]`,
+    activeDirectory: `Directorio Activo:`,
+    btnJump: `Árbol de Directorios`,
+    resetFilter: `Mostrar Todos`,
+    footerHint: `Haga clic en una carpeta para filtrar por capacidad o en un archivo para abrir el caso de estudio`,
+    projectsCount: `{n} proyectos`,
+    projectCountSingular: `1 proyecto`,
+  },
+
 showcase: {
     tag: `Vitrina Técnica`,
     title: `Proyectos y Casos de Estudio`,
-    subtitle: `Soluciones estructuradas para automatización, infraestructura resiliente, APIs e ingeniería de software.`,
+    subtitle: `Haga clic en una carpeta para filtrar por capacidad o en un archivo para abrir el caso de estudio`,
     searchPlaceholder: `Buscar por tecnología, nombre o palabra clave...`,
     searchAria: `Buscar proyectos por tecnología, nombre o palabra clave`,
     searchClear: `Limpiar búsqueda`,
@@ -128,11 +195,11 @@ showcase: {
   },
 
   footer: {
-    brandDesc: `Ingeniería de automatización, interoperabilidad y arquitecturas de alta resiliencia para servidores y aplicaciones web modernas.`,
+    brandDesc: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube de alto rendimiento.`,
     navTitle: `Navegación`,
     home: `Inicio`,
-    projectsLink: `Vitrina de Proyectos`,
-    articlesLink: `Artículos y Publicaciones`,
+    projectsLink: `Proyectos`,
+    articlesLink: `Artículos`,
     copyright: `© 2026 Luccas. Todos los derechos reservados.`,
   },
 

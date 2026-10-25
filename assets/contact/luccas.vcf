@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Luccas;;;
+FN:Luccas
+TITLE:Engenheiro de Software & DevOps
+ORG:Luccas — Automação & Engenharia
+TEL;TYPE=CELL,VOICE,MSG;PREF:+5547988526046
+EMAIL;TYPE=INTERNET,PREF:luccascomvoce@gmail.com
+URL:https://luccascomvoce.github.io/portfolio-projetos-ti/
+X-SOCIALPROFILE;TYPE=github:https://github.com/luccascomvoce
+X-SOCIALPROFILE;TYPE=linkedin:https://linkedin.com/in/luccascomvoce
+X-SOCIALPROFILE;TYPE=telegram:https://t.me/luccascomvoce
+NOTE:Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem de alta performance.
+END:VCARD

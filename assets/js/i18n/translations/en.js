@@ -37,14 +37,37 @@ export default {
     label: `Change language`,
   },
 
+  preferences: {
+    toggleBtn: `System Preferences`,
+    panelTitle: `System Preferences`,
+    tag: `Environment & Accessibility`,
+    theme: {
+      title: `Display Mode`,
+      desc: `Switch between high-contrast dark theme for technical reading and light theme for bright spaces.`,
+      light: `Light`,
+      dark: `Dark`,
+      auto: `System`,
+    },
+    lang: {
+      title: `Language & Localization`,
+      desc: `Sets the localization for case studies, architecture docs, and technical metrics.`,
+    },
+    audio: {
+      title: `Acoustic Feedback`,
+      desc: `Native Web Audio synthesizer providing discrete feedback for interactive actions.`,
+      enabled: `Enabled`,
+      disabled: `Disabled`,
+    },
+  },
+
   hero: {
     avatarWrapperTitle: `Available for Automation & Dev`,
     avatarAlt: `Luccas Profile Photo`,
     statusLabel: `Status: Available for Automation & Dev`,
     presenceTooltip: `Available for Automation & Dev`,
-    description: `Software engineering focused on high performance, resilient infrastructure, protocol decompilation, critical routine automation and tailor-made solutions with optimized operational cost.`,
-    scrollLabel: `Explore Technical Cases`,
-    scrollAria: `Explore technical cases`,
+    description: `I build process automations, real-time bots, software reverse engineering, and high-performance cloud infrastructure.`,
+    scrollLabel: `Explore Projects`,
+    scrollAria: `Explore projects`,
     typewriter: [
       `Process Automation & DevOps`,
       `Reverse Engineering & Protocol Analysis`,
@@ -59,6 +82,36 @@ export default {
       emailTitle: `Email (luccascomvoce@gmail.com)`,
       phoneTitle: `Phone (+55 47 98852-6046)`,
     },
+    cta: {
+      contact: `Get in Touch`,
+      contactAria: `Open executive contact hub and direct communication channels`,
+      explore: `Explore Projects`,
+      exploreAria: `Navigate to technical project showcase`,
+    },
+  },
+
+  contact: {
+    modalTitle: `Ways to get in touch`,
+    closeBtn: `Close contact options`,
+    saveContactBtn: `Save contact to phonebook`,
+    saveVcardTitle: `Download universal vCard file (.vcf)`,
+    qrZoomIn: `Enlarge QR Code`,
+    qrZoomOut: `Normal Size`,
+    qrHint: `Point your phone camera to save contact`,
+    copy: `Copy`,
+    copied: `Copied! ✓`,
+    copyEmail: `Copy email`,
+    copyPhone: `Copy phone`,
+    copyHandle: `Copy username`,
+    endpoints: {
+      emailTitle: `Email`,
+      phoneTitle: `Phone and Messages`,
+      identityTitle: `Other Networks`,
+    },
+    chips: {
+      sendEmail: `Send Email`,
+      call: `Direct Call`,
+    },
   },
 
   categories: {
@@ -70,10 +123,24 @@ export default {
     mods: `Game Mods`,
   },
 
+  tree: {
+    headerPath: `~/capabilities-and-architecture/`,
+    activeModules: `{n} active modules`,
+    expandAll: `Expand All`,
+    collapseAll: `Collapse All`,
+    allModules: `[All Engineering Modules]`,
+    activeDirectory: `Active Directory:`,
+    btnJump: `Directory Tree`,
+    resetFilter: `Show All`,
+    footerHint: `Click on a folder to filter by capability or on a file to open case study`,
+    projectsCount: `{n} projects`,
+    projectCountSingular: `1 project`,
+  },
+
 showcase: {
     tag: `Technical Showcase`,
     title: `Projects & Case Studies`,
-    subtitle: `Structured solutions for automation, resilient infrastructure, APIs and software engineering.`,
+    subtitle: `Click on a folder to filter by capability or on a file to open case study`,
     searchPlaceholder: `Search by technology, name or keyword...`,
     searchAria: `Search projects by technology, name or keyword`,
     searchClear: `Clear search`,
@@ -128,11 +195,11 @@ showcase: {
   },
 
   footer: {
-    brandDesc: `Automation engineering, interoperability and highly resilient architectures for modern servers and web applications.`,
+    brandDesc: `I build process automations, real-time bots, software reverse engineering, and high-performance cloud infrastructure.`,
     navTitle: `Navigation`,
     home: `Home`,
-    projectsLink: `Projects Showcase`,
-    articlesLink: `Articles & Publications`,
+    projectsLink: `Projects`,
+    articlesLink: `Articles`,
     copyright: `© 2026 Luccas. All rights reserved.`,
   },
 

@@ -7,7 +7,7 @@
 import { i18n } from '../i18n/i18n.js';
 
 const STORAGE_KEY = 'theme';
-const SURFACES = { dark: '#090d14', light: '#f5f7fb' };
+const SURFACES = { dark: '#080a0f', light: '#f8fafc' };
 
 const themeManager = {
   toggleBtn: null,
@@ -49,37 +49,69 @@ const themeManager = {
     if (persist) {
       try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* ignore */ }
     }
+
+    try {
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    } catch (e) { /* ignore */ }
   },
 
   /* Circular reveal via the View Transitions API: the whole new theme (content included)
-     expands from the toggle button. Falls back to an instant swap when unsupported. */
-  animateTheme(targetTheme) {
+     expands from the click/touch coordinates. Falls back to an instant swap when unsupported. */
+  animateTheme(targetTheme, { origin = null, persist = false } = {}) {
+    if (this.isAnimating) return;
+    if (this.currentTheme === targetTheme) {
+      if (persist) {
+        try { localStorage.setItem(STORAGE_KEY, targetTheme); } catch (e) { /* ignore */ }
+      }
+      return;
+    }
+
     const reducedMotion = typeof window.matchMedia === 'function'
       && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (typeof document.startViewTransition !== 'function' || reducedMotion) {
-      this.applyTheme(targetTheme, { persist: true });
+      this.applyTheme(targetTheme, { persist });
       return;
     }
 
-    const rect = this.toggleBtn
-      ? this.toggleBtn.getBoundingClientRect()
-      : { left: 0, top: 0, width: 0, height: 0 };
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
+    let cx = window.innerWidth / 2;
+    let cy = window.innerHeight / 2;
+
+    if (origin) {
+      if (typeof origin.clientX === 'number' && (origin.clientX > 0 || origin.clientY > 0)) {
+        cx = origin.clientX;
+        cy = origin.clientY;
+      } else if (origin.target && origin.target.getBoundingClientRect) {
+        const rect = origin.target.getBoundingClientRect();
+        cx = rect.left + rect.width / 2;
+        cy = rect.top + rect.height / 2;
+      } else if (origin.getBoundingClientRect) {
+        const rect = origin.getBoundingClientRect();
+        cx = rect.left + rect.width / 2;
+        cy = rect.top + rect.height / 2;
+      }
+    } else {
+      const toggleBtn = document.getElementById('preferences-toggle-btn');
+      if (toggleBtn) {
+        const rect = toggleBtn.getBoundingClientRect();
+        cx = rect.left + rect.width / 2;
+        cy = rect.top + rect.height / 2;
+      }
+    }
+
     const radius = Math.ceil(Math.hypot(
       Math.max(cx, window.innerWidth - cx),
       Math.max(cy, window.innerHeight - cy)
     ));
 
     const root = document.documentElement;
-    root.style.setProperty('--theme-reveal-x', `${cx}px`);
-    root.style.setProperty('--theme-reveal-y', `${cy}px`);
+    root.style.setProperty('--theme-reveal-x', `${Math.round(cx)}px`);
+    root.style.setProperty('--theme-reveal-y', `${Math.round(cy)}px`);
     root.style.setProperty('--theme-reveal-radius', `${radius}px`);
 
     this.isAnimating = true;
     const transition = document.startViewTransition(() => {
-      this.applyTheme(targetTheme, { persist: true });
+      this.applyTheme(targetTheme, { persist });
     });
 
     transition.finished.finally(() => {

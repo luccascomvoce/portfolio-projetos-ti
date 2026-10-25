@@ -27,6 +27,9 @@ html[data-theme="dark"] {
 body {
   min-height: 100vh;
   background-color: var(--surface);
+  background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
   color: var(--on-surface);
   font-family: var(--font-body);
   font-weight: 400;
@@ -114,7 +117,8 @@ input:focus-visible,
   border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.95rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: none;
+  border: 1px solid var(--border-precision);
   transform: translateY(-200%);
   opacity: 0;
   pointer-events: none;

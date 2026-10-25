@@ -1,56 +1,65 @@
 /**
- * Design Tokens — Material Design 3 Expressive
+ * Design Tokens — Precision Matte Surfaces & Swiss Engineering Grid
  * Portfólio de Tecnologia — Luccas
  *
- * Tema claro é o padrão/fallback (`:root` + `[data-theme="light"]`).
- * O tema escuro é ativado via `[data-theme="dark"]`.
+ * Filosofia Visual:
+ *  - Superfícies 100% sólidas e opacas (Abolição total do Glassmorphism e de blurs artificiais)
+ *  - Bordas Hairline de Alta Precisão (1px com contraste calculado)
+ *  - Oclusão ambiente natural e camadas foscas estruturadas
+ *  - Tipografia de alta legibilidade (Outfit, Plus Jakarta Sans, Fira Code)
  */
 
 :root,
 [data-theme="light"] {
-  /* Surface Tonal Palette (Light) */
-  --surface: #f5f7fb;
-  --surface-dim: #e3e8f0;
+  /* Surface Tonal Palette (Light - Precision Matte / Slate Foundation) */
+  --surface: #f8fafc;
+  --surface-dim: #f1f5f9;
+  --surface-base: #f8fafc;
+  --surface-card: #ffffff;
+  --surface-raised: #f8fafc;
+  --surface-overlay: #ffffff;
   --surface-container-low: #ffffff;
-  --surface-container: #eef2f8;
-  --surface-container-high: #e2e8f2;
-  --surface-container-highest: #d7dfeb;
+  --surface-container: #f1f5f9;
+  --surface-container-high: #e2e8f0;
+  --surface-container-highest: #cbd5e1;
 
-  /* Primary & Accent Tonal Colors (Light) */
-  --primary: #0b5fd1;
+  /* Primary & Accent Tonal Colors (Light - Engineering Deep Indigo / Slate) */
+  --primary: #1d4ed8;
   --on-primary: #ffffff;
-  --primary-container: #d4e3fd;
-  --on-primary-container: #0b3f8a;
-  --primary-light: #4a86e8;
+  --primary-container: #dbeafe;
+  --on-primary-container: #1e40af;
+  --primary-light: #3b82f6;
 
-  --tertiary: #7a4a7f;
+  --tertiary: #64748b;
   --on-tertiary: #ffffff;
-  --tertiary-container: #f6d9f8;
+  --tertiary-container: #e2e8f0;
 
-  --accent: #00777c;
+  --accent: #2563eb;
   --on-accent: #ffffff;
-  --accent-container: #c9f2f2;
+  --accent-container: #dbeafe;
 
-  /* Outline & Borders */
-  --outline: #6e7787;
-  --outline-variant: #c3c9d4;
-  --border-subtle: rgba(15, 23, 42, 0.12);
-  --border-glow: rgba(11, 95, 209, 0.25);
+  /* Precision Hairline Borders */
+  --outline: #94a3b8;
+  --outline-variant: #cbd5e1;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-precision: rgba(15, 23, 42, 0.09);
+  --border-precision-hover: rgba(15, 23, 42, 0.22);
+  --border-glow: rgba(15, 23, 42, 0.09);
 
   /* Typography / Text Colors */
   --on-surface: #1e293b;
-  --on-surface-muted: #475569;
-  --on-surface-dim: #64748b;
+  --on-surface-muted: #64748b;
+  --on-surface-dim: #94a3b8;
   --on-surface-bright: #0f172a;
 
-  /* Hero name gradient (legible in light theme) */
+  /* Hero name gradient (Clean contrast in light theme) */
   --gradient-hero-from: #0f172a;
-  --gradient-hero-to: #475569;
+  --gradient-hero-to: #334155;
 
   /* Feedback Colors */
-  --success: #0e9f6e;
-  --success-glow: rgba(14, 159, 110, 0.35);
-  --success-soft: #0b8f64;
+  --success: #059669;
+  --success-glow: rgba(5, 150, 105, 0.15);
+  --success-soft: #059669;
   --warning: #d97706;
   --error: #dc2626;
 
@@ -59,36 +68,38 @@
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-code: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
 
-  /* Elevation & Glow Shadows */
-  --shadow-neon-primary: 0 0 35px rgba(11, 95, 209, 0.18);
-  --shadow-neon-tertiary: 0 0 35px rgba(122, 74, 127, 0.18);
-  --shadow-neon-accent: 0 0 35px rgba(0, 119, 124, 0.18);
-  --shadow-card: 0 10px 30px -12px rgba(15, 23, 42, 0.18), 0 0 1px 1px rgba(15, 23, 42, 0.04);
-  --shadow-card-hover: 0 20px 40px -14px rgba(15, 23, 42, 0.25), 0 0 20px rgba(11, 95, 209, 0.15);
-  --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.14);
+  /* Flat Precision Palette (Zero Shadows — 100% Flat Architecture) */
+  --shadow-neon-primary: none;
+  --shadow-neon-tertiary: none;
+  --shadow-neon-accent: none;
+  --shadow-card: none;
+  --shadow-card-hover: none;
+  --shadow-raised: none;
+  --shadow-glass: none;
 
-  /* Translucent "glass" surfaces */
-  --glass-header: rgba(255, 255, 255, 0.72);
-  --glass-status: rgba(255, 255, 255, 0.95);
-  --glass-terminal: rgba(255, 255, 255, 0.72);
-  --glass-filter: rgba(255, 255, 255, 0.6);
-  --glass-legend: rgba(255, 255, 255, 0.85);
+  /* Solid Matte Surfaces (Substitutos 100% opacos para compatibilidade) */
+  --glass-header: #ffffff;
+  --glass-status: #ffffff;
+  --glass-terminal: #f8fafc;
+  --glass-filter: #f1f5f9;
+  --glass-legend: #ffffff;
 
   /* Auxiliary tints */
-  --primary-tint: rgba(11, 95, 209, 0.08);
+  --primary-tint: rgba(37, 99, 235, 0.06);
 
-  /* Expressive Radii */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --radius-full: 9999px;
+  /* Expressive Radii — Systematically Standardized */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px; /* Standardized radius for all cards, containers and window workbench */
+  --radius-lg: 16px;
+  --radius-xl: 16px;
+  --radius-full: 9999px; /* Pill radius for interactive buttons and search bar */
 
   /* Transitions */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Dynamic Spotlight coordinates (fallback defaults) */
   --mouse-x: 50vw;
@@ -96,34 +107,40 @@
 }
 
 [data-theme="dark"] {
-  /* Surface Tonal Palette (Dark — original) */
-  --surface: #090d14;
+  /* Surface Tonal Palette (Dark - Precision Matte / Obsidian & Deep Slate) */
+  --surface: #080a0f;
   --surface-dim: #05070a;
-  --surface-container-low: #111622;
-  --surface-container: #182030;
-  --surface-container-high: #222c40;
-  --surface-container-highest: #2d3952;
+  --surface-base: #080a0f;
+  --surface-card: #0f131a;
+  --surface-raised: #141923;
+  --surface-overlay: #111620;
+  --surface-container-low: #0f131a;
+  --surface-container: #131822;
+  --surface-container-high: #1a2230;
+  --surface-container-highest: #242f42;
 
-  /* Primary & Accent Tonal Colors (Dark) */
-  --primary: #80b3ff;
-  --on-primary: #002b5c;
-  --primary-container: #00438a;
+  /* Primary & Accent Tonal Colors (Dark - Engineering Technical Blue) */
+  --primary: #60a5fa;
+  --on-primary: #080a0f;
+  --primary-container: #1e3a8a;
   --on-primary-container: #ffffff;
-  --primary-light: #b3d1ff;
+  --primary-light: #93c5fd;
 
-  --tertiary: #e5b8e7;
-  --on-tertiary: #441949;
-  --tertiary-container: #5c2c62;
+  --tertiary: #94a3b8;
+  --on-tertiary: #080a0f;
+  --tertiary-container: #1e293b;
 
-  --accent: #38edf2;
-  --on-accent: #00363a;
-  --accent-container: #004f55;
+  --accent: #38bdf8;
+  --on-accent: #080a0f;
+  --accent-container: #0c4a6e;
 
-  /* Outline & Borders */
-  --outline: #5a6477;
-  --outline-variant: #3f4756;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(128, 179, 255, 0.3);
+  /* Precision Hairline Borders */
+  --outline: #64748b;
+  --outline-variant: #334155;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-precision: rgba(255, 255, 255, 0.08);
+  --border-precision-hover: rgba(255, 255, 255, 0.18);
+  --border-glow: rgba(255, 255, 255, 0.08);
 
   /* Typography / Text Colors */
   --on-surface: #e2e8f0;
@@ -137,26 +154,27 @@
 
   /* Feedback Colors */
   --success: #10b981;
-  --success-glow: rgba(16, 185, 129, 0.4);
-  --success-soft: #6ee7b7;
+  --success-glow: rgba(16, 185, 129, 0.18);
+  --success-soft: #34d399;
   --warning: #f59e0b;
   --error: #ef4444;
 
-  /* Elevation & Glow Shadows */
-  --shadow-neon-primary: 0 0 35px rgba(128, 179, 255, 0.25);
-  --shadow-neon-tertiary: 0 0 35px rgba(229, 184, 231, 0.25);
-  --shadow-neon-accent: 0 0 35px rgba(56, 237, 242, 0.25);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-  --shadow-card-hover: 0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(128, 179, 255, 0.2);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* Flat Precision Palette (Zero Shadows — 100% Flat Architecture) */
+  --shadow-neon-primary: none;
+  --shadow-neon-tertiary: none;
+  --shadow-neon-accent: none;
+  --shadow-card: none;
+  --shadow-card-hover: none;
+  --shadow-raised: none;
+  --shadow-glass: none;
 
-  /* Translucent "glass" surfaces */
-  --glass-header: rgba(17, 22, 34, 0.78);
-  --glass-status: rgba(17, 22, 34, 0.95);
-  --glass-terminal: rgba(9, 13, 20, 0.7);
-  --glass-filter: rgba(17, 22, 34, 0.7);
-  --glass-legend: rgba(17, 22, 34, 0.85);
+  /* Solid Matte Surfaces (Substitutos 100% opacos para compatibilidade) */
+  --glass-header: #0f131a;
+  --glass-status: #0f131a;
+  --glass-terminal: #0b0e14;
+  --glass-filter: #131822;
+  --glass-legend: #141923;
 
   /* Auxiliary tints */
-  --primary-tint: rgba(128, 179, 255, 0.08);
+  --primary-tint: rgba(96, 165, 250, 0.06);
 }

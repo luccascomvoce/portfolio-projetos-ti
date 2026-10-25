@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
 
   <!-- SEO & Metatags -->
   <title>Luccas — Portfólio de Engenharia de Software, Automação & DevOps</title>
-  <meta name="description" content="Portfólio técnico de Luccas: Projetos em Engenharia Reversa, Automação de Processos, Bots Telegram, Web & Infraestrutura Multi-Nuvem e Game Modding.">
-  <meta name="keywords" content="Luccas, Engenharia de Software, Automação, DevOps, Engenharia Reversa, Telegram Bots, Python, PowerShell, JavaScript, Frida, Web Development">
+  <meta name="description"
+    content="Portfólio técnico de Luccas: Projetos em Engenharia Reversa, Automação de Processos, Bots Telegram, Web & Infraestrutura Multi-Nuvem e Game Modding.">
+  <meta name="keywords"
+    content="Luccas, Engenharia de Software, Automação, DevOps, Engenharia Reversa, Telegram Bots, Python, PowerShell, JavaScript, Frida, Web Development">
   <meta name="author" content="Luccas">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://luccascomvoce.github.io/portfolio-projetos-ti/">
-  <meta name="theme-color" content="#f5f7fb">
+  <meta name="theme-color" content="#f8fafc">
   <meta name="color-scheme" content="light dark">
 
   <!-- Theme bootstrap: resolve user/system theme before first paint (prevents FOUC) -->
@@ -28,7 +31,7 @@
         }
       } catch (e) { /* fallback light */ }
       document.documentElement.setAttribute('data-theme', theme);
-      var surface = theme === 'dark' ? '#090d14' : '#f5f7fb';
+      var surface = theme === 'dark' ? '#080a0f' : '#f8fafc';
       var metaTheme = document.querySelector('meta[name="theme-color"]');
       if (metaTheme) metaTheme.setAttribute('content', surface);
       var metaScheme = document.querySelector('meta[name="color-scheme"]');
@@ -64,7 +67,8 @@
   <meta property="og:site_name" content="Luccas — Portfólio Técnico">
   <meta property="og:url" content="https://luccascomvoce.github.io/portfolio-projetos-ti/">
   <meta property="og:title" content="Luccas — Portfólio de Engenharia de Software, Automação & DevOps">
-  <meta property="og:description" content="Estudos de caso reais em Engenharia Reversa Android, Bots Telegram, Automação Cloud e Desenvolvimento Full-Stack.">
+  <meta property="og:description"
+    content="Estudos de caso reais em Engenharia Reversa Android, Bots Telegram, Automação Cloud e Desenvolvimento Full-Stack.">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:image" content="https://luccascomvoce.github.io/portfolio-projetos-ti/favicon.svg">
   <meta property="og:image:width" content="512">
@@ -77,7 +81,8 @@
   <meta name="twitter:creator" content="@luccascomvoce">
   <meta name="twitter:url" content="https://luccascomvoce.github.io/portfolio-projetos-ti/">
   <meta name="twitter:title" content="Luccas — Portfólio de Engenharia de Software, Automação & DevOps">
-  <meta name="twitter:description" content="Estudos de caso reais em Engenharia Reversa Android, Bots Telegram, Automação Cloud e Desenvolvimento Full-Stack.">
+  <meta name="twitter:description"
+    content="Estudos de caso reais em Engenharia Reversa Android, Bots Telegram, Automação Cloud e Desenvolvimento Full-Stack.">
   <meta name="twitter:image" content="https://luccascomvoce.github.io/portfolio-projetos-ti/favicon.svg">
 
   <!-- Structured Data: Schema.org JSON-LD -->
@@ -91,7 +96,7 @@
         "name": "Luccas",
         "jobTitle": "Engenheiro de Automação & Desenvolvedor Full-Stack",
         "description": "Especialista em Engenharia Reversa, Automação de Processos, Bots Telegram em Tempo Real e Arquiteturas Multi-Nuvem.",
-        "image": "https://luccascomvoce.github.io/portfolio-projetos-ti/assets/images/perfil.jpg",
+        "image": "https://luccascomvoce.github.io/portfolio-projetos-ti/assets/images/perfil2.jpg",
         "url": "https://luccascomvoce.github.io/portfolio-projetos-ti/",
         "sameAs": [
           "https://github.com/luccascomvoce",
@@ -213,10 +218,10 @@
   <link rel="modulepreload" href="assets/js/modules/projectFilter.js">
   <link rel="modulepreload" href="assets/js/modules/articleCarousel.js">
   <link rel="modulepreload" href="assets/js/modules/modal.js">
+  <link rel="modulepreload" href="assets/js/modules/contactModal.js">
   <link rel="modulepreload" href="assets/js/modules/cinemaPlayer.js">
   <link rel="modulepreload" href="assets/js/modules/deepLink.js">
-  <link rel="modulepreload" href="assets/js/modules/particles.js">
-  <link rel="modulepreload" href="assets/js/modules/typewriter.js">
+  <link rel="modulepreload" href="assets/js/modules/directoryTree.js">
   <link rel="modulepreload" href="assets/js/modules/audio.js">
   <link rel="modulepreload" href="assets/js/modules/tilt.js">
   <link rel="modulepreload" href="assets/js/modules/spotlight.js">
@@ -230,11 +235,14 @@
   <!-- Google Fonts (Outfit, Plus Jakarta Sans, Fira Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Stylesheet Hub -->
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
 
   <!-- Skip to Content Link (Accessibility) -->
@@ -243,84 +251,154 @@
   <!-- Dynamic Spotlight (Cursor Follower) -->
   <div id="spotlight" aria-hidden="true"></div>
 
-  <!-- Organic Lava Lamp Blur Background (Zero Canvas 2D Engine) -->
-  <div class="lava-lamp-container" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <!-- DOM Particles Container -->
-  <div id="particles-container" aria-hidden="true"></div>
-
-  <!-- Matrix Easter Egg Overlay (CRT power-off + terminal message) -->
-  <div id="matrix-easter-egg" aria-hidden="true">
-    <div class="matrix-terminal">
-      <div class="matrix-terminal-box">
-        <div class="matrix-message"></div>
-        <span class="matrix-cursor" aria-hidden="true"></span>
-      </div>
-    </div>
-    <div class="matrix-scanlines" aria-hidden="true"></div>
-  </div>
 
 
   <!-- ========================================================================
        1. Floating Header
        ======================================================================== -->
   <header class="header-floating" id="main-header">
-    <a href="#hero" class="header-brand" title="Luccas — Início" aria-label="Luccas — Página Inicial" data-i18n-attr="title:nav.brandTitle; aria-label:nav.brandAria">
-      <img src="favicon.svg" alt="Logo Luccas" class="brand-logo" width="36" height="36">
-      <span class="brand-title">Luccas</span>
+    <a href="#hero" class="header-brand" id="header-brand" title="Luccas — Início" aria-label="Luccas — Página Inicial"
+      data-i18n-attr="title:nav.brandTitle; aria-label:nav.brandAria">
+      <img src="assets/images/perfil2.jpg" alt="Foto de Luccas" class="brand-logo" id="header-brand-logo" width="36" height="36">
+      <span class="brand-title" id="header-brand-title">Luccas</span>
     </a>
 
     <nav class="header-actions" aria-label="Navegação Principal" data-i18n-attr="aria-label:nav.mainLabel">
       <a href="#projetos" class="nav-link-btn" data-i18n="nav.projects">Projetos</a>
       <a href="#artigos" class="nav-link-btn" data-i18n="nav.articles">Artigos</a>
 
-      <!-- Web Audio API Synthesizer Toggle Button -->
-      <button id="audio-toggle-btn" class="btn-icon" title="Ativar/Desativar Sons da Interface" aria-label="Alternar efeitos sonoros" aria-pressed="false" data-i18n-attr="aria-label:nav.audio.label">
-        <svg id="audio-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <line x1="23" y1="9" x2="17" y2="15"></line>
-          <line x1="17" y1="9" x2="23" y2="15"></line>
+      <!-- Unified System Preferences Toggle Button (Recombining Morphing SVG) -->
+      <button id="preferences-toggle-btn" class="btn-icon preferences-toggle-btn" aria-haspopup="dialog"
+        aria-expanded="false" aria-controls="preferences-menu" aria-label="Preferências do Sistema"
+        title="Preferências do Sistema" data-i18n-attr="aria-label:preferences.toggleBtn; title:preferences.toggleBtn">
+        <svg class="preferences-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line class="pref-line pref-line-1" x1="4" y1="6" x2="20" y2="6"></line>
+          <line class="pref-line pref-line-2" x1="4" y1="12" x2="20" y2="12"></line>
+          <line class="pref-line pref-line-3" x1="4" y1="18" x2="20" y2="18"></line>
+          <circle class="pref-dot pref-dot-1" cx="8" cy="6" r="1.5" fill="currentColor"></circle>
+          <circle class="pref-dot pref-dot-2" cx="16" cy="12" r="1.5" fill="currentColor"></circle>
+          <circle class="pref-dot pref-dot-3" cx="10" cy="18" r="1.5" fill="currentColor"></circle>
         </svg>
       </button>
-
-      <!-- Theme Toggle (Sun/Moon) Button -->
-      <button id="theme-toggle-btn" class="btn-icon theme-toggle-btn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro" aria-pressed="false">
-        <svg class="theme-icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="theme-icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-
-      <!-- Language Switcher -->
-      <div class="lang-switcher">
-        <button id="lang-toggle-btn" class="btn-icon lang-toggle-btn" aria-haspopup="menu" aria-expanded="false" aria-label="Idioma / Language" title="Idioma / Language" data-i18n-attr="aria-label:lang.label; title:lang.label">
-          <span class="lang-toggle-gfx" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M2 12h20"></path>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-          </span>
-          <span class="lang-toggle-code" id="lang-toggle-code">PT</span>
-        </button>
-        <ul class="lang-menu" id="lang-menu" role="menu" aria-label="Idiomas disponíveis" data-i18n-attr="aria-label:lang.label" hidden></ul>
-      </div>
     </nav>
   </header>
+
+  <!-- ========================================================================
+       1.1 Unified Preferences Modal Panel (Verbose & Explanatory)
+       ======================================================================== -->
+  <div id="preferences-menu" class="preferences-panel" role="dialog" aria-modal="false"
+    aria-label="Preferências do Sistema" data-i18n-attr="aria-label:preferences.panelTitle" hidden>
+    <div class="preferences-panel-inner">
+
+      <div class="preferences-header">
+        <div class="preferences-header-title">
+          <span class="preferences-header-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+          </span>
+          <h3 class="preferences-title" data-i18n="preferences.panelTitle">Preferências do Sistema</h3>
+        </div>
+        <span class="preferences-tag" data-i18n="preferences.tag">Ambiente &amp; Acessibilidade</span>
+      </div>
+
+      <!-- Seção 1: Tema / Aparência Visual -->
+      <div class="pref-section">
+        <div class="pref-section-header">
+          <div class="pref-label-group">
+            <span class="pref-label" data-i18n="preferences.theme.title">Modo de Exibição</span>
+            <p class="pref-description" data-i18n="preferences.theme.desc">
+              Alterne entre alto contraste para leitura técnica e tema claro para ambientes iluminados.
+            </p>
+          </div>
+        </div>
+        <div class="pref-segmented-control" role="radiogroup" aria-label="Modo de Exibição"
+          data-i18n-attr="aria-label:preferences.theme.title">
+          <button type="button" class="pref-segment-btn" data-theme-val="light" role="radio" aria-checked="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <span data-i18n="preferences.theme.light">Claro</span>
+          </button>
+          <button type="button" class="pref-segment-btn" data-theme-val="dark" role="radio" aria-checked="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span data-i18n="preferences.theme.dark">Escuro</span>
+          </button>
+          <button type="button" class="pref-segment-btn" data-theme-val="auto" role="radio" aria-checked="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span data-i18n="preferences.theme.auto">Sistema</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Seção 2: Idioma / Localização Técnica -->
+      <div class="pref-section">
+        <div class="pref-section-header">
+          <div class="pref-label-group">
+            <span class="pref-label" data-i18n="preferences.lang.title">Idioma &amp; Localização</span>
+            <p class="pref-description" data-i18n="preferences.lang.desc">
+              Define a tradução de estudos de caso, documentações técnicas e métricas.
+            </p>
+          </div>
+        </div>
+        <div class="pref-segmented-control" role="radiogroup" aria-label="Idioma da interface"
+          data-i18n-attr="aria-label:preferences.lang.title">
+          <button type="button" class="pref-segment-btn" data-lang-val="pt-BR" role="radio" aria-checked="false">
+            <span class="pref-lang-code">PT</span>
+            <span>Português</span>
+          </button>
+          <button type="button" class="pref-segment-btn" data-lang-val="en" role="radio" aria-checked="false">
+            <span class="pref-lang-code">EN</span>
+            <span>English</span>
+          </button>
+          <button type="button" class="pref-segment-btn" data-lang-val="es" role="radio" aria-checked="false">
+            <span class="pref-lang-code">ES</span>
+            <span>Español</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Seção 3: Feedback Acústico / Web Audio API -->
+      <div class="pref-section pref-section-inline">
+        <div class="pref-label-group">
+          <span class="pref-label" data-i18n="preferences.audio.title">Feedback Acústico</span>
+          <p class="pref-description" data-i18n="preferences.audio.desc">
+            Sintetizador Web Audio nativo para confirmação acústica de cliques e navegação.
+          </p>
+        </div>
+        <div class="pref-toggle-wrapper">
+          <button type="button" id="pref-audio-toggle" class="pref-switch" role="switch" aria-checked="false"
+            aria-label="Alternar feedback acústico">
+            <span class="pref-switch-thumb" aria-hidden="true"></span>
+          </button>
+          <span id="pref-audio-status" class="pref-switch-status">Desativado</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ========================================================================
        2. Hero Section
@@ -328,133 +406,45 @@
   <main id="main-content">
     <section class="section hero-section" id="hero">
       <div class="container">
-        
-        <!-- 3D Avatar with Presence Indicator -->
-        <div class="hero-avatar-wrapper" title="Disponível para Automação &amp; Dev" data-i18n-attr="title:hero.avatarWrapperTitle">
-          <div class="hero-avatar-glow" aria-hidden="true"></div>
-          <div class="hero-avatar">
-            <img src="assets/images/perfil.jpg" alt="Foto de Perfil de Luccas" class="hero-avatar-img" width="105" height="105" loading="eager" data-i18n-attr="alt:hero.avatarAlt">
-          </div>
-          <div class="avatar-presence-indicator" role="status" aria-label="Status: Disponível para Automação &amp; Dev" data-i18n-attr="aria-label:hero.statusLabel">
-            <span class="pulse-emerald"></span>
-          </div>
-          <div class="avatar-presence-tooltip">
-            <span class="pulse-emerald"></span>
-            <span data-i18n="hero.presenceTooltip">Disponível para Automação &amp; Dev</span>
+
+        <!-- Avatar -->
+        <div class="hero-avatar-wrapper" id="hero-avatar-wrapper">
+          <div class="hero-avatar" id="hero-avatar">
+            <img src="assets/images/perfil2.jpg" alt="Foto de Perfil de Luccas" class="hero-avatar-img" id="hero-avatar-img" width="105"
+              height="105" loading="eager" data-i18n-attr="alt:hero.avatarAlt">
           </div>
         </div>
 
         <!-- Name & High Impact Title -->
-        <h1 class="hero-title">Luccas</h1>
+        <h1 class="hero-title" id="hero-title">Luccas</h1>
 
-        <!-- Terminal Style Typewriter Prompt -->
-        <div class="hero-terminal-wrapper">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="terminal-title">
-              <span class="terminal-title-icon">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </span>
-              <span>luccas@core:~ /specialties</span>
-            </div>
-            <div class="terminal-badge">LIVE</div>
-          </div>
-          <div class="terminal-body">
-            <span class="terminal-prompt">$</span> <span class="terminal-cmd">spec --focus</span> <span class="terminal-arrow">&gt;</span> <span id="typewriter-text" class="terminal-typewriter-text"></span><span class="typewriter-cursor">█</span>
-          </div>
-        </div>
-
+        <!-- Objective Description (Directly below name, before the explorer!) -->
         <p class="hero-description" data-i18n="hero.description">
-          Engenharia de software voltada para alta performance, resiliência de infraestrutura, descompilação de protocolos, automação de rotinas críticas e soluções sob medida com custo operacional otimizado.
+          Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em
+          nuvem de alta performance.
         </p>
 
-        <!-- Social Grid (All Channels from .env) -->
-        <div class="social-grid">
-          <!-- WhatsApp -->
-          <a href="https://wa.me/5547988526046" target="_blank" rel="noopener noreferrer" class="social-pill social-whatsapp" title="WhatsApp (+55 47 98852-6046)">
-            <svg viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.301-.777.978-.953 1.18-.175.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.786-1.677-2.087-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.101-.2.05-.376-.025-.527-.075-.15-.678-1.634-.929-2.239-.244-.589-.493-.509-.678-.519-.175-.01-.376-.01-.577-.01-.201 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.511 0 1.482 1.079 2.912 1.23 3.113.15.201 2.123 3.242 5.144 4.547.719.31 1.28.496 1.718.636.722.23 1.378.198 1.898.12.578-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.175-1.429-.075-.126-.276-.201-.577-.351z"/>
-              <path d="M12.004 0C5.378 0 .008 5.371.008 11.996c0 2.115.553 4.18 1.603 5.998L0 24l6.18-1.621c1.751.954 3.731 1.458 5.824 1.458 6.626 0 11.996-5.371 11.996-11.996C24.004 5.371 18.63 0 12.004 0zm0 21.802c-1.854 0-3.673-.499-5.263-1.442l-.377-.224-3.914 1.026 1.045-3.815-.246-.391a9.782 9.782 0 0 1-1.503-5.235c0-5.414 4.407-9.821 9.825-9.821 5.419 0 9.826 4.407 9.826 9.821 0 5.415-4.407 9.826-9.826 9.826z"/>
+        <!-- Executive Primary CTA (Single, perfectly centered) -->
+        <div class="hero-cta-group">
+          <button type="button" class="btn-hero-primary" id="btn-open-contact-modal" aria-haspopup="dialog"
+            aria-expanded="false" aria-controls="contact-hub-modal" data-i18n-attr="aria-label:hero.cta.contactAria">
+            <svg class="btn-hero-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 19a6 6 0 0 0-12 0" />
+              <circle cx="8" cy="9" r="4" />
+              <path d="M17 8c1.3 1 1.3 3 0 4" />
+              <path d="M20 6c2.5 2.2 2.5 5.8 0 8" />
             </svg>
-            <span>WhatsApp</span>
-          </a>
-
-          <!-- Telegram -->
-          <a href="https://t.me/luccascomvoce" target="_blank" rel="noopener noreferrer" class="social-pill social-telegram" title="Telegram (@luccascomvoce)">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
-            </svg>
-            <span>Telegram</span>
-          </a>
-
-          <!-- GitHub -->
-          <a href="https://github.com/luccascomvoce" target="_blank" rel="noopener noreferrer" class="social-pill social-github" title="GitHub (@luccascomvoce)">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            <span>GitHub</span>
-          </a>
-
-          <!-- LinkedIn -->
-          <a href="https://linkedin.com/in/luccascomvoce" target="_blank" rel="noopener noreferrer" class="social-pill social-linkedin" title="LinkedIn (luccascomvoce)">
-            <svg viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-            <span>LinkedIn</span>
-          </a>
-
-          <!-- E-mail -->
-          <a href="mailto:luccascomvoce@gmail.com" class="social-pill" title="E-mail (luccascomvoce@gmail.com)" data-i18n-attr="title:hero.social.emailTitle">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
-            </svg>
-            <span data-i18n="hero.social.email">E-mail</span>
-          </a>
-
-          <!-- X (Twitter) -->
-          <a href="https://x.com/luccascomvoce" target="_blank" rel="noopener noreferrer" class="social-pill" title="X / Twitter (@luccascomvoce)">
-            <svg viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            <span>X (Twitter)</span>
-          </a>
-
-          <!-- Signal -->
-          <a href="https://signal.me/#u/luccascomvoce.84" target="_blank" rel="noopener noreferrer" class="social-pill" title="Signal (luccascomvoce.84)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-            <span>Signal</span>
-          </a>
-
-          <!-- Matrix -->
-          <a href="https://matrix.to/#/@luccascomvoce:matrix.org" target="_blank" rel="noopener noreferrer" class="social-pill" title="Matrix (@luccascomvoce:matrix.org)">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.058c.3-.435.706-.79 1.218-1.065.512-.275 1.109-.413 1.791-.413.882 0 1.632.217 2.25.652.618.435 1.01 1.049 1.176 1.842.348-.55.83-.993 1.446-1.328.616-.335 1.344-.502 2.184-.502 1.348 0 2.378.435 3.09 1.305.712.87 1.068 2.11 1.068 3.72v6.232h-2.91v-5.632c0-.942-.178-1.638-.534-2.088-.356-.45-.91-.675-1.662-.675-.783 0-1.38.25-1.791.75-.411.5-.617 1.24-.617 2.22v5.425h-2.91v-5.632c0-.942-.178-1.638-.534-2.088-.356-.45-.91-.675-1.662-.675-.798 0-1.41.253-1.836.76-.426.507-.639 1.25-.639 2.23v5.405h-2.91V7.81zm15.693 15.64v-.55H21.72V0H24v24h-2.28v-.55z"/>
-            </svg>
-            <span>Matrix</span>
-          </a>
-
-          <!-- Telefone -->
-          <a href="tel:+5547988526046" class="social-pill" title="Telefone (+55 47 98852-6046)" data-i18n-attr="title:hero.social.phoneTitle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <span data-i18n="hero.social.phone">Telefone</span>
-          </a>
+            <span class="btn-hero-text" data-i18n="hero.cta.contact">Entrar em Contato</span>
+          </button>
         </div>
 
-        <!-- Bouncing Scroll Indicator -->
-        <a href="#projetos" class="hero-scroll-btn bounce-indicator" aria-label="Explorar casos técnicos" data-i18n-attr="aria-label:hero.scrollAria">
-          <span data-i18n="hero.scrollLabel">Explorar Casos Técnicos</span>
+        <!-- Bouncing Scroll Indicator (Updated text to 'Explorar Projetos') -->
+        <a href="#projetos" class="hero-scroll-btn bounce-indicator" aria-label="Explorar Projetos"
+          data-i18n-attr="aria-label:hero.scrollAria">
+          <span data-i18n="hero.scrollLabel">Explorar Projetos</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
           </svg>
         </a>
 
@@ -462,61 +452,435 @@
     </section>
 
     <!-- ========================================================================
-         3. Projects Showcase & Dynamic Filtering
+         3. Projects Showcase & Split-Pane File Explorer
          ======================================================================== -->
     <section class="section" id="projetos">
-      <div class="container">
-        
+      <div class="container file-explorer-container">
+
         <div class="section-header">
-          <span class="section-tag" data-i18n="showcase.tag">Vitrine Técnica</span>
           <h2 class="section-title" data-i18n="showcase.title">Projetos &amp; Estudos de Caso</h2>
           <p class="section-subtitle" data-i18n="showcase.subtitle">
-            Soluções estruturadas para automação, infraestrutura resiliente, APIs e engenharia de software.
+            Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso
           </p>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="showcase-controls">
-          <!-- Search Bar -->
-          <div class="search-bar-wrapper">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input 
-              type="text" 
-              id="project-search-input" 
-              class="search-input" 
-              placeholder="Buscar por tecnologia, nome ou palavra-chave..."
-              autocomplete="off"
-              aria-label="Buscar projetos por tecnologia, nome ou palavra-chave"
-              data-i18n-attr="placeholder:showcase.searchPlaceholder; aria-label:showcase.searchAria"
-            >
-            <button id="project-search-clear" class="search-clear-btn" title="Limpar busca" aria-label="Limpar busca" data-i18n-attr="title:showcase.searchClear; aria-label:showcase.searchClear">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
+        <!-- Unified Split-Pane File Explorer Workspace (Desktop: Side-by-side | Mobile: Stacked) -->
+        <div class="file-explorer-workspace">
+
+          <!-- Left Column / Sidebar: Interactive Directory Tree -->
+          <aside class="file-explorer-sidebar">
+            <div class="capability-tree-wrapper" id="capability-tree" role="region"
+              aria-label="Explorador de Capacidades e Árvore de Diretórios">
+              <!-- Tree Window Header Bar -->
+              <div class="tree-header">
+                <div class="tree-header-left">
+                  <span class="tree-header-icon" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      <line x1="12" y1="11" x2="12" y2="17"></line>
+                      <line x1="9" y1="14" x2="15" y2="14"></line>
+                    </svg>
+                  </span>
+                  <span class="tree-path" id="tree-header-path">~/capacidades-e-arquitetura/</span>
+                </div>
+                <div class="tree-header-right">
+                  <span class="tree-status-pill" id="tree-status-pill">12 módulos ativos</span>
+                  <button type="button" class="tree-expand-all-btn" id="tree-expand-all-btn"
+                    aria-label="Alternar expansão de todas as pastas" title="Alternar expansão de todas as pastas">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="7 13 12 18 17 13"></polyline>
+                      <polyline points="7 6 12 11 17 6"></polyline>
+                    </svg>
+                    <span class="tree-expand-label" data-i18n="tree.expandAll">Expandir Tudo</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tree Body: Directory Hierarchy -->
+              <div class="tree-body" role="tree" aria-label="Árvore de módulos de engenharia">
+
+                <!-- Root Node: Todos os Módulos -->
+                <div class="tree-item tree-root-item active" data-category="all" role="treeitem" aria-selected="true"
+                  tabindex="0">
+                  <div class="tree-item-content">
+                    <span class="tree-icon tree-icon-root" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span class="tree-label tree-label-root" data-i18n="tree.allModules">[Todos os Módulos de
+                      Engenharia]</span>
+                    <span class="tree-counter">(12)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                </div>
+
+                <!-- 01_engenharia-reversa -->
+                <div class="tree-folder" data-category="re" role="treeitem" aria-expanded="false" aria-selected="false">
+                  <div class="tree-item-content tree-folder-row" tabindex="0">
+                    <span class="tree-chevron" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="tree-icon tree-icon-folder" aria-hidden="true">
+                      <svg class="folder-closed" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="tree-label">01_engenharia-reversa/</span>
+                    <span class="tree-counter">(2)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tree-children-wrapper">
+                    <div class="tree-children-inner" role="group">
+                      <div class="tree-file" data-project-id="engenharia-reversa" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Engenharia Reversa IoT">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">engenharia-reversa-smali-iot.apk</span>
+                        <span class="tree-file-badge">Smali · ViewBinding</span>
+                      </div>
+                      <div class="tree-file" data-project-id="mods-7dtd" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Suíte 7 Mods Unity">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">unity-bytecode-harmony-suite.cs</span>
+                        <span class="tree-file-badge">Harmony · IL Detour</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 02_game-modding -->
+                <div class="tree-folder" data-category="mods" role="treeitem" aria-expanded="false"
+                  aria-selected="false">
+                  <div class="tree-item-content tree-folder-row" tabindex="0">
+                    <span class="tree-chevron" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="tree-icon tree-icon-folder" aria-hidden="true">
+                      <svg class="folder-closed" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="tree-label">02_game-modding/</span>
+                    <span class="tree-counter">(1)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tree-children-wrapper">
+                    <div class="tree-children-inner" role="group">
+                      <div class="tree-file" data-project-id="mods-7dtd" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Modding C# Unity">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">suite-7-mods-csharp-unity.dll</span>
+                        <span class="tree-file-badge">C# · Multithreading</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03_bots-e-tempo-real -->
+                <div class="tree-folder" data-category="bots" role="treeitem" aria-expanded="false"
+                  aria-selected="false">
+                  <div class="tree-item-content tree-folder-row" tabindex="0">
+                    <span class="tree-chevron" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="tree-icon tree-icon-folder" aria-hidden="true">
+                      <svg class="folder-closed" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="tree-label">03_bots-e-tempo-real/</span>
+                    <span class="tree-counter">(6)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tree-children-wrapper">
+                    <div class="tree-children-inner" role="group">
+                      <div class="tree-file" data-project-id="contratos-assinaturas" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Contratos CLM">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">contratos-clm-autentique.ts</span>
+                        <span class="tree-file-badge">Apps Script · GraphQL</span>
+                      </div>
+                      <div class="tree-file" data-project-id="telegram-bot-precos" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: ADA Prices Bot">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">ada-prices-bot-zscore.py</span>
+                        <span class="tree-file-badge">WebSockets · Z-Score</span>
+                      </div>
+                      <div class="tree-file" data-project-id="telegram-bot-noticias-blumenau" role="treeitem"
+                        tabindex="0" title="Abrir estudo de caso: Blumenau News Edge">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">blumenau-news-edge-kv.py</span>
+                        <span class="tree-file-badge">Cloudflare Workers KV</span>
+                      </div>
+                      <div class="tree-file" data-project-id="telegram-bot-games-hub" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Telegram Games Hub">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">telegram-games-hub-canvas.py</span>
+                        <span class="tree-file-badge">FastAPI · Canvas 60FPS</span>
+                      </div>
+                      <div class="tree-file" data-project-id="telegram-bot-calculadora" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Quantoebot">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">quantoebot-shunting-yard.py</span>
+                        <span class="tree-file-badge">RPN · Rate Limit</span>
+                      </div>
+                      <div class="tree-file" data-project-id="telegram-bot-fuxicobot" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Fuxicobot">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">fuxicobot-fernet-aes128.py</span>
+                        <span class="tree-file-badge">Fernet · Ephemeral</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 04_scripts-e-devops -->
+                <div class="tree-folder" data-category="scripts" role="treeitem" aria-expanded="false"
+                  aria-selected="false">
+                  <div class="tree-item-content tree-folder-row" tabindex="0">
+                    <span class="tree-chevron" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="tree-icon tree-icon-folder" aria-hidden="true">
+                      <svg class="folder-closed" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="tree-label">04_scripts-e-devops/</span>
+                    <span class="tree-counter">(2)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tree-children-wrapper">
+                    <div class="tree-children-inner" role="group">
+                      <div class="tree-file" data-project-id="script-minecraft-server-java" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Minecraft Server Automation">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">minecraft-jvm-mtproto-backup.ps1</span>
+                        <span class="tree-file-badge">PowerShell · Telethon</span>
+                      </div>
+                      <div class="tree-file" data-project-id="listar-estrutura-diretorios" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Gerador de Estrutura de Pastas">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">windows-shell-tree-generator.ps1</span>
+                        <span class="tree-file-badge">Shell API · DFS</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 05_web-e-dashboards -->
+                <div class="tree-folder" data-category="web" role="treeitem" aria-expanded="false"
+                  aria-selected="false">
+                  <div class="tree-item-content tree-folder-row" tabindex="0">
+                    <span class="tree-chevron" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="tree-icon tree-icon-folder" aria-hidden="true">
+                      <svg class="folder-closed" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="tree-label">05_web-e-dashboards/</span>
+                    <span class="tree-counter">(2)</span>
+                    <span class="tree-active-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tree-children-wrapper">
+                    <div class="tree-children-inner" role="group">
+                      <div class="tree-file" data-project-id="pagina-loja-piscinas" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Landing Page Splash Piscinas">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">splash-piscinas-multicloud.html</span>
+                        <span class="tree-file-badge">Edge Failover · WOFF2</span>
+                      </div>
+                      <div class="tree-file" data-project-id="dashboard-gastos" role="treeitem" tabindex="0"
+                        title="Abrir estudo de caso: Pipeline AppSheet Financeiro">
+                        <span class="tree-file-icon" aria-hidden="true">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                        </span>
+                        <span class="tree-file-name">appsheet-pipeline-financeiro.app</span>
+                        <span class="tree-file-badge">ETL · RLS · BI</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </aside>
+
+          <!-- Right Column / Main Pane: Search, Status & Projects Grid -->
+          <div class="file-explorer-main">
+            <!-- Filter Controls -->
+            <div class="showcase-controls">
+              <!-- Search Bar -->
+              <div class="search-bar-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="project-search-input" class="search-input"
+                  placeholder="Buscar por tecnologia, nome ou palavra-chave..." autocomplete="off"
+                  aria-label="Buscar projetos por tecnologia, nome ou palavra-chave"
+                  data-i18n-attr="placeholder:showcase.searchPlaceholder; aria-label:showcase.searchAria">
+                <button id="project-search-clear" class="search-clear-btn" title="Limpar busca"
+                  aria-label="Limpar busca"
+                  data-i18n-attr="title:showcase.searchClear; aria-label:showcase.searchClear">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Active Directory Filter Status Bar -->
+              <div class="active-directory-bar" id="active-directory-bar" role="status"
+                aria-label="Filtro de diretório de projetos">
+                <div class="active-directory-left">
+                  <div class="active-directory-badge">
+                    <svg class="active-dir-icon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      aria-hidden="true">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span class="active-dir-prefix" data-i18n="tree.activeDirectory">Diretório:</span>
+                    <code class="active-dir-path" id="active-dir-path">~/capacidades-e-arquitetura/</code>
+                  </div>
+                  <span class="active-dir-count" id="active-dir-count">(12 projetos)</span>
+                </div>
+                <div class="active-directory-actions">
+                  <button type="button" class="btn-tree-jump" id="btn-tree-jump"
+                    title="Explorar ou alternar na Árvore de Diretórios">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                    <span data-i18n="tree.btnJump">Árvore de Diretórios</span>
+                  </button>
+                  <button type="button" class="btn-reset-tree-filter" id="btn-reset-filter"
+                    title="Restaurar visualização de todos os módulos" hidden>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span data-i18n="tree.resetFilter">Mostrar Todos</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accessible Live Status for Screen Readers -->
+            <div id="projects-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- Responsive Projects Grid -->
+            <div class="projects-grid" id="projects-grid" role="region" aria-label="Lista de estudos de caso"
+              data-i18n-attr="aria-label:showcase.gridLabel">
+              <!-- Injected dynamically by projectFilter.js -->
+            </div>
           </div>
 
-          <!-- M3 Segmented Buttons -->
-          <div class="category-tabs" role="tablist" aria-label="Filtrar projetos por categoria" data-i18n-attr="aria-label:showcase.tabsLabel">
-            <button class="category-tab-btn active" id="tab-all" data-category="all" role="tab" aria-selected="true" aria-controls="projects-grid" tabindex="0" data-i18n="categories.all">Todos</button>
-            <button class="category-tab-btn" id="tab-scripts" data-category="scripts" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1" data-i18n="categories.scripts">Scripts &amp; OS</button>
-            <button class="category-tab-btn" id="tab-bots" data-category="bots" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1" data-i18n="categories.bots">Bots &amp; Automação</button>
-            <button class="category-tab-btn" id="tab-web" data-category="web" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1" data-i18n="categories.web">Web &amp; Dashboards</button>
-            <button class="category-tab-btn" id="tab-re" data-category="re" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1" data-i18n="categories.re">Engenharia Reversa</button>
-            <button class="category-tab-btn" id="tab-mods" data-category="mods" role="tab" aria-selected="false" aria-controls="projects-grid" tabindex="-1" data-i18n="categories.mods">Game Mods</button>
-          </div>
-        </div>
-
-        <!-- Accessible Live Status for Screen Readers -->
-        <div id="projects-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-
-        <!-- Responsive Projects Grid -->
-        <div class="projects-grid" id="projects-grid" role="region" aria-label="Lista de estudos de caso" data-i18n-attr="aria-label:showcase.gridLabel">
-          <!-- Injected dynamically by projectFilter.js -->
         </div>
 
       </div>
@@ -527,16 +891,16 @@
          ======================================================================== -->
     <section class="section" id="artigos">
       <div class="container">
-        
+
         <div class="section-header">
-          <span class="section-tag" data-i18n="articles.sectionTag">Artigos &amp; Publicações</span>
           <h2 class="section-title" data-i18n="articles.sectionTitle">Leituras &amp; Insights Técnicos</h2>
           <p class="section-subtitle" data-i18n="articles.sectionSubtitle">
             Análises aprofundadas, tutoriais de engenharia de software, mensageria e ecossistemas open source.
           </p>
         </div>
 
-        <div class="carousel-outer-wrapper" role="region" aria-roledescription="carousel" aria-label="Carrossel de artigos e insights técnicos" data-i18n-attr="aria-label:articles.carouselLabel">
+        <div class="carousel-outer-wrapper" role="region" aria-roledescription="carousel"
+          aria-label="Carrossel de artigos e insights técnicos" data-i18n-attr="aria-label:articles.carouselLabel">
           <div class="articles-carousel-container" id="articles-carousel-container">
             <div class="articles-carousel-track" id="articles-carousel-track" aria-live="polite">
               <!-- Injected dynamically by articleCarousel.js -->
@@ -544,9 +908,10 @@
           </div>
 
           <div class="carousel-controls">
-            <button class="carousel-nav-btn" id="carousel-prev-btn" aria-label="Artigo anterior" title="Anterior" data-i18n-attr="aria-label:articles.prevLabel; title:articles.prevTitle">
+            <button class="carousel-nav-btn" id="carousel-prev-btn" aria-label="Artigo anterior" title="Anterior"
+              data-i18n-attr="aria-label:articles.prevLabel; title:articles.prevTitle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
             </button>
 
@@ -554,9 +919,10 @@
               <!-- Injected dynamically -->
             </div>
 
-            <button class="carousel-nav-btn" id="carousel-next-btn" aria-label="Próximo artigo" title="Próximo" data-i18n-attr="aria-label:articles.nextLabel; title:articles.nextTitle">
+            <button class="carousel-nav-btn" id="carousel-next-btn" aria-label="Próximo artigo" title="Próximo"
+              data-i18n-attr="aria-label:articles.nextLabel; title:articles.nextTitle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
           </div>
@@ -578,14 +944,18 @@
           <h3 class="modal-title" id="modal-project-title">Título do Projeto</h3>
         </div>
         <div class="modal-header-actions">
-          <button class="modal-header-btn modal-share-btn" id="modal-project-share-btn" aria-label="Copiar link direto" title="Copiar link direto deste projeto para compartilhamento" data-i18n-attr="aria-label:modal.copyLink; title:modal.copyLinkTitle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="modal-header-btn modal-share-btn" id="modal-project-share-btn" aria-label="Copiar link direto"
+            title="Copiar link direto deste projeto para compartilhamento"
+            data-i18n-attr="aria-label:modal.copyLink; title:modal.copyLinkTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
             <span class="share-toast" aria-live="polite">Link copiado!</span>
           </button>
-          <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar modal" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.close; title:modal.closeTitle">
+          <button class="modal-close-btn" id="modal-close-btn" aria-label="Fechar modal" title="Fechar (Esc)"
+            data-i18n-attr="aria-label:modal.close; title:modal.closeTitle">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -614,14 +984,18 @@
           </div>
         </div>
         <div class="modal-header-actions">
-          <button class="modal-header-btn modal-share-btn" id="modal-article-share-btn" aria-label="Copiar link direto" title="Copiar link direto deste artigo para compartilhamento" data-i18n-attr="aria-label:modal.copyLink; title:modal.copyArticleLinkTitle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="modal-header-btn modal-share-btn" id="modal-article-share-btn" aria-label="Copiar link direto"
+            title="Copiar link direto deste artigo para compartilhamento"
+            data-i18n-attr="aria-label:modal.copyLink; title:modal.copyArticleLinkTitle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
             <span class="share-toast" aria-live="polite">Link copiado!</span>
           </button>
-          <button class="modal-close-btn" id="modal-article-close-btn" aria-label="Fechar artigo" title="Fechar (Esc)" data-i18n-attr="aria-label:modal.articleClose; title:modal.articleCloseTitle">
+          <button class="modal-close-btn" id="modal-article-close-btn" aria-label="Fechar artigo" title="Fechar (Esc)"
+            data-i18n-attr="aria-label:modal.articleClose; title:modal.articleCloseTitle">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -639,7 +1013,8 @@
   <!-- ========================================================================
        7. Cinema Video Player Modal (Minimalist Studio Stage)
        ======================================================================== -->
-  <div class="modal-overlay cinema-modal-overlay" id="cinema-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Player de Demonstração em Vídeo">
+  <div class="modal-overlay cinema-modal-overlay" id="cinema-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Player de Demonstração em Vídeo">
     <div class="cinema-ambient-glow" aria-hidden="true"></div>
     <div class="cinema-stage-container">
       <div class="cinema-stage-header">
@@ -647,7 +1022,8 @@
           <span class="pulse-cyan" aria-hidden="true"></span>
           <span class="cinema-badge-text" id="cinema-badge-title">DEMO INTERATIVA</span>
         </div>
-        <button class="modal-close-btn cinema-close-btn" id="cinema-close-btn" aria-label="Fechar vídeo" title="Fechar (Esc)">
+        <button class="modal-close-btn cinema-close-btn" id="cinema-close-btn" aria-label="Fechar vídeo"
+          title="Fechar (Esc)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -679,19 +1055,209 @@
           </svg>
         </button>
         <span class="cinema-time-display" id="cinema-time-display">0:00 / 0:00</span>
-        <div class="cinema-scrubber-track" id="cinema-scrubber" role="progressbar" aria-label="Progresso do vídeo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <div class="cinema-scrubber-track" id="cinema-scrubber" role="progressbar" aria-label="Progresso do vídeo"
+          aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
           <div class="cinema-scrubber-progress" id="cinema-scrubber-progress"></div>
           <div class="cinema-scrubber-thumb" id="cinema-scrubber-thumb"></div>
         </div>
         <button class="cinema-hud-btn" id="cinema-fullscreen-btn" aria-label="Tela cheia" title="Tela cheia (F)">
-          <svg class="icon-fullscreen-enter" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          <svg class="icon-fullscreen-enter" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+            </path>
           </svg>
-          <svg class="icon-fullscreen-exit" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          <svg class="icon-fullscreen-exit" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3">
+            </path>
           </svg>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       7.1 Executive Contact Hub Modal (Precision Matte Surface)
+       ======================================================================== -->
+  <div class="modal-overlay contact-hub-overlay" id="contact-hub-modal" aria-hidden="true" role="dialog"
+    aria-modal="true" aria-labelledby="contact-hub-title" hidden>
+    <div class="contact-hub-stage" role="document">
+
+      <!-- Main Popup Container (Left side on desktop horizontal) -->
+      <div class="contact-hub-container">
+        <!-- Header -->
+        <div class="contact-hub-header">
+          <div class="contact-hub-header-info">
+            <h2 class="contact-hub-title" id="contact-hub-title" data-i18n="contact.modalTitle">Formas de entrar em
+              contato</h2>
+          </div>
+          <button type="button" class="modal-close-btn contact-hub-close-btn" id="contact-modal-close-btn"
+            aria-label="Fechar central de contato" data-i18n-attr="aria-label:contact.closeBtn" title="Fechar (Esc)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="contact-hub-body">
+          <!-- Channels Accordion Column -->
+          <div class="contact-channels-main" id="contact-channels-accordion">
+
+            <!-- Channel 1: E-mail (starts minimized by default) -->
+            <div class="contact-channel-item" data-channel="email" role="region" aria-expanded="false">
+              <div class="channel-meta-row" tabindex="0" role="button" aria-label="Alternar canal E-mail">
+                <div class="channel-title-group">
+                  <span class="channel-indicator" aria-hidden="true"></span>
+                  <span class="channel-label" data-i18n="contact.endpoints.emailTitle">E-mail</span>
+                </div>
+                <div class="channel-key-box">
+                  <code class="channel-key" id="endpoint-email-key">luccascomvoce@gmail.com</code>
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-email-key" data-i18n-attr="title:contact.copyEmail" aria-label="Copiar e-mail">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-status-text" data-i18n="contact.copy">Copiar</span>
+                  </button>
+                </div>
+              </div>
+              <div class="channel-chips-wrapper">
+                <div class="channel-chips-inner">
+                  <a href="mailto:luccascomvoce@gmail.com" id="chip-email-mailto" class="channel-chip">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
+                    </svg>
+                    <span data-i18n="contact.chips.sendEmail">Enviar E-mail</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 2: Telefone e Mensagens -->
+            <div class="contact-channel-item" data-channel="phone" role="region" aria-expanded="false">
+              <div class="channel-meta-row" tabindex="0" role="button" aria-label="Alternar canal Telefone e Mensagens">
+                <div class="channel-title-group">
+                  <span class="channel-indicator" aria-hidden="true"></span>
+                  <span class="channel-label" data-i18n="contact.endpoints.phoneTitle">Telefone e Mensagens</span>
+                </div>
+                <div class="channel-key-box">
+                  <code class="channel-key" id="endpoint-phone-key">+55 47 98852-6046</code>
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-phone-key" data-i18n-attr="title:contact.copyPhone" aria-label="Copiar telefone">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-status-text" data-i18n="contact.copy">Copiar</span>
+                  </button>
+                </div>
+              </div>
+              <div class="channel-chips-wrapper">
+                <div class="channel-chips-inner">
+                  <a href="https://wa.me/5547988526046" id="chip-phone-whatsapp" class="channel-chip chip-whatsapp" target="_blank" rel="noopener noreferrer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.301-.777.978-.953 1.18-.175.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.786-1.677-2.087-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.101-.2.05-.376-.025-.527-.075-.15-.678-1.634-.929-2.239-.244-.589-.493-.509-.678-.519-.175-.01-.376-.01-.577-.01-.201 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.511 0 1.482 1.079 2.912 1.23 3.113.15.201 2.123 3.242 5.144 4.547.719.31 1.28.496 1.718.636.722.23 1.378.198 1.898.12.578-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.175-1.429-.075-.126-.276-.201-.577-.351zM12.004 0C5.378 0 .008 5.371.008 11.996c0 2.115.553 4.18 1.603 5.998L0 24l6.18-1.621c1.751.954 3.731 1.458 5.824 1.458 6.626 0 11.996-5.371 11.996-11.996C24.004 5.371 18.63 0 12.004 0zm0 21.802c-1.854 0-3.673-.499-5.263-1.442l-.377-.224-3.914 1.026 1.045-3.815-.246-.391a9.782 9.782 0 0 1-1.503-5.235c0-5.414 4.407-9.821 9.825-9.821 5.419 0 9.826 4.407 9.826 9.821 0 5.415-4.407 9.826-9.826 9.826z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                  </a>
+                  <a href="tel:+5547988526046" id="chip-phone-call" class="channel-chip chip-call">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span data-i18n="contact.chips.call">Ligação Direta</span>
+                  </a>
+                  <a href="sms:+5547988526046" id="chip-phone-sms" class="channel-chip chip-sms">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>SMS / RCS</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 3: Outras Redes -->
+            <div class="contact-channel-item" data-channel="identity" role="region" aria-expanded="false">
+              <div class="channel-meta-row" tabindex="0" role="button" aria-label="Alternar canal Outras Redes">
+                <div class="channel-title-group">
+                  <span class="channel-indicator" aria-hidden="true"></span>
+                  <span class="channel-label" data-i18n="contact.endpoints.identityTitle">Outras Redes</span>
+                </div>
+                <div class="channel-key-box">
+                  <code class="channel-key" id="endpoint-handle-key">@luccascomvoce</code>
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-handle-key" data-i18n-attr="title:contact.copyHandle" aria-label="Copiar usuário">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-status-text" data-i18n="contact.copy">Copiar</span>
+                  </button>
+                </div>
+              </div>
+              <div class="channel-chips-wrapper">
+                <div class="channel-chips-inner">
+                  <a href="https://github.com/luccascomvoce" id="chip-handle-github" class="channel-chip chip-github" target="_blank" rel="noopener noreferrer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                  </a>
+                  <a href="https://linkedin.com/in/luccascomvoce" id="chip-handle-linkedin" class="channel-chip chip-linkedin" target="_blank" rel="noopener noreferrer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                  <a href="https://t.me/luccascomvoce" id="chip-handle-telegram" class="channel-chip chip-telegram" target="_blank" rel="noopener noreferrer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
+                    </svg>
+                    <span>Telegram</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão de salvar contato na agenda no final (sem estar em cartão) -->
+            <div class="contact-footer-action">
+              <a href="assets/contact/luccas.vcf" id="btn-save-vcard" class="btn-save-contact-flat" download="Luccas.vcf" data-i18n-attr="title:contact.saveVcardTitle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span data-i18n="contact.saveContactBtn">Salvar contato na agenda</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Code Companion Panel (Right side on desktop horizontal) -->
+      <aside class="contact-qr-sidebar" id="contact-qr-sidebar">
+        <p class="contact-qr-caption" data-i18n="contact.qrHint">Aponte a câmera do celular para salvar</p>
+        <div class="contact-qr-box" id="contact-qr-box" role="button" tabindex="0" title="Clique para ampliar / reduzir" aria-label="Código QR para salvar contato">
+          <img src="assets/images/contact-qr.svg" alt="QR Code para salvar contato no celular" class="contact-qr-image" width="220" height="220">
+        </div>
+        <button type="button" class="btn-qr-zoom" id="btn-qr-zoom" aria-label="Ampliar QR Code" data-i18n-attr="aria-label:contact.qrZoomIn">
+          <svg class="icon-zoom-in" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <svg class="icon-zoom-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" hidden>
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <span class="qr-zoom-text" data-i18n="contact.qrZoomIn">Ampliar QR Code</span>
+        </button>
+      </aside>
+
     </div>
   </div>
 
@@ -707,7 +1273,8 @@
             <span class="brand-title">Luccas</span>
           </a>
           <p class="footer-brand-desc" data-i18n="footer.brandDesc">
-            Engenharia de automação, interoperabilidade e arquiteturas de alta resiliência para servidores e aplicações web modernas.
+            Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em
+            nuvem de alta performance.
           </p>
         </div>
 
@@ -715,8 +1282,8 @@
           <h3 class="footer-title" data-i18n="footer.navTitle">Navegação</h3>
           <ul class="footer-links">
             <li><a href="#hero" class="footer-link" data-i18n="footer.home">Início</a></li>
-            <li><a href="#projetos" class="footer-link" data-i18n="footer.projectsLink">Vitrine de Projetos</a></li>
-            <li><a href="#artigos" class="footer-link" data-i18n="footer.articlesLink">Artigos &amp; Publicações</a></li>
+            <li><a href="#projetos" class="footer-link" data-i18n="footer.projectsLink">Projetos</a></li>
+            <li><a href="#artigos" class="footer-link" data-i18n="footer.articlesLink">Artigos</a></li>
           </ul>
         </div>
       </div>
@@ -732,4 +1299,5 @@
   <!-- Modular JavaScript Orchestrator -->
   <script type="module" src="assets/js/app.js"></script>
 </body>
+
 </html>

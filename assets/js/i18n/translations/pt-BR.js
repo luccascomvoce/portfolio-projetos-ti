@@ -29,14 +29,37 @@ export default {
     label: `Idioma / Language`,
   },
 
+  preferences: {
+    toggleBtn: `Preferências do Sistema`,
+    panelTitle: `Preferências do Sistema`,
+    tag: `Ambiente & Acessibilidade`,
+    theme: {
+      title: `Modo de Exibição`,
+      desc: `Alterne entre alto contraste para leitura técnica e tema claro para ambientes iluminados.`,
+      light: `Claro`,
+      dark: `Escuro`,
+      auto: `Sistema`,
+    },
+    lang: {
+      title: `Idioma & Localização`,
+      desc: `Define a tradução de estudos de caso, documentações técnicas e métricas.`,
+    },
+    audio: {
+      title: `Feedback Acústico`,
+      desc: `Sintetizador Web Audio nativo para confirmação acústica de cliques e navegação.`,
+      enabled: `Ativado`,
+      disabled: `Desativado`,
+    },
+  },
+
   hero: {
     avatarWrapperTitle: `Disponível para Automação & Dev`,
     avatarAlt: `Foto de Perfil de Luccas`,
     statusLabel: `Status: Disponível para Automação & Dev`,
     presenceTooltip: `Disponível para Automação & Dev`,
-    description: `Engenharia de software voltada para alta performance, resiliência de infraestrutura, descompilação de protocolos, automação de rotinas críticas e soluções sob medida com custo operacional otimizado.`,
-    scrollLabel: `Explorar Casos Técnicos`,
-    scrollAria: `Explorar casos técnicos`,
+    description: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem de alta performance.`,
+    scrollLabel: `Explorar Projetos`,
+    scrollAria: `Explorar projetos`,
     typewriter: [
       `Automação de Processos & DevOps`,
       `Engenharia Reversa & Análise de Protocolos`,
@@ -51,6 +74,36 @@ export default {
       emailTitle: `E-mail (luccascomvoce@gmail.com)`,
       phoneTitle: `Telefone (+55 47 98852-6046)`,
     },
+    cta: {
+      contact: `Entrar em Contato`,
+      contactAria: `Abrir central executiva de contato e canais diretos`,
+      explore: `Explorar Projetos`,
+      exploreAria: `Navegar para a vitrine técnica de projetos`,
+    },
+  },
+
+  contact: {
+    modalTitle: `Formas de entrar em contato`,
+    closeBtn: `Fechar formas de contato`,
+    saveContactBtn: `Salvar contato na agenda`,
+    saveVcardTitle: `Baixar arquivo de contato universal (.vcf)`,
+    qrZoomIn: `Ampliar QR Code`,
+    qrZoomOut: `Tamanho Normal`,
+    qrHint: `Aponte a câmera do celular para salvar`,
+    copy: `Copiar`,
+    copied: `Copiado! ✓`,
+    copyEmail: `Copiar e-mail`,
+    copyPhone: `Copiar telefone`,
+    copyHandle: `Copiar usuário`,
+    endpoints: {
+      emailTitle: `E-mail`,
+      phoneTitle: `Telefone e Mensagens`,
+      identityTitle: `Outras Redes`,
+    },
+    chips: {
+      sendEmail: `Enviar E-mail`,
+      call: `Ligação Direta`,
+    },
   },
 
   categories: {
@@ -62,10 +115,24 @@ export default {
     mods: `Game Mods`,
   },
 
+  tree: {
+    headerPath: `~/capacidades-e-arquitetura/`,
+    activeModules: `{n} módulos ativos`,
+    expandAll: `Expandir Tudo`,
+    collapseAll: `Recolher Tudo`,
+    allModules: `[Todos os Módulos de Engenharia]`,
+    activeDirectory: `Diretório Ativo:`,
+    btnJump: `Árvore de Diretórios`,
+    resetFilter: `Mostrar Todos`,
+    footerHint: `Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso`,
+    projectsCount: `{n} projetos`,
+    projectCountSingular: `1 projeto`,
+  },
+
   showcase: {
     tag: `Vitrine Técnica`,
     title: `Projetos & Estudos de Caso`,
-    subtitle: `Soluções estruturadas para automação, infraestrutura resiliente, APIs e engenharia de software.`,
+    subtitle: `Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso`,
     searchPlaceholder: `Buscar por tecnologia, nome ou palavra-chave...`,
     searchAria: `Buscar projetos por tecnologia, nome ou palavra-chave`,
     searchClear: `Limpar busca`,
@@ -120,11 +187,11 @@ export default {
   },
 
   footer: {
-    brandDesc: `Engenharia de automação, interoperabilidade e arquiteturas de alta resiliência para servidores e aplicações web modernas.`,
+    brandDesc: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem de alta performance.`,
     navTitle: `Navegação`,
     home: `Início`,
-    projectsLink: `Vitrine de Projetos`,
-    articlesLink: `Artigos & Publicações`,
+    projectsLink: `Projetos`,
+    articlesLink: `Artigos`,
     copyright: `© 2026 Luccas. Todos os direitos reservados.`,
   },
 };
