@@ -26,7 +26,7 @@ flowchart TD
 ### Destaques de Infraestrutura:
 - **Deploy Duplo Automatizado:** Cada `git push` ativa atualizações simultâneas na **Vercel** (borda de alta velocidade) e no **GitHub Pages** (espelho de contingência).
 - **Roteamento Resiliente com Failover:** Utilização de encurtador/DNS intermediário configurado com regra de tolerância a falhas. Caso o nó primário (Vercel) enfrente oscilações, o tráfego é desviado transparentemente para a CDN secundária do GitHub Pages.
-- **Eficiência Financeira:** Operação 100% gratuita alavancando os tiers estáticos de alta performance de ambas as plataformas.
+- **Eficiência Financeira:** Operação 100% gratuita alavancando os tiers estáticos de ambas as plataformas.
 
 ---
 

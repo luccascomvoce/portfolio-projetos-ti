@@ -45,17 +45,17 @@ class NavMorphController {
       dockedBrandCenterX: 0,
       dockedBrandCenterY: 0,
       dockedBrandW: 124,
-      dockedBrandH: 45.6,
+      dockedBrandH: 48,
 
       dockedLogoW: 36,
       dockedLogoH: 36,
-      dockedLogoOffsetX: 4.8,
-      dockedLogoOffsetY: 3.8,
+      dockedLogoOffsetX: 5,
+      dockedLogoOffsetY: 5,
 
       dockedTitleW: 56,
       dockedTitleH: 24,
-      dockedTitleOffsetX: 51.2,
-      dockedTitleOffsetY: 10.8,
+      dockedTitleOffsetX: 48,
+      dockedTitleOffsetY: 12,
 
       titleScaleRatio: 3.8,
 

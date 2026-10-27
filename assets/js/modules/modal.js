@@ -6,7 +6,6 @@
 
 import { PROJECTS_DATA } from '../data/projectsData.js';
 import { setTiltEnabled } from './tilt.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 import { cinemaPlayer } from './cinemaPlayer.js';
 import { deepLinkManager } from './deepLink.js';
@@ -40,7 +39,6 @@ class ModalController {
     if (this.closeBtn) {
       this.closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        soundEngine.playClick();
         this.close();
       });
     }
@@ -48,7 +46,6 @@ class ModalController {
     // Backdrop click
     this.overlay.addEventListener('click', (e) => {
       if (e.target === this.overlay) {
-        soundEngine.playClick();
         this.close();
       }
     });
@@ -227,7 +224,6 @@ class ModalController {
             trigger.click();
           }
         });
-        trigger.addEventListener('mouseenter', () => soundEngine.playHover());
       });
     }
   }
@@ -259,7 +255,6 @@ class ModalController {
       this.restoreAllCardOpacities();
       this.activeProjectId = projectId;
       deepLinkManager.setProjectHash(projectId);
-      soundEngine.playClick();
 
       if (this.bodyEl) {
         this.bodyEl.style.transition = 'opacity 0.15s ease';
@@ -281,7 +276,6 @@ class ModalController {
     // Save triggering element for accessible focus return
     this.triggerElement = document.activeElement;
 
-    soundEngine.playClick();
     setTiltEnabled(false); // Pause tilt during modal view
 
     // If originElement wasn't passed directly, find it in the DOM

@@ -6,7 +6,6 @@
  */
 
 import { CONTACT_CONFIG } from '../config.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 
 class ContactModalController {
@@ -43,10 +42,8 @@ class ContactModalController {
     if (this.openBtn) {
       this.openBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        soundEngine.playClick();
         this.open();
       });
-      this.openBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Bind Close button
@@ -54,16 +51,13 @@ class ContactModalController {
       this.closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        soundEngine.playClick();
         this.close();
       });
-      this.closeBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Bind Backdrop click
     this.overlay.addEventListener('click', (e) => {
       if (e.target === this.overlay || (e.target && e.target.classList && e.target.classList.contains('contact-hub-stage'))) {
-        soundEngine.playClick();
         this.close();
       }
     });
@@ -79,35 +73,22 @@ class ContactModalController {
     if (this.qrZoomBtn && this.qrSidebar) {
       this.qrZoomBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        soundEngine.playClick();
         this.toggleQrZoom();
       });
-      this.qrZoomBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Bind direct click/tap on the QR Code box to toggle zoom as well
     if (this.qrBox && this.qrSidebar) {
       this.qrBox.addEventListener('click', (e) => {
         e.preventDefault();
-        soundEngine.playClick();
         this.toggleQrZoom();
       });
       this.qrBox.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          soundEngine.playClick();
           this.toggleQrZoom();
         }
       });
-      this.qrBox.addEventListener('mouseenter', () => soundEngine.playHover());
-    }
-
-    // Bind vCard direct save button
-    if (this.vcardBtn) {
-      this.vcardBtn.addEventListener('click', () => {
-        soundEngine.playClick();
-      });
-      this.vcardBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Bind 1-Click Clipboard Copy on all Endpoint buttons
@@ -116,7 +97,6 @@ class ContactModalController {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        soundEngine.playClick();
         const targetId = btn.getAttribute('data-copy-target');
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
@@ -124,14 +104,6 @@ class ContactModalController {
           this.copyText(textToCopy, btn);
         }
       });
-      btn.addEventListener('mouseenter', () => soundEngine.playHover());
-    });
-
-    // Attach sound cues to all action chips and links
-    const interactiveChips = this.overlay.querySelectorAll('.channel-chip, .btn-save-contact-flat, .btn-qr-zoom');
-    interactiveChips.forEach((chip) => {
-      chip.addEventListener('mouseenter', () => soundEngine.playHover(), { passive: true });
-      chip.addEventListener('click', () => soundEngine.playClick(), { passive: true });
     });
 
     // Initialize Channels Accordion ("Sanfona")
@@ -202,7 +174,6 @@ class ContactModalController {
       // Mouse hover expands channel automatically
       item.addEventListener('mouseenter', () => {
         if (!item.classList.contains('is-expanded')) {
-          soundEngine.playHover();
           this.expandAccordionItem(item);
         }
       });
@@ -235,7 +206,6 @@ class ContactModalController {
         }
 
         // Click on header or item surface
-        soundEngine.playClick();
         this.expandAccordionItem(item);
       });
 
@@ -247,7 +217,6 @@ class ContactModalController {
             if (e.target.closest('.btn-copy-endpoint')) return;
             e.preventDefault();
             this.pinnedItem = item;
-            soundEngine.playClick();
             this.expandAccordionItem(item);
           }
         });

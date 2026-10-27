@@ -4,7 +4,6 @@
  * floating HUD, interactive scrubber, keyboard shortcuts and lifecycle management.
  */
 
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 
 class CinemaPlayerManager {
@@ -69,7 +68,6 @@ class CinemaPlayerManager {
         e.stopPropagation();
         this.togglePlay();
       });
-      this.playBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     if (this.playOverlay) {
@@ -90,16 +88,13 @@ class CinemaPlayerManager {
     if (this.closeBtn) {
       this.closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        soundEngine.playClick();
         this.close();
       });
-      this.closeBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Backdrop click
     this.overlay.addEventListener('click', (e) => {
       if (e.target === this.overlay) {
-        soundEngine.playClick();
         this.close();
       }
     });
@@ -118,10 +113,8 @@ class CinemaPlayerManager {
     if (this.fullscreenBtn) {
       this.fullscreenBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        soundEngine.playClick();
         this.toggleFullscreen();
       });
-      this.fullscreenBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     document.addEventListener('fullscreenchange', () => this.onFullscreenChange());
@@ -219,7 +212,6 @@ class CinemaPlayerManager {
 
   togglePlay() {
     if (!this.video) return;
-    soundEngine.playClick();
     if (this.video.paused) {
       this.video.play().catch(() => {});
     } else {
@@ -312,7 +304,6 @@ class CinemaPlayerManager {
     if (!this.overlay || !this.video) return;
 
     this.triggerElement = triggerEl || document.activeElement;
-    soundEngine.playClick();
 
     if (this.badgeTitle) {
       this.badgeTitle.textContent = title || i18n.t('modal.cinemaTitle', null, 'DEMO INTERATIVA');

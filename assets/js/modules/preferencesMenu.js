@@ -1,12 +1,11 @@
 /**
  * Preferences Menu Module — Unified Options Controller
- * Orchestrates Theme, Language, and Audio settings within a verbose, explanatory popup panel.
+ * Orchestrates Theme and Language settings within a concise, responsive popup panel.
  * Features an animated morphing SVG toggle icon and organic entrance/exit transitions.
  */
 
 import { themeManager } from './theme.js';
 import { languageManager, i18n } from '../i18n/i18n.js';
-import { soundEngine } from './audio.js';
 
 class PreferencesMenuController {
   constructor() {
@@ -15,8 +14,6 @@ class PreferencesMenuController {
     this.isOpen = false;
     this.themeSegments = [];
     this.langSegments = [];
-    this.audioSwitch = null;
-    this.audioStatusText = null;
   }
 
   init() {
@@ -32,8 +29,6 @@ class PreferencesMenuController {
 
     this.themeSegments = Array.from(this.panelEl.querySelectorAll('[data-theme-val]'));
     this.langSegments = Array.from(this.panelEl.querySelectorAll('[data-lang-val]'));
-    this.audioSwitch = document.getElementById('pref-audio-toggle');
-    this.audioStatusText = document.getElementById('pref-audio-status');
 
     this.bindEvents();
     this.syncUI();
@@ -71,7 +66,6 @@ class PreferencesMenuController {
 
         themeManager.animateTheme(targetTheme, { origin: e, persist });
         this.syncThemeUI();
-        soundEngine.playClick();
       });
     });
 
@@ -81,17 +75,8 @@ class PreferencesMenuController {
         const langVal = btn.dataset.langVal;
         languageManager.setLanguage(langVal);
         this.syncLangUI();
-        soundEngine.playClick();
       });
     });
-
-    // Audio toggle switch
-    if (this.audioSwitch) {
-      this.audioSwitch.addEventListener('click', () => {
-        soundEngine.toggleSound();
-        this.syncAudioUI();
-      });
-    }
 
     // Close on outside click
     document.addEventListener('click', (e) => {
@@ -120,7 +105,7 @@ class PreferencesMenuController {
   updatePosition() {
     if (!this.toggleBtn || !this.panelEl) return;
     const rect = this.toggleBtn.getBoundingClientRect();
-    const panelWidth = Math.min(420, window.innerWidth - 32);
+    const panelWidth = Math.min(380, window.innerWidth - 32);
     
     // Position vertically below toggle with 10px spacing
     const top = rect.bottom + 10;
@@ -144,8 +129,6 @@ class PreferencesMenuController {
 
     this.toggleBtn.setAttribute('aria-expanded', 'true');
     this.toggleBtn.classList.add('active');
-
-    soundEngine.playClick();
   }
 
   close() {
@@ -174,7 +157,6 @@ class PreferencesMenuController {
   syncUI() {
     this.syncThemeUI();
     this.syncLangUI();
-    this.syncAudioUI();
   }
 
   syncThemeUI() {
@@ -197,19 +179,6 @@ class PreferencesMenuController {
       btn.setAttribute('aria-checked', String(isSelected));
       btn.classList.toggle('active', isSelected);
     });
-  }
-
-  syncAudioUI() {
-    if (!this.audioSwitch) return;
-    const isActive = soundEngine.isSoundActive();
-    this.audioSwitch.setAttribute('aria-checked', String(isActive));
-    this.audioSwitch.classList.toggle('active', isActive);
-
-    if (this.audioStatusText) {
-      this.audioStatusText.textContent = isActive 
-        ? i18n.t('preferences.audio.enabled', null, 'Ativado') 
-        : i18n.t('preferences.audio.disabled', null, 'Desativado');
-    }
   }
 }
 

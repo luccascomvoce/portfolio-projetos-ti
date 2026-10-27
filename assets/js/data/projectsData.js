@@ -73,7 +73,7 @@ export const PROJECTS_DATA = [
     categoryLabel: "Web & Dashboards",
     status: "Produção Ativa",
     highlight: false,
-    summary: "Plataforma web de alta performance com catálogo JSON desacoplado, fontes WOFF2 locais (Zero External Dependency) e pipeline CI/CD com failover automático Vercel + GitHub Pages.",
+    summary: "Plataforma web com catálogo JSON desacoplado, fontes WOFF2 locais (Zero External Dependency) e pipeline CI/CD com failover automático Vercel + GitHub Pages.",
     tags: ["HTML5 / CSS3", "Vanilla JS", "Multi-Cloud Failover", "Vercel Edge", "SEO Técnico"],
     docPath: "docs/projetos/pagina-loja-piscinas.md",
     metrics: [
@@ -171,7 +171,7 @@ export const PROJECTS_DATA = [
     categoryLabel: "Game Mods",
     status: "Produção Ativa",
     highlight: false,
-    summary: "Suíte de 7 modificações de alta performance em C# (.NET / Unity Engine): injeção dinâmica de bytecode via Harmony, I/O assíncrono multithread para backup de saves, algoritmo O(1) de anti-repetição de POIs, renderizador gráfico de pré-visualização, telemetria cartográfica e hotfix de deadlock no HUD.",
+    summary: "Suíte de 7 modificações em C# (.NET / Unity Engine): injeção dinâmica de bytecode via Harmony, I/O assíncrono multithread para backup de saves, algoritmo O(1) de anti-repetição de POIs, renderizador gráfico de pré-visualização, telemetria cartográfica e hotfix de deadlock no HUD.",
     tags: ["C# (.NET 4.8)", "Harmony (Bytecode Detour)", "Unity Engine / Mono", "XUi / NGUI", "Multithreading I/O", "Reflection / AccessTools", "Reverse Engineering"],
     docPath: "docs/projetos/mods-7dtd.md",
     metrics: [
@@ -281,7 +281,7 @@ export const PROJECTS_DATA = [
       { label: "Renderização", value: "Canvas 60 FPS" },
       { label: "Segurança", value: "HMAC-SHA256 + Anti-Cheat" }
     ],
-    overview: "Plataforma de entretenimento multiplayer de alta performance no ecossistema Telegram. Combina a praticidade dos Telegram Mini Apps (TMA) com um backend assíncrono orientado a eventos via WebSockets para partidas síncronas de Pôquer e UNO sem downloads externos.",
+    overview: "Plataforma de entretenimento multiplayer no ecossistema Telegram. Combina a praticidade dos Telegram Mini Apps (TMA) com um backend assíncrono orientado a eventos via WebSockets para partidas síncronas de Pôquer e UNO sem downloads externos.",
     liveUrl: "https://t.me/vamojogarbot",
     liveLabel: "Acessar o Hub no Telegram",
     liveType: "telegram",
@@ -317,7 +317,7 @@ export const PROJECTS_DATA = [
       { label: "Operação", value: "100% Inline Query" }
     ],
     videoUrl: "assets/videos/quantoebot.mp4",
-    overview: "Bot Telegram de alta performance e precisão matemática operando 100% no modo inline (<code>@quantoebot expressao</code>) em qualquer chat sem requerer adição a grupos. Desenvolvido em Python assíncrono com aiogram 3, conta com motor próprio de parsing e avaliação matemática sem dependências externas (usando <code>decimal.Decimal</code> com 28 dígitos de precisão), suporte a precedência estrita e associatividade à direita, radiciação encadeada, fatoriais e porcentagem contextualizada por AST. Inclui subsistema de configurações tipado e validado em tempo de inicialização via Pydantic Settings, proteção perimetral contra DoS com algoritmo Sliding Window em memória (silent drop) e telemetria estruturada de logs.",
+    overview: "Bot Telegram para cálculos operando 100% no modo inline (<code>@quantoebot expressao</code>) em qualquer chat sem requerer adição a grupos. Desenvolvido em Python assíncrono com aiogram 3, conta com motor próprio de parsing e avaliação matemática sem dependências externas (usando <code>decimal.Decimal</code> com 28 dígitos de precisão), suporte a precedência estrita e associatividade à direita, radiciação encadeada, fatoriais e porcentagem contextualizada por AST. Inclui subsistema de configurações tipado e validado em tempo de inicialização via Pydantic Settings, proteção perimetral contra DoS com algoritmo Sliding Window em memória (silent drop) e telemetria estruturada de logs.",
     liveUrl: "https://t.me/quantoebot",
     liveLabel: "Testar o Bot no Telegram",
     liveType: "telegram",

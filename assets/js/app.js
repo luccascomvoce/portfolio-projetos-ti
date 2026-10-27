@@ -5,7 +5,6 @@
 
 import { SITE_CONFIG } from './config.js';
 import { i18n, languageManager } from './i18n/i18n.js';
-import { soundEngine } from './modules/audio.js';
 import { initSpotlight } from './modules/spotlight.js';
 import { projectFilter } from './modules/projectFilter.js';
 import { directoryTree } from './modules/directoryTree.js';
@@ -49,11 +48,9 @@ function bootstrapApp() {
   const bannerBtn = document.getElementById('btn-open-highlight-modal');
   if (bannerBtn) {
     bannerBtn.addEventListener('click', () => {
-      soundEngine.playClick();
       const highlightCard = document.querySelector('.highlight-banner');
       modalManager.openProject('engenharia-reversa', highlightCard);
     });
-    bannerBtn.addEventListener('mouseenter', () => soundEngine.playHover());
   }
 
   // 6. Header Actions Horizontal Scroll & Drag Engine
@@ -98,14 +95,7 @@ function bootstrapApp() {
     });
   }
 
-  // 8. Attach sound cues to all interactive elements
-  const interactiveElements = document.querySelectorAll('a, button, .social-pill');
-  interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => soundEngine.playHover(), { passive: true });
-    el.addEventListener('click', () => soundEngine.playClick(), { passive: true });
-  });
-
-  // 9. Re-render dynamic modules when the language changes
+  // 7. Re-render dynamic modules when the language changes
   i18n.subscribe(() => {
     directoryTree.refresh();
     projectFilter.reapply();

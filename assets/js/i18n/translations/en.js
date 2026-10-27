@@ -21,12 +21,6 @@ export default {
     articles: `Articles`,
     brandTitle: `Luccas — Home`,
     brandAria: `Luccas — Home page`,
-    audio: {
-      toggle: `Turn Interface Sounds On/Off`,
-      on: `Turn Interface Sounds Off`,
-      off: `Turn Interface Sounds On`,
-      label: `Toggle sound effects`,
-    },
     theme: {
       toLight: `Switch to light theme`,
       toDark: `Switch to dark theme`,
@@ -40,7 +34,6 @@ export default {
   preferences: {
     toggleBtn: `System Preferences`,
     panelTitle: `System Preferences`,
-    tag: `Environment & Accessibility`,
     theme: {
       title: `Display Mode`,
       desc: `Switch between high-contrast dark theme for technical reading and light theme for bright spaces.`,
@@ -52,12 +45,6 @@ export default {
       title: `Language & Localization`,
       desc: `Sets the localization for case studies, architecture docs, and technical metrics.`,
     },
-    audio: {
-      title: `Acoustic Feedback`,
-      desc: `Native Web Audio synthesizer providing discrete feedback for interactive actions.`,
-      enabled: `Enabled`,
-      disabled: `Disabled`,
-    },
   },
 
   hero: {
@@ -65,7 +52,7 @@ export default {
     avatarAlt: `Luccas Profile Photo`,
     statusLabel: `Status: Available for Automation & Dev`,
     presenceTooltip: `Available for Automation & Dev`,
-    description: `I build process automations, real-time bots, software reverse engineering, and high-performance cloud infrastructure.`,
+    description: `I build process automations, real-time bots, software reverse engineering, and cloud infrastructure.`,
     scrollLabel: `Explore Projects`,
     scrollAria: `Explore projects`,
     typewriter: [
@@ -124,15 +111,15 @@ export default {
   },
 
   tree: {
-    headerPath: `~/capabilities-and-architecture/`,
-    activeModules: `{n} active modules`,
+    headerPath: `~/categories/`,
+    activeModules: `{n} active projects`,
     expandAll: `Expand All`,
     collapseAll: `Collapse All`,
-    allModules: `[All Engineering Modules]`,
+    allModules: `[All Projects]`,
     activeDirectory: `Active Directory:`,
     btnJump: `Directory Tree`,
     resetFilter: `Show All`,
-    footerHint: `Click on a folder to filter by capability or on a file to open case study`,
+    footerHint: `Click on a folder to filter by category or on a file to open case study`,
     projectsCount: `{n} projects`,
     projectCountSingular: `1 project`,
   },
@@ -140,7 +127,7 @@ export default {
 showcase: {
     tag: `Technical Showcase`,
     title: `Projects & Case Studies`,
-    subtitle: `Click on a folder to filter by capability or on a file to open case study`,
+    subtitle: `Click on a folder to filter by category or on a file to open case study`,
     searchPlaceholder: `Search by technology, name or keyword...`,
     searchAria: `Search projects by technology, name or keyword`,
     searchClear: `Clear search`,
@@ -195,7 +182,7 @@ showcase: {
   },
 
   footer: {
-    brandDesc: `I build process automations, real-time bots, software reverse engineering, and high-performance cloud infrastructure.`,
+    brandDesc: `I build process automations, real-time bots, software reverse engineering, and cloud infrastructure.`,
     navTitle: `Navigation`,
     home: `Home`,
     projectsLink: `Projects`,

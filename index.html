@@ -222,7 +222,6 @@
   <link rel="modulepreload" href="assets/js/modules/cinemaPlayer.js">
   <link rel="modulepreload" href="assets/js/modules/deepLink.js">
   <link rel="modulepreload" href="assets/js/modules/directoryTree.js">
-  <link rel="modulepreload" href="assets/js/modules/audio.js">
   <link rel="modulepreload" href="assets/js/modules/tilt.js">
   <link rel="modulepreload" href="assets/js/modules/spotlight.js">
   <link rel="modulepreload" href="assets/js/modules/theme.js">
@@ -259,7 +258,8 @@
   <header class="header-floating" id="main-header">
     <a href="#hero" class="header-brand" id="header-brand" title="Luccas — Início" aria-label="Luccas — Página Inicial"
       data-i18n-attr="title:nav.brandTitle; aria-label:nav.brandAria">
-      <img src="assets/images/perfil2.jpg" alt="Foto de Luccas" class="brand-logo" id="header-brand-logo" width="36" height="36">
+      <img src="assets/images/perfil2.jpg" alt="Foto de Luccas" class="brand-logo" id="header-brand-logo" width="36"
+        height="36">
       <span class="brand-title" id="header-brand-title">Luccas</span>
     </a>
 
@@ -304,7 +304,6 @@
           </span>
           <h3 class="preferences-title" data-i18n="preferences.panelTitle">Preferências do Sistema</h3>
         </div>
-        <span class="preferences-tag" data-i18n="preferences.tag">Ambiente &amp; Acessibilidade</span>
       </div>
 
       <!-- Seção 1: Tema / Aparência Visual -->
@@ -363,37 +362,23 @@
             </p>
           </div>
         </div>
-        <div class="pref-segmented-control" role="radiogroup" aria-label="Idioma da interface"
+        <div class="pref-segmented-control pref-lang-segmented" role="radiogroup" aria-label="Idioma da interface"
           data-i18n-attr="aria-label:preferences.lang.title">
-          <button type="button" class="pref-segment-btn" data-lang-val="pt-BR" role="radio" aria-checked="false">
+          <button type="button" class="pref-segment-btn" data-lang-val="pt-BR" role="radio" aria-checked="false"
+            title="Português" aria-label="Português">
             <span class="pref-lang-code">PT</span>
-            <span>Português</span>
+            <span class="pref-lang-name">Português</span>
           </button>
-          <button type="button" class="pref-segment-btn" data-lang-val="en" role="radio" aria-checked="false">
+          <button type="button" class="pref-segment-btn" data-lang-val="en" role="radio" aria-checked="false"
+            title="English" aria-label="English">
             <span class="pref-lang-code">EN</span>
-            <span>English</span>
+            <span class="pref-lang-name">English</span>
           </button>
-          <button type="button" class="pref-segment-btn" data-lang-val="es" role="radio" aria-checked="false">
+          <button type="button" class="pref-segment-btn" data-lang-val="es" role="radio" aria-checked="false"
+            title="Español" aria-label="Español">
             <span class="pref-lang-code">ES</span>
-            <span>Español</span>
+            <span class="pref-lang-name">Español</span>
           </button>
-        </div>
-      </div>
-
-      <!-- Seção 3: Feedback Acústico / Web Audio API -->
-      <div class="pref-section pref-section-inline">
-        <div class="pref-label-group">
-          <span class="pref-label" data-i18n="preferences.audio.title">Feedback Acústico</span>
-          <p class="pref-description" data-i18n="preferences.audio.desc">
-            Sintetizador Web Audio nativo para confirmação acústica de cliques e navegação.
-          </p>
-        </div>
-        <div class="pref-toggle-wrapper">
-          <button type="button" id="pref-audio-toggle" class="pref-switch" role="switch" aria-checked="false"
-            aria-label="Alternar feedback acústico">
-            <span class="pref-switch-thumb" aria-hidden="true"></span>
-          </button>
-          <span id="pref-audio-status" class="pref-switch-status">Desativado</span>
         </div>
       </div>
 
@@ -410,8 +395,8 @@
         <!-- Avatar -->
         <div class="hero-avatar-wrapper" id="hero-avatar-wrapper">
           <div class="hero-avatar" id="hero-avatar">
-            <img src="assets/images/perfil2.jpg" alt="Foto de Perfil de Luccas" class="hero-avatar-img" id="hero-avatar-img" width="105"
-              height="105" loading="eager" data-i18n-attr="alt:hero.avatarAlt">
+            <img src="assets/images/perfil2.jpg" alt="Foto de Perfil de Luccas" class="hero-avatar-img"
+              id="hero-avatar-img" width="105" height="105" loading="eager" data-i18n-attr="alt:hero.avatarAlt">
           </div>
         </div>
 
@@ -421,7 +406,7 @@
         <!-- Objective Description (Directly below name, before the explorer!) -->
         <p class="hero-description" data-i18n="hero.description">
           Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em
-          nuvem de alta performance.
+          nuvem.
         </p>
 
         <!-- Executive Primary CTA (Single, perfectly centered) -->
@@ -460,7 +445,7 @@
         <div class="section-header">
           <h2 class="section-title" data-i18n="showcase.title">Projetos &amp; Estudos de Caso</h2>
           <p class="section-subtitle" data-i18n="showcase.subtitle">
-            Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso
+            Clique na pasta para filtrar por categoria ou no arquivo para abrir o estudo de caso
           </p>
         </div>
 
@@ -482,10 +467,10 @@
                       <line x1="9" y1="14" x2="15" y2="14"></line>
                     </svg>
                   </span>
-                  <span class="tree-path" id="tree-header-path">~/capacidades-e-arquitetura/</span>
+                  <span class="tree-path" id="tree-header-path">~/categorias/</span>
                 </div>
                 <div class="tree-header-right">
-                  <span class="tree-status-pill" id="tree-status-pill">12 módulos ativos</span>
+                  <span class="tree-status-pill" id="tree-status-pill">12 projetos ativos</span>
                   <button type="button" class="tree-expand-all-btn" id="tree-expand-all-btn"
                     aria-label="Alternar expansão de todas as pastas" title="Alternar expansão de todas as pastas">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -499,9 +484,9 @@
               </div>
 
               <!-- Tree Body: Directory Hierarchy -->
-              <div class="tree-body" role="tree" aria-label="Árvore de módulos de engenharia">
+              <div class="tree-body" role="tree" aria-label="Árvore de projetos">
 
-                <!-- Root Node: Todos os Módulos -->
+                <!-- Root Node: Todos os Projetos -->
                 <div class="tree-item tree-root-item active" data-category="all" role="treeitem" aria-selected="true"
                   tabindex="0">
                   <div class="tree-item-content">
@@ -514,8 +499,7 @@
                         <line x1="6" y1="18" x2="6.01" y2="18"></line>
                       </svg>
                     </span>
-                    <span class="tree-label tree-label-root" data-i18n="tree.allModules">[Todos os Módulos de
-                      Engenharia]</span>
+                    <span class="tree-label tree-label-root" data-i18n="tree.allModules">[Todos os Projetos]</span>
                     <span class="tree-counter">(12)</span>
                     <span class="tree-active-dot" aria-hidden="true"></span>
                   </div>
@@ -845,7 +829,7 @@
                       <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                     </svg>
                     <span class="active-dir-prefix" data-i18n="tree.activeDirectory">Diretório:</span>
-                    <code class="active-dir-path" id="active-dir-path">~/capacidades-e-arquitetura/</code>
+                    <code class="active-dir-path" id="active-dir-path">~/categorias/</code>
                   </div>
                   <span class="active-dir-count" id="active-dir-count">(12 projetos)</span>
                 </div>
@@ -859,7 +843,7 @@
                     <span data-i18n="tree.btnJump">Árvore de Diretórios</span>
                   </button>
                   <button type="button" class="btn-reset-tree-filter" id="btn-reset-filter"
-                    title="Restaurar visualização de todos os módulos" hidden>
+                    title="Restaurar visualização de todos os projetos" hidden>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1115,8 +1099,10 @@
                 </div>
                 <div class="channel-key-box">
                   <code class="channel-key" id="endpoint-email-key">luccascomvoce@gmail.com</code>
-                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-email-key" data-i18n-attr="title:contact.copyEmail" aria-label="Copiar e-mail">
-                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-email-key"
+                    data-i18n-attr="title:contact.copyEmail" aria-label="Copiar e-mail">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
                       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
@@ -1128,7 +1114,9 @@
                 <div class="channel-chips-inner">
                   <a href="mailto:luccascomvoce@gmail.com" id="chip-email-mailto" class="channel-chip">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
+                      <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z">
+                      </path>
                     </svg>
                     <span data-i18n="contact.chips.sendEmail">Enviar E-mail</span>
                   </a>
@@ -1145,8 +1133,10 @@
                 </div>
                 <div class="channel-key-box">
                   <code class="channel-key" id="endpoint-phone-key">+55 47 98852-6046</code>
-                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-phone-key" data-i18n-attr="title:contact.copyPhone" aria-label="Copiar telefone">
-                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-phone-key"
+                    data-i18n-attr="title:contact.copyPhone" aria-label="Copiar telefone">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
                       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
@@ -1156,20 +1146,26 @@
               </div>
               <div class="channel-chips-wrapper">
                 <div class="channel-chips-inner">
-                  <a href="https://wa.me/5547988526046" id="chip-phone-whatsapp" class="channel-chip chip-whatsapp" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/5547988526046" id="chip-phone-whatsapp" class="channel-chip chip-whatsapp"
+                    target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.301-.777.978-.953 1.18-.175.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.786-1.677-2.087-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.101-.2.05-.376-.025-.527-.075-.15-.678-1.634-.929-2.239-.244-.589-.493-.509-.678-.519-.175-.01-.376-.01-.577-.01-.201 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.511 0 1.482 1.079 2.912 1.23 3.113.15.201 2.123 3.242 5.144 4.547.719.31 1.28.496 1.718.636.722.23 1.378.198 1.898.12.578-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.175-1.429-.075-.126-.276-.201-.577-.351zM12.004 0C5.378 0 .008 5.371.008 11.996c0 2.115.553 4.18 1.603 5.998L0 24l6.18-1.621c1.751.954 3.731 1.458 5.824 1.458 6.626 0 11.996-5.371 11.996-11.996C24.004 5.371 18.63 0 12.004 0zm0 21.802c-1.854 0-3.673-.499-5.263-1.442l-.377-.224-3.914 1.026 1.045-3.815-.246-.391a9.782 9.782 0 0 1-1.503-5.235c0-5.414 4.407-9.821 9.825-9.821 5.419 0 9.826 4.407 9.826 9.821 0 5.415-4.407 9.826-9.826 9.826z"/>
+                      <path
+                        d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.301-.777.978-.953 1.18-.175.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.501-1.786-1.677-2.087-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.101-.2.05-.376-.025-.527-.075-.15-.678-1.634-.929-2.239-.244-.589-.493-.509-.678-.519-.175-.01-.376-.01-.577-.01-.201 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.511 0 1.482 1.079 2.912 1.23 3.113.15.201 2.123 3.242 5.144 4.547.719.31 1.28.496 1.718.636.722.23 1.378.198 1.898.12.578-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.175-1.429-.075-.126-.276-.201-.577-.351zM12.004 0C5.378 0 .008 5.371.008 11.996c0 2.115.553 4.18 1.603 5.998L0 24l6.18-1.621c1.751.954 3.731 1.458 5.824 1.458 6.626 0 11.996-5.371 11.996-11.996C24.004 5.371 18.63 0 12.004 0zm0 21.802c-1.854 0-3.673-.499-5.263-1.442l-.377-.224-3.914 1.026 1.045-3.815-.246-.391a9.782 9.782 0 0 1-1.503-5.235c0-5.414 4.407-9.821 9.825-9.821 5.419 0 9.826 4.407 9.826 9.821 0 5.415-4.407 9.826-9.826 9.826z" />
                     </svg>
                     <span>WhatsApp</span>
                   </a>
                   <a href="tel:+5547988526046" id="chip-phone-call" class="channel-chip chip-call">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      aria-hidden="true">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                      </path>
                     </svg>
                     <span data-i18n="contact.chips.call">Ligação Direta</span>
                   </a>
                   <a href="sms:+5547988526046" id="chip-phone-sms" class="channel-chip chip-sms">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      aria-hidden="true">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
                     <span>SMS / RCS</span>
@@ -1187,8 +1183,10 @@
                 </div>
                 <div class="channel-key-box">
                   <code class="channel-key" id="endpoint-handle-key">@luccascomvoce</code>
-                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-handle-key" data-i18n-attr="title:contact.copyHandle" aria-label="Copiar usuário">
-                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <button type="button" class="btn-copy-endpoint" data-copy-target="endpoint-handle-key"
+                    data-i18n-attr="title:contact.copyHandle" aria-label="Copiar usuário">
+                    <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" aria-hidden="true">
                       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
@@ -1198,21 +1196,27 @@
               </div>
               <div class="channel-chips-wrapper">
                 <div class="channel-chips-inner">
-                  <a href="https://github.com/luccascomvoce" id="chip-handle-github" class="channel-chip chip-github" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/luccascomvoce" id="chip-handle-github" class="channel-chip chip-github"
+                    target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                     </svg>
                     <span>GitHub</span>
                   </a>
-                  <a href="https://linkedin.com/in/luccascomvoce" id="chip-handle-linkedin" class="channel-chip chip-linkedin" target="_blank" rel="noopener noreferrer">
+                  <a href="https://linkedin.com/in/luccascomvoce" id="chip-handle-linkedin"
+                    class="channel-chip chip-linkedin" target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                     <span>LinkedIn</span>
                   </a>
-                  <a href="https://t.me/luccascomvoce" id="chip-handle-telegram" class="channel-chip chip-telegram" target="_blank" rel="noopener noreferrer">
+                  <a href="https://t.me/luccascomvoce" id="chip-handle-telegram" class="channel-chip chip-telegram"
+                    target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/>
+                      <path
+                        d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z" />
                     </svg>
                     <span>Telegram</span>
                   </a>
@@ -1222,8 +1226,10 @@
 
             <!-- Botão de salvar contato na agenda no final (sem estar em cartão) -->
             <div class="contact-footer-action">
-              <a href="assets/contact/luccas.vcf" id="btn-save-vcard" class="btn-save-contact-flat" download="Luccas.vcf" data-i18n-attr="title:contact.saveVcardTitle">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <a href="assets/contact/luccas.vcf" id="btn-save-vcard" class="btn-save-contact-flat"
+                download="Luccas.vcf" data-i18n-attr="title:contact.saveVcardTitle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                   <polyline points="17 21 17 13 7 13 7 21"></polyline>
                   <polyline points="7 3 7 8 15 8"></polyline>
@@ -1239,17 +1245,22 @@
       <!-- QR Code Companion Panel (Right side on desktop horizontal) -->
       <aside class="contact-qr-sidebar" id="contact-qr-sidebar">
         <p class="contact-qr-caption" data-i18n="contact.qrHint">Aponte a câmera do celular para salvar</p>
-        <div class="contact-qr-box" id="contact-qr-box" role="button" tabindex="0" title="Clique para ampliar / reduzir" aria-label="Código QR para salvar contato">
-          <img src="assets/images/contact-qr.svg" alt="QR Code para salvar contato no celular" class="contact-qr-image" width="220" height="220">
+        <div class="contact-qr-box" id="contact-qr-box" role="button" tabindex="0" title="Clique para ampliar / reduzir"
+          aria-label="Código QR para salvar contato">
+          <img src="assets/images/contact-qr.svg" alt="QR Code para salvar contato no celular" class="contact-qr-image"
+            width="220" height="220">
         </div>
-        <button type="button" class="btn-qr-zoom" id="btn-qr-zoom" aria-label="Ampliar QR Code" data-i18n-attr="aria-label:contact.qrZoomIn">
-          <svg class="icon-zoom-in" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <button type="button" class="btn-qr-zoom" id="btn-qr-zoom" aria-label="Ampliar QR Code"
+          data-i18n-attr="aria-label:contact.qrZoomIn">
+          <svg class="icon-zoom-in" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" aria-hidden="true">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             <line x1="11" y1="8" x2="11" y2="14"></line>
             <line x1="8" y1="11" x2="14" y2="11"></line>
           </svg>
-          <svg class="icon-zoom-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" hidden>
+          <svg class="icon-zoom-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" aria-hidden="true" hidden>
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             <line x1="8" y1="11" x2="14" y2="11"></line>
@@ -1274,7 +1285,7 @@
           </a>
           <p class="footer-brand-desc" data-i18n="footer.brandDesc">
             Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em
-            nuvem de alta performance.
+            nuvem.
           </p>
         </div>
 

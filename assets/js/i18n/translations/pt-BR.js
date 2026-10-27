@@ -13,12 +13,6 @@ export default {
     articles: `Artigos`,
     brandTitle: `Luccas — Início`,
     brandAria: `Luccas — Página Inicial`,
-    audio: {
-      toggle: `Ativar/Desativar Sons da Interface`,
-      on: `Desativar Sons da Interface`,
-      off: `Ativar Sons da Interface`,
-      label: `Alternar efeitos sonoros`,
-    },
     theme: {
       toLight: `Mudar para tema claro`,
       toDark: `Mudar para tema escuro`,
@@ -32,7 +26,6 @@ export default {
   preferences: {
     toggleBtn: `Preferências do Sistema`,
     panelTitle: `Preferências do Sistema`,
-    tag: `Ambiente & Acessibilidade`,
     theme: {
       title: `Modo de Exibição`,
       desc: `Alterne entre alto contraste para leitura técnica e tema claro para ambientes iluminados.`,
@@ -44,12 +37,6 @@ export default {
       title: `Idioma & Localização`,
       desc: `Define a tradução de estudos de caso, documentações técnicas e métricas.`,
     },
-    audio: {
-      title: `Feedback Acústico`,
-      desc: `Sintetizador Web Audio nativo para confirmação acústica de cliques e navegação.`,
-      enabled: `Ativado`,
-      disabled: `Desativado`,
-    },
   },
 
   hero: {
@@ -57,7 +44,7 @@ export default {
     avatarAlt: `Foto de Perfil de Luccas`,
     statusLabel: `Status: Disponível para Automação & Dev`,
     presenceTooltip: `Disponível para Automação & Dev`,
-    description: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem de alta performance.`,
+    description: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem.`,
     scrollLabel: `Explorar Projetos`,
     scrollAria: `Explorar projetos`,
     typewriter: [
@@ -116,15 +103,15 @@ export default {
   },
 
   tree: {
-    headerPath: `~/capacidades-e-arquitetura/`,
-    activeModules: `{n} módulos ativos`,
+    headerPath: `~/categorias/`,
+    activeModules: `{n} projetos ativos`,
     expandAll: `Expandir Tudo`,
     collapseAll: `Recolher Tudo`,
-    allModules: `[Todos os Módulos de Engenharia]`,
+    allModules: `[Todos os Projetos]`,
     activeDirectory: `Diretório Ativo:`,
     btnJump: `Árvore de Diretórios`,
     resetFilter: `Mostrar Todos`,
-    footerHint: `Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso`,
+    footerHint: `Clique na pasta para filtrar por categoria ou no arquivo para abrir o estudo de caso`,
     projectsCount: `{n} projetos`,
     projectCountSingular: `1 projeto`,
   },
@@ -132,7 +119,7 @@ export default {
   showcase: {
     tag: `Vitrine Técnica`,
     title: `Projetos & Estudos de Caso`,
-    subtitle: `Clique na pasta para filtrar por capacidade ou no arquivo para abrir o estudo de caso`,
+    subtitle: `Clique na pasta para filtrar por categoria ou no arquivo para abrir o estudo de caso`,
     searchPlaceholder: `Buscar por tecnologia, nome ou palavra-chave...`,
     searchAria: `Buscar projetos por tecnologia, nome ou palavra-chave`,
     searchClear: `Limpar busca`,
@@ -187,7 +174,7 @@ export default {
   },
 
   footer: {
-    brandDesc: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem de alta performance.`,
+    brandDesc: `Desenvolvo automações de processos, bots em tempo real, engenharia reversa de software e infraestrutura em nuvem.`,
     navTitle: `Navegação`,
     home: `Início`,
     projectsLink: `Projetos`,

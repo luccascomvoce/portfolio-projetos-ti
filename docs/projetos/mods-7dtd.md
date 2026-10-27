@@ -9,7 +9,7 @@
 
 O desenvolvimento de modificações (*mods*) para jogos construídos sobre a **Unity Engine** exige muito mais do que ajustes superficiais em arquivos de configuração ou parâmetros numéricos. Exige um entendimento profundo de **engenharia reversa**, manipulação de bytecode em tempo de execução (*runtime patching*), arquitetura de sistemas concorrentes, manipulação de grafos de interface (UI) e otimização de estruturas de dados de baixa complexidade.
 
-Este estudo de caso documenta o projeto e implementação de uma **suíte modular de 7 modificações de alta performance** para o jogo de sobrevivência e simulação voxel **7 Days to Die (The Fun Pimps)**. 
+Este estudo de caso documenta o projeto e implementação de uma **suíte modular de 7 modificações** para o jogo de sobrevivência e simulação voxel **7 Days to Die (The Fun Pimps)**. 
 
 ### Objetivos Centrais do Projeto:
 - **Resolução de Gargalos Críticos de Usabilidade (Quality of Life - QoL):** Eliminar fricções de navegação em diálogos, prover feedback visual antecipado de missões e integrar telemetria cartográfica de exploração.
@@ -371,4 +371,4 @@ if (itemsField?.GetValue(itemListController) is IList itemsList)
 
 ## 7. Conclusão e Avaliação Técnica
 
-A suíte desenvolvida demonstra a aplicação rigorosa de conceitos avançados de **Engenharia de Software**, **Engenharia Reversa** e **Arquitetura de Jogos** no ecossistema C# / Unity. Ao resolver desde gargalos de concorrência e I/O até falhas no ciclo de vida de componentes gráficos nativos, o projeto consolida uma abordagem profissional de extensão de software de alta performance.
+A suíte desenvolvida demonstra a aplicação rigorosa de conceitos avançados de **Engenharia de Software**, **Engenharia Reversa** e **Arquitetura de Jogos** no ecossistema C# / Unity. Ao resolver desde gargalos de concorrência e I/O até falhas no ciclo de vida de componentes gráficos nativos, o projeto consolida uma abordagem profissional de extensão de software.

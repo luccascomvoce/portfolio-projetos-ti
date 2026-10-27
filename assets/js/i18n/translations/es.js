@@ -21,12 +21,6 @@ export default {
     articles: `Artículos`,
     brandTitle: `Luccas — Inicio`,
     brandAria: `Luccas — Página de inicio`,
-    audio: {
-      toggle: `Activar/Desactivar Sonidos de la Interfaz`,
-      on: `Desactivar Sonidos de la Interfaz`,
-      off: `Activar Sonidos de la Interfaz`,
-      label: `Alternar efectos de sonido`,
-    },
     theme: {
       toLight: `Cambiar a tema claro`,
       toDark: `Cambiar a tema oscuro`,
@@ -40,7 +34,6 @@ export default {
   preferences: {
     toggleBtn: `Preferencias del Sistema`,
     panelTitle: `Preferencias del Sistema`,
-    tag: `Ambiente y Accesibilidad`,
     theme: {
       title: `Modo de Visualización`,
       desc: `Alterna entre alto contraste para lectura técnica y tema claro para entornos iluminados.`,
@@ -52,12 +45,6 @@ export default {
       title: `Idioma y Localización`,
       desc: `Define la traducción de estudios de caso, documentación técnica y métricas.`,
     },
-    audio: {
-      title: `Retroalimentación Acústica`,
-      desc: `Sintetizador Web Audio nativo para confirmación acústica de clics y navegación.`,
-      enabled: `Activado`,
-      disabled: `Desactivado`,
-    },
   },
 
   hero: {
@@ -65,7 +52,7 @@ export default {
     avatarAlt: `Foto de Perfil de Luccas`,
     statusLabel: `Estado: Disponible para Automatización y Desarrollo`,
     presenceTooltip: `Disponible para Automatización y Desarrollo`,
-    description: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube de alto rendimiento.`,
+    description: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube.`,
     scrollLabel: `Explorar Proyectos`,
     scrollAria: `Explorar proyectos`,
     typewriter: [
@@ -124,15 +111,15 @@ export default {
   },
 
   tree: {
-    headerPath: `~/capacidades-y-arquitectura/`,
-    activeModules: `{n} módulos activos`,
+    headerPath: `~/categorias/`,
+    activeModules: `{n} proyectos activos`,
     expandAll: `Expandir Todo`,
     collapseAll: `Contraer Todo`,
-    allModules: `[Todos los Módulos de Ingeniería]`,
+    allModules: `[Todos los Proyectos]`,
     activeDirectory: `Directorio Activo:`,
     btnJump: `Árbol de Directorios`,
     resetFilter: `Mostrar Todos`,
-    footerHint: `Haga clic en una carpeta para filtrar por capacidad o en un archivo para abrir el caso de estudio`,
+    footerHint: `Haga clic en una carpeta para filtrar por categoría o en un archivo para abrir el caso de estudio`,
     projectsCount: `{n} proyectos`,
     projectCountSingular: `1 proyecto`,
   },
@@ -140,7 +127,7 @@ export default {
 showcase: {
     tag: `Vitrina Técnica`,
     title: `Proyectos y Casos de Estudio`,
-    subtitle: `Haga clic en una carpeta para filtrar por capacidad o en un archivo para abrir el caso de estudio`,
+    subtitle: `Haga clic en una carpeta para filtrar por categoría o en un archivo para abrir el caso de estudio`,
     searchPlaceholder: `Buscar por tecnología, nombre o palabra clave...`,
     searchAria: `Buscar proyectos por tecnología, nombre o palabra clave`,
     searchClear: `Limpiar búsqueda`,
@@ -195,7 +182,7 @@ showcase: {
   },
 
   footer: {
-    brandDesc: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube de alto rendimiento.`,
+    brandDesc: `Desarrollo automatizaciones de procesos, bots en tiempo real, ingeniería inversa de software e infraestructura en la nube.`,
     navTitle: `Navegación`,
     home: `Inicio`,
     projectsLink: `Proyectos`,

@@ -1,6 +1,6 @@
 # Estudo de Caso: Telegram Games Hub — Plataforma Distribuída de Jogos Multiplayer em Tempo Real (TMA)
 
-> **Plataforma de entretenimento multiplayer de alta performance no ecossistema Telegram: Telegram Mini Apps (TMA Canvas 60 FPS), backend assíncrono orientado a eventos (Python 3.12 / FastAPI / WebSockets), autoridade estrita do servidor (Anti-Cheat) e autenticação criptográfica HMAC-SHA256.**  
+> **Plataforma de entretenimento multiplayer no ecossistema Telegram: Telegram Mini Apps (TMA Canvas 60 FPS), backend assíncrono orientado a eventos (Python 3.12 / FastAPI / WebSockets), autoridade estrita do servidor (Anti-Cheat) e autenticação criptográfica HMAC-SHA256.**  
 > **Bot & Mini App (Live):** [@vamojogarbot (t.me/vamojogarbot)](https://t.me/vamojogarbot)
 
 ---

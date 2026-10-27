@@ -5,7 +5,6 @@
 
 import { ARTICLES_DATA } from '../data/articlesData.js';
 import { applyTiltEffect, setTiltEnabled } from './tilt.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 import { deepLinkManager } from './deepLink.js';
 
@@ -225,14 +224,12 @@ class ArticleCarouselManager {
       if (this.modalCloseBtn) {
         this.modalCloseBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          soundEngine.playClick();
           this.closeArticle();
         });
       }
 
       this.modalEl.addEventListener('click', (e) => {
         if (e.target === this.modalEl) {
-          soundEngine.playClick();
           this.closeArticle();
         }
       });
@@ -248,18 +245,14 @@ class ArticleCarouselManager {
 
     if (this.prevBtn) {
       this.prevBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         this.prev();
       });
-      this.prevBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     if (this.nextBtn) {
       this.nextBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         this.next();
       });
-      this.nextBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Touch swipe support
@@ -273,10 +266,8 @@ class ArticleCarouselManager {
     this.container.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       if (touchStartX - touchEndX > 50) {
-        soundEngine.playClick();
         this.next();
       } else if (touchEndX - touchStartX > 50) {
-        soundEngine.playClick();
         this.prev();
       }
     }, { passive: true });
@@ -371,7 +362,6 @@ class ArticleCarouselManager {
           const id = readBtn.getAttribute('data-id');
           this.openArticle(id, card);
         });
-        readBtn.addEventListener('mouseenter', () => soundEngine.playHover());
       }
     });
 
@@ -388,7 +378,6 @@ class ArticleCarouselManager {
     const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
-        soundEngine.playClick();
         const index = parseInt(dot.getAttribute('data-index'), 10);
         this.goTo(index);
       });
@@ -475,7 +464,6 @@ class ArticleCarouselManager {
       this.restoreAllCardOpacities();
       this.activeArticleId = id;
       deepLinkManager.setArticleHash(id);
-      soundEngine.playClick();
 
       const localized = this.localizeArticle(article);
       if (this.modalTitle) this.modalTitle.textContent = localized.title;
@@ -506,7 +494,6 @@ class ArticleCarouselManager {
     this.triggerElement = document.activeElement;
     this.originCard = originCard || document.querySelector(`[data-article-id="${id}"]`);
 
-    soundEngine.playClick();
     setTiltEnabled(false);
 
     this.activeArticleId = id;

@@ -7,37 +7,36 @@
 
 import { projectFilter } from './projectFilter.js';
 import { modalManager } from './modal.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 
 export const DIRECTORY_MAP = {
   all: {
-    path: '~/capacidades-e-arquitetura/',
-    label: 'Todos os Módulos de Engenharia',
+    path: '~/categorias/',
+    label: 'Todos os Projetos',
     count: 12
   },
   re: {
-    path: '~/capacidades-e-arquitetura/01_engenharia-reversa/',
+    path: '~/categorias/01_engenharia-reversa/',
     label: '01_engenharia-reversa/',
     count: 2
   },
   mods: {
-    path: '~/capacidades-e-arquitetura/02_game-modding/',
+    path: '~/categorias/02_game-modding/',
     label: '02_game-modding/',
     count: 1
   },
   bots: {
-    path: '~/capacidades-e-arquitetura/03_bots-e-tempo-real/',
+    path: '~/categorias/03_bots-e-tempo-real/',
     label: '03_bots-e-tempo-real/',
     count: 6
   },
   scripts: {
-    path: '~/capacidades-e-arquitetura/04_scripts-e-devops/',
+    path: '~/categorias/04_scripts-e-devops/',
     label: '04_scripts-e-devops/',
     count: 2
   },
   web: {
-    path: '~/capacidades-e-arquitetura/05_web-e-dashboards/',
+    path: '~/categorias/05_web-e-dashboards/',
     label: '05_web-e-dashboards/',
     count: 2
   }
@@ -80,7 +79,6 @@ class DirectoryTreeManager {
       this.rootItem.addEventListener('click', () => {
         this.selectCategory('all', true);
       });
-      this.rootItem.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Bind Folder items
@@ -92,15 +90,13 @@ class DirectoryTreeManager {
         folderRow.addEventListener('click', (e) => {
           // Check if clicking folder chevron or folder label
           const isChevron = e.target.closest('.tree-chevron');
-          
+
           // Toggle folder open/close state
           this.toggleFolder(folder);
 
           // Also set category filter to this folder
           this.selectCategory(category, true);
         });
-
-        folderRow.addEventListener('mouseenter', () => soundEngine.playHover());
       }
     });
 
@@ -110,42 +106,33 @@ class DirectoryTreeManager {
         e.stopPropagation();
         const projectId = file.getAttribute('data-project-id');
         if (projectId) {
-          soundEngine.playClick();
           modalManager.openProject(projectId, file);
         }
       });
-
-      file.addEventListener('mouseenter', () => soundEngine.playHover());
     });
 
     // Expand All Button
     if (this.expandAllBtn) {
       this.expandAllBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         this.toggleExpandAll();
       });
-      this.expandAllBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Reset filter button in Section 3
     if (this.resetFilterBtn) {
       this.resetFilterBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         this.selectCategory('all', false);
       });
-      this.resetFilterBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Jump up to Tree button in Section 3
     if (this.jumpToTreeBtn) {
       this.jumpToTreeBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         const treeSection = document.getElementById('capability-tree');
         if (treeSection) {
           treeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       });
-      this.jumpToTreeBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     // Keyboard navigation (WAI-ARIA Tree View)
@@ -169,7 +156,6 @@ class DirectoryTreeManager {
       return;
     }
 
-    soundEngine.playClick();
     this.activeCategory = category;
 
     // Update active classes on tree elements
@@ -261,7 +247,7 @@ class DirectoryTreeManager {
     const allOpen = this.folders.every(f => f.classList.contains('open'));
     const labelSpan = this.expandAllBtn.querySelector('.tree-expand-label');
     if (labelSpan) {
-      labelSpan.textContent = allOpen 
+      labelSpan.textContent = allOpen
         ? i18n.t('tree.collapseAll', null, 'Recolher Tudo')
         : i18n.t('tree.expandAll', null, 'Expandir Tudo');
     }
@@ -269,7 +255,7 @@ class DirectoryTreeManager {
 
   updateBreadcrumb(category, count) {
     const dirInfo = DIRECTORY_MAP[category] || DIRECTORY_MAP.all;
-    
+
     if (this.activeDirPathEl) {
       this.activeDirPathEl.textContent = dirInfo.path;
     }
@@ -291,10 +277,13 @@ class DirectoryTreeManager {
 
     if (this.statusPill) {
       if (category === 'all') {
-        this.statusPill.textContent = i18n.t('tree.activeModules', { n: 12 }, '12 módulos ativos');
+        this.statusPill.textContent = i18n.t('tree.activeModules', { n: 12 }, '12 projetos ativos');
         this.statusPill.classList.remove('filtered');
       } else {
-        this.statusPill.textContent = `${count} ${count === 1 ? 'módulo' : 'módulos'} (${category})`;
+        const countLabel = count === 1
+          ? i18n.t('tree.projectCountSingular', null, '1 projeto')
+          : i18n.t('tree.projectsCount', { n: count }, `${count} projetos`);
+        this.statusPill.textContent = `${countLabel} (${category})`;
         this.statusPill.classList.add('filtered');
       }
     }

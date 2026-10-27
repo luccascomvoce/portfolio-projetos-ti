@@ -9,7 +9,6 @@ import { PROJECTS_DATA } from '../data/projectsData.js';
 import { ARTICLES_DATA } from '../data/articlesData.js';
 import { modalManager } from './modal.js';
 import { articleCarousel } from './articleCarousel.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 
 // Project ID aliases for flexible deep link resolution
@@ -151,7 +150,6 @@ class DeepLinkManager {
   }
 
   async copyDirectLink(url, toastEl = null) {
-    soundEngine.playClick();
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(url);
@@ -191,7 +189,6 @@ class DeepLinkManager {
         const toast = projectShareBtn.querySelector('.share-toast');
         this.copyDirectLink(url, toast);
       });
-      projectShareBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
 
     const articleShareBtn = document.getElementById('modal-article-share-btn');
@@ -204,7 +201,6 @@ class DeepLinkManager {
         const toast = articleShareBtn.querySelector('.share-toast');
         this.copyDirectLink(url, toast);
       });
-      articleShareBtn.addEventListener('mouseenter', () => soundEngine.playHover());
     }
   }
 }

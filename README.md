@@ -80,7 +80,6 @@ portfolio-projetos-ti/
         │   ├── projectsData.js  # Dataset dos estudos de caso com links de produção
         │   └── articlesData.js  # Dataset dos 4 artigos técnicos com metadados
         ├── modules/
-        │   ├── audio.js         # Sintetizador nativo Web Audio API
         │   ├── spotlight.js     # Holofote reativo ao cursor
         │   ├── particles.js     # Pool de partículas LERP
         │   ├── tilt.js          # Rotação 3D táctil de cards

@@ -7,7 +7,6 @@
 import { PROJECTS_DATA } from '../data/projectsData.js';
 import { applyTiltEffect } from './tilt.js';
 import { modalManager } from './modal.js';
-import { soundEngine } from './audio.js';
 import { i18n } from '../i18n/i18n.js';
 
 class ProjectFilterManager {
@@ -47,7 +46,6 @@ class ProjectFilterManager {
     // Search Clear Button
     if (this.searchClearBtn) {
       this.searchClearBtn.addEventListener('click', () => {
-        soundEngine.playClick();
         if (this.searchInput) {
           this.searchInput.value = '';
           this.currentSearch = '';
@@ -185,7 +183,6 @@ class ProjectFilterManager {
           const id = modalBtn.getAttribute('data-id');
           modalManager.openProject(id, card);
         });
-        modalBtn.addEventListener('mouseenter', () => soundEngine.playHover());
       }
     });
   }
