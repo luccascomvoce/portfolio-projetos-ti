@@ -25,6 +25,7 @@
   box-shadow: none;
   pointer-events: none;
   box-sizing: border-box;
+  height: 48px;
 }
 
 .header-brand {
@@ -101,7 +102,7 @@
 
 .brand-title {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.02rem;
   color: var(--on-surface-bright);
   letter-spacing: -0.01em;
@@ -647,12 +648,10 @@
 
 .hero-title {
   font-size: 4rem;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.035em;
   margin-bottom: 0.75rem;
-  background: linear-gradient(180deg, var(--gradient-hero-from) 0%, var(--gradient-hero-to) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--on-surface-bright);
 }
 
 /* ==========================================================================
@@ -3397,17 +3396,26 @@
     top: 0.75rem;
     padding: 0;
     width: calc(100% - 1.25rem);
+    height: 42px;
     gap: 0.5rem;
+  }
+  .header-brand {
+    height: 42px;
+    padding: 0 0.75rem 0 0.25rem;
+    gap: 0.45rem;
   }
   .header-brand.is-docked {
     height: 42px !important;
     padding: 0 0.75rem 0 0.25rem !important;
     gap: 0.45rem !important;
   }
-  .header-brand.is-docked .brand-logo,
-  .brand-logo {
+  .header-brand.is-docked .brand-logo {
     width: 32px !important;
     height: 32px !important;
+  }
+  .brand-logo {
+    width: 32px;
+    height: 32px;
   }
   .header-actions {
     height: 42px;
@@ -3478,6 +3486,7 @@
     top: 0.65rem;
     padding: 0;
     width: calc(100% - 1rem);
+    height: 42px;
   }
   .brand-title {
     font-size: 0.88rem;

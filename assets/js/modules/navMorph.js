@@ -10,9 +10,11 @@
  * 2. SEAMLESS MORPH: The #header-brand container acts as the morphing capsule
  *    from frame 0, starting with the exact dimensions, position, and border-radius
  *    of the hero avatar box and morphing into the menu pill.
- * 3. SYNCHRONIZED TIMING: The avatar squircle, profile photo, and name animate
+ * 3. ZERO LAYOUT JITTER: The morphing element uses position: absolute during motion,
+ *    preventing any flex-reflow or displacement of the navigation actions capsule.
+ * 4. SYNCHRONIZED TIMING: The avatar squircle, profile photo, and name animate
  *    together on the exact same scroll window, uniting into the pill as it glides
- *    fluidly into the header via GPU-accelerated translate3d.
+ *    fluidly into the header via GPU-accelerated translate3d with exact center tracking.
  */
 
 class NavMorphController {
@@ -29,6 +31,7 @@ class NavMorphController {
 
     this.isInitialized = false;
     this.ticking = false;
+    this.cachedWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
     // Cached layout metrics
     this.metrics = {
@@ -42,6 +45,8 @@ class NavMorphController {
       heroTitleW: 0,
       heroTitleH: 0,
 
+      dockedBrandLeft: 0,
+      dockedBrandTop: 0,
       dockedBrandCenterX: 0,
       dockedBrandCenterY: 0,
       dockedBrandW: 124,
@@ -91,6 +96,7 @@ class NavMorphController {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    this.cachedWidth = window.innerWidth;
     window.addEventListener('scroll', this.boundOnScroll, { passive: true });
     window.addEventListener('resize', this.boundOnResize, { passive: true });
     window.addEventListener('orientationchange', this.boundOnResize, { passive: true });
@@ -141,26 +147,34 @@ class NavMorphController {
     this.headerBrand.classList.add('is-docked');
 
     const brandRect = this.headerBrand.getBoundingClientRect();
+    this.metrics.dockedBrandLeft = brandRect.left;
+    this.metrics.dockedBrandTop = brandRect.top;
     this.metrics.dockedBrandCenterX = brandRect.left + brandRect.width / 2;
     this.metrics.dockedBrandCenterY = brandRect.top + brandRect.height / 2;
     this.metrics.dockedBrandW = brandRect.width;
     this.metrics.dockedBrandH = brandRect.height;
 
+    const isMobile = window.innerWidth <= 768;
     const logoRect = this.headerLogo.getBoundingClientRect();
-    this.metrics.dockedLogoW = logoRect.width || 36;
-    this.metrics.dockedLogoH = logoRect.height || 36;
-    this.metrics.dockedLogoOffsetX = logoRect.left - brandRect.left;
-    this.metrics.dockedLogoOffsetY = logoRect.top - brandRect.top;
+    this.metrics.dockedLogoW = logoRect.width || (isMobile ? 32 : 36);
+    this.metrics.dockedLogoH = logoRect.height || (isMobile ? 32 : 36);
+
+    const brandComputed = window.getComputedStyle(this.headerBrand);
+    const borderLeft = parseFloat(brandComputed.borderLeftWidth) || 1;
+    const borderTop = parseFloat(brandComputed.borderTopWidth) || 1;
+
+    this.metrics.dockedLogoOffsetX = (logoRect.left - brandRect.left) - borderLeft;
+    this.metrics.dockedLogoOffsetY = (logoRect.top - brandRect.top) - borderTop;
 
     const titleRect = this.headerTitle.getBoundingClientRect();
     this.metrics.dockedTitleW = titleRect.width;
     this.metrics.dockedTitleH = titleRect.height;
-    this.metrics.dockedTitleOffsetX = titleRect.left - brandRect.left;
-    this.metrics.dockedTitleOffsetY = titleRect.top - brandRect.top;
+    this.metrics.dockedTitleOffsetX = (titleRect.left - brandRect.left) - borderLeft;
+    this.metrics.dockedTitleOffsetY = (titleRect.top - brandRect.top) - borderTop;
 
     // Ratio between hero heading font size and docked brand font size
-    const heroFontSize = parseFloat(window.getComputedStyle(this.heroTitle).fontSize) || 64;
-    const targetFontSize = parseFloat(window.getComputedStyle(this.headerTitle).fontSize) || 16.8;
+    const heroFontSize = parseFloat(window.getComputedStyle(this.heroTitle).fontSize) || (isMobile ? 40 : 64);
+    const targetFontSize = parseFloat(window.getComputedStyle(this.headerTitle).fontSize) || (isMobile ? 14.7 : 16.8);
     this.metrics.titleScaleRatio = targetFontSize > 0 ? (heroFontSize / targetFontSize) : 3.8;
 
     // Restore brand styles
@@ -170,15 +184,18 @@ class NavMorphController {
     this.headerTitle.style.cssText = prevTitleCss;
 
     // 3. Dynamic scroll window:
-    // Starts when hero avatar nears ~200px from the top of the viewport
-    // Completes over a smooth 160px scroll distance
-    this.metrics.scrollStart = Math.max(30, Math.round(this.metrics.heroAvatarDocY - 200));
-    this.metrics.scrollDistance = 160;
+    this.metrics.scrollStart = Math.max(20, Math.round(this.metrics.heroAvatarDocY - (isMobile ? 150 : 200)));
+    this.metrics.scrollDistance = isMobile ? 140 : 160;
     this.metrics.scrollEnd = this.metrics.scrollStart + this.metrics.scrollDistance;
   }
 
   onResize() {
-    this.measureMetrics();
+    const currentWidth = window.innerWidth;
+    // Avoid layout thrashing on mobile browser address-bar hide/show vertical resizes
+    if (Math.abs(currentWidth - this.cachedWidth) > 4) {
+      this.cachedWidth = currentWidth;
+      this.measureMetrics();
+    }
     this.update();
   }
 
@@ -254,28 +271,27 @@ class NavMorphController {
     }
     this.heroTitle.style.visibility = 'hidden';
 
-    // 2. Compute smooth curves
+    // 2. Synchronized smooth easing curves
     const t = this.easeInOutCubic(p);
     const tShape = this.easeInOutCubic(p);
-    const tLogo = this.easeOutCubic(p);
-    // Title moves vertically into capsule and scales down promptly to unify with capsule
-    const tTitleY = this.easeOutCubic(Math.min(1, p * 1.6));
-    const tTitleScale = this.easeOutCubic(Math.min(1, p * 1.5));
+    const tLogo = this.easeInOutCubic(p);
+    const tTitle = this.easeInOutCubic(p);
 
     // Current hero avatar viewport position
     const heroAvatarCurrentCenterX = m.heroAvatarDocX;
     const heroAvatarCurrentCenterY = m.heroAvatarDocY - scrollY;
 
-    // Vector displacement from docked header brand center to current hero avatar center
-    const deltaX = heroAvatarCurrentCenterX - m.dockedBrandCenterX;
-    const deltaY = heroAvatarCurrentCenterY - m.dockedBrandCenterY;
-
-    const curDeltaX = deltaX * (1 - t);
-    const curDeltaY = deltaY * (1 - t);
-
     // Capsule dimensions & border-radius
     const curW = m.heroAvatarW + (m.dockedBrandW - m.heroAvatarW) * tShape;
     const curH = m.heroAvatarH + (m.dockedBrandH - m.heroAvatarH) * tShape;
+
+    // Target visual center of the morphing capsule
+    const targetCenterX = heroAvatarCurrentCenterX + (m.dockedBrandCenterX - heroAvatarCurrentCenterX) * t;
+    const targetCenterY = heroAvatarCurrentCenterY + (m.dockedBrandCenterY - heroAvatarCurrentCenterY) * t;
+
+    // Displacement offset so the center of headerBrand exactly matches targetCenter
+    const curDeltaX = targetCenterX - (m.dockedBrandLeft + curW / 2);
+    const curDeltaY = targetCenterY - (m.dockedBrandTop + curH / 2);
 
     // Border radius: squircle (36px) -> capsule pill (dockedBrandH / 2)
     const startRadius = 36;
@@ -286,10 +302,15 @@ class NavMorphController {
     const curBorderWidth = 2 + (1 - 2) * tShape;
     const curBg = t < 0.6 ? 'var(--surface-container)' : 'var(--surface-card)';
 
-    // Apply styles to morphing container (#header-brand)
+    // Container styling:
+    // Uses position: absolute to stay independent of flex layout during animation,
+    // avoiding any displacement or jitter on .header-actions.
     this.headerBrand.classList.remove('is-docked');
     this.headerBrand.style.visibility = 'visible';
     this.headerBrand.style.opacity = '1';
+    this.headerBrand.style.position = 'absolute';
+    this.headerBrand.style.left = '0';
+    this.headerBrand.style.top = '0';
     this.headerBrand.style.transform = `translate3d(${curDeltaX.toFixed(2)}px, ${curDeltaY.toFixed(2)}px, 0)`;
     this.headerBrand.style.width = `${curW.toFixed(2)}px`;
     this.headerBrand.style.height = `${curH.toFixed(2)}px`;
@@ -304,11 +325,10 @@ class NavMorphController {
     this.headerBrand.style.boxSizing = 'border-box';
     this.headerBrand.style.display = 'flex';
     this.headerBrand.style.alignItems = 'center';
-    this.headerBrand.style.position = 'relative';
     this.headerBrand.style.transition = 'none';
 
     // 3. Photo inside Capsule (#header-brand-logo)
-    // Starts filling the 101x101 squircle content area with 34px radius
+    // At t=0: fills the 101x101 squircle content area with 34px radius
     const startLogoW = m.heroAvatarW - 4;
     const startLogoH = m.heroAvatarH - 4;
     const startLogoRadius = 34;
@@ -318,13 +338,6 @@ class NavMorphController {
     const curLogoW = startLogoW + (m.dockedLogoW - startLogoW) * tLogo;
     const curLogoH = startLogoH + (m.dockedLogoH - startLogoH) * tLogo;
     const curLogoRadius = startLogoRadius + (m.dockedLogoW / 2 - startLogoRadius) * tLogo;
-
-    // Dynamically widen capsule during title entry to comfortably accommodate both photo and name
-    const titleEnterProgress = Math.max(0, Math.min(1, (tTitleY - 0.2) / 0.8));
-    const contentNeededW = curLogoX + curLogoW + 10 + m.dockedTitleW + 14;
-    const finalW = Math.max(curW, curW + (contentNeededW - curW) * titleEnterProgress);
-
-    this.headerBrand.style.width = `${finalW.toFixed(2)}px`;
 
     this.headerLogo.style.position = 'absolute';
     this.headerLogo.style.left = `${curLogoX.toFixed(2)}px`;
@@ -340,36 +353,31 @@ class NavMorphController {
     this.headerLogo.style.transition = 'none';
 
     // 4. Name ("Luccas" — #header-brand-title)
-    // Relative position from capsule center at start (t = 0):
-    // In hero: centered horizontally with avatar box (0px), and 119px below center
+    // Start relative center offset: in hero, title is centered under avatar
     const startTitleRelCenterX = 0;
     const startTitleRelCenterY = m.heroTitleDocY - m.heroAvatarDocY;
 
-    // Relative position from capsule center when docked (t = 1):
+    // Final docked title center relative to docked brand capsule center
     const dockedTitleRelCenterX = (m.dockedTitleOffsetX + m.dockedTitleW / 2) - m.dockedBrandW / 2;
     const dockedTitleRelCenterY = (m.dockedTitleOffsetY + m.dockedTitleH / 2) - m.dockedBrandH / 2;
 
-    const curTitleRelCenterX = startTitleRelCenterX + (dockedTitleRelCenterX - startTitleRelCenterX) * t;
-    const curTitleRelCenterY = startTitleRelCenterY + (dockedTitleRelCenterY - startTitleRelCenterY) * tTitleY;
+    const curTitleRelCenterX = startTitleRelCenterX + (dockedTitleRelCenterX - startTitleRelCenterX) * tTitle;
+    const curTitleRelCenterY = startTitleRelCenterY + (dockedTitleRelCenterY - startTitleRelCenterY) * tTitle;
 
-    const curTitleScale = m.titleScaleRatio + (1.0 - m.titleScaleRatio) * tTitleScale;
+    const curTitleScale = m.titleScaleRatio + (1.0 - m.titleScaleRatio) * tTitle;
 
-    // Translate coordinates inside capsule relative to top-left (0,0):
-    const baseTitleX = (finalW / 2 + curTitleRelCenterX) - m.dockedTitleW / 2;
+    const curTitleX = (curW / 2 + curTitleRelCenterX) - m.dockedTitleW / 2;
     const curTitleY = (curH / 2 + curTitleRelCenterY) - m.dockedTitleH / 2;
 
-    // Guarantee that title never overlaps the photo horizontally as it slides inside
-    const minSafeTitleX = curLogoX + curLogoW + 8;
-    const finalTitleX = titleEnterProgress > 0.4 ? Math.max(baseTitleX, minSafeTitleX) : baseTitleX;
-
     this.headerTitle.style.position = 'absolute';
-    this.headerTitle.style.left = `${finalTitleX.toFixed(2)}px`;
+    this.headerTitle.style.left = `${curTitleX.toFixed(2)}px`;
     this.headerTitle.style.top = `${curTitleY.toFixed(2)}px`;
     this.headerTitle.style.margin = '0';
     this.headerTitle.style.transformOrigin = 'center center';
     this.headerTitle.style.transform = `scale(${curTitleScale.toFixed(3)})`;
     this.headerTitle.style.opacity = '1';
     this.headerTitle.style.fontWeight = '800';
+    this.headerTitle.style.color = 'var(--on-surface-bright)';
     this.headerTitle.style.transition = 'none';
   }
 }
